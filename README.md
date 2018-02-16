@@ -1,3 +1,3 @@
-#Cryptfolio	
-###Cryptocurrency portfolio management application built on ASP.NET
+# Cryptfolio	
+### Cryptocurrency portfolio management application built on ASP.NET
 ![ASP Logo](./ASP_logo.png)
