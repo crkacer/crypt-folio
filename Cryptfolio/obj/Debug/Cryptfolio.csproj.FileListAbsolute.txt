@@ -7,3 +7,12 @@ C:\Users\Administrator\source\repos\Cryptfolio\Cryptfolio\obj\Debug\Cryptfolio.c
 C:\Users\Administrator\source\repos\Cryptfolio\Cryptfolio\obj\Debug\Cryptfolio.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\Cryptfolio\Cryptfolio\obj\Debug\Cryptfolio.dll
 C:\Users\Administrator\source\repos\Cryptfolio\Cryptfolio\obj\Debug\Cryptfolio.pdb
+C:\Users\101085183\Desktop\Proj\Cryptfolio\bin\Cryptfolio.dll.config
+C:\Users\101085183\Desktop\Proj\Cryptfolio\bin\Cryptfolio.dll
+C:\Users\101085183\Desktop\Proj\Cryptfolio\bin\Cryptfolio.pdb
+C:\Users\101085183\Desktop\Proj\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\101085183\Desktop\Proj\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\101085183\Desktop\Proj\Cryptfolio\obj\Debug\Cryptfolio.csprojResolveAssemblyReference.cache
+C:\Users\101085183\Desktop\Proj\Cryptfolio\obj\Debug\Cryptfolio.csproj.CoreCompileInputs.cache
+C:\Users\101085183\Desktop\Proj\Cryptfolio\obj\Debug\Cryptfolio.dll
+C:\Users\101085183\Desktop\Proj\Cryptfolio\obj\Debug\Cryptfolio.pdb

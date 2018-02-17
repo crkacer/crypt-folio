@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Cryptfolio.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Cryptfolio</title>
+    <link rel="stylesheet"  href="../Public/Resources/CSS/material.min.css"/>
+    <script src="../Public/Resources/CSS/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="../Public/Resources/CSS/styles.css" type ="text/css" />
+    <asp:ContentPlaceHolder ID="Style" runat="server">
+
+    </asp:ContentPlaceHolder>
+    
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+                    <a class="mdl-navigation__link" href="blog.html">Blog</a>
+                    <a class="mdl-navigation__link" href="about.html">About</a>
+                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+      <main class="mdl-layout__content">
+        <div class="page-content">
+            <asp:ContentPlaceHolder ID="Body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+      </main>
+    </div> 
+
+    <asp:ContentPlaceHolder ID="Script" runat="server">
+
+    </asp:ContentPlaceHolder>
+</body>
+</html>

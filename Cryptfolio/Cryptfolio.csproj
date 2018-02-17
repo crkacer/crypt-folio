@@ -67,11 +67,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="favicon.ico" />
     <Content Include="Public\Resources\CSS\bower.json" />
     <Content Include="Public\Resources\CSS\LICENSE" />
     <Content Include="Public\Resources\CSS\material.min.css.map" />
     <Content Include="Public\Resources\CSS\material.min.js.map" />
     <Content Include="Public\Resources\CSS\package.json" />
+    <Content Include="Public\Resources\CSS\styles.css" />
+    <Content Include="Public\Resources\Images\background.jpg" />
+    <Content Include="Public\Resources\Images\logo.png" />
+    <Content Include="Views\Master.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -81,30 +86,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models\index.aspx" />
     <Content Include="Public\Resources\CSS\material.css" />
     <Content Include="Public\Resources\CSS\material.js" />
     <Content Include="Public\Resources\CSS\material.min.css" />
     <Content Include="Public\Resources\CSS\material.min.js" />
     <Content Include="Public\Resources\JS\jquery-3.3.1.min.js" />
+    <Content Include="Views\index.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\index.aspx.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Master.Master.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Master.Master.designer.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Models\index.aspx.designer.cs">
+    <Compile Include="Views\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Public\Resources\Images\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
