@@ -1,6 +1,7 @@
 .portfolio-header {
     position: relative;
-    background-image: url(../Images/background.jpg);
+    background-image: url(../Images/background.png);
+    background-size: 50%;
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -21,7 +22,7 @@
 }
 
 .portfolio-logo-row {
-    min-height: 200px;
+    min-height: 300px;
 }
 
 .is-compact .portfolio-logo-row {
@@ -33,7 +34,7 @@
     background-size: cover;
     height: 250px;
     width: 250px;
-    margin: auto auto 10px;
+    margin: auto auto auto;
 }
 
 .is-compact .portfolio-logo {
@@ -162,8 +163,448 @@ img.article-image {
     max-width: 550px;
     margin: auto;
 }
+body {
+    margin: 0;
+}
 
-footer {
-    background-image: url(images/footer-background.png);
+/* Disable ugly boxes around images in IE10 */
+a img {
+    border: 0px;
+}
+
+::-moz-selection {
+    background-color: #6ab344;
+    color: #fff;
+}
+
+::selection {
+    background-color: #6ab344;
+    color: #fff;
+}
+
+.cryptfolio-search-box .mdl-textfield__input {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.cryptfolio-header .mdl-menu__container {
+    z-index: 50;
+    margin: 0 !important;
+}
+
+
+.mdl-textfield--expandable {
+    width: auto;
+}
+
+.cryptfolio-fab {
+    position: absolute;
+    right: 20%;
+    bottom: -26px;
+    z-index: 3;
+    background: #64ffda !important;
+    color: black !important;
+}
+
+
+.cryptfolio-logo-image {
+    height: 28px;
+    width: 140px;
+}
+
+
+.cryptfolio-header {
+    overflow: visible;
+    background-color: white;
+}
+
+    .cryptfolio-header .material-icons {
+        color: #767777 !important;
+    }
+
+    .cryptfolio-header .mdl-layout__drawer-button {
+        background: transparent;
+        color: #767777;
+    }
+
+    .cryptfolio-header .mdl-navigation__link {
+        color: #757575;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+.cryptfolio-navigation-container {
+    /* Simple hack to make the overflow happen to the left instead... */
+    direction: rtl;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    width: 500px;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cryptfolio-navigation {
+    /* ... and now make sure the content is actually LTR */
+    direction: ltr;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    width: 800px;
+}
+
+.cryptfolio-search-box.is-focused + .cryptfolio-navigation-container {
+    opacity: 0;
+    width: 100px;
+}
+
+
+.cryptfolio-navigation .mdl-navigation__link {
+    display: inline-block;
+    height: 60px;
+    line-height: 68px;
+    background-color: transparent !important;
+    border-bottom: 4px solid transparent;
+}
+
+    .cryptfolio-navigation .mdl-navigation__link:hover {
+        border-bottom: 4px solid #8bc34a;
+    }
+
+.cryptfolio-search-box {
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.cryptfolio-more-button {
+    -webkit-order: 3;
+    -ms-flex-order: 3;
+    order: 3;
+}
+
+
+.cryptfolio-drawer {
+    border-right: none;
+}
+
+.cryptfolio-drawer-separator {
+    height: 1px;
+    background-color: #dcdcdc;
+    margin: 8px 0;
+}
+
+.cryptfolio-drawer .mdl-navigation__link.mdl-navigation__link {
+    font-size: 14px;
+    color: #757575;
+}
+
+.cryptfolio-drawer span.mdl-navigation__link.mdl-navigation__link {
+    color: #8bc34a;
+}
+
+.cryptfolio-drawer .mdl-layout-title {
+    position: relative;
+    background: #6ab344;
+    height: 160px;
+}
+
+.cryptfolio-drawer .cryptfolio-logo-image {
+    position: absolute;
+    bottom: 16px;
+}
+
+.cryptfolio-be-together-section {
+    position: relative;
+    height: 800px;
+    width: auto;
+    background-color: #f3f3f3;
+    background: url('images/slide01.jpg') center 30% no-repeat;
     background-size: cover;
 }
+
+.logo-font {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    line-height: 1;
+    color: #767777;
+    font-weight: 500;
+}
+
+.cryptfolio-slogan {
+    font-size: 60px;
+    padding-top: 160px;
+}
+
+.cryptfolio-sub-slogan {
+    font-size: 21px;
+    padding-top: 24px;
+}
+
+.cryptfolio-create-character {
+    font-size: 21px;
+    padding-top: 400px;
+}
+
+    .cryptfolio-create-character a {
+        text-decoration: none;
+        color: #767777;
+        font-weight: 300;
+    }
+
+.cryptfolio-screen-section {
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.cryptfolio-screens {
+    text-align: right;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.cryptfolio-screen {
+    text-align: center;
+}
+
+    .cryptfolio-screen .cryptfolio-link {
+        margin-top: 16px;
+        display: block;
+        z-index: 2;
+    }
+
+.cryptfolio-image-link {
+    text-decoration: none;
+}
+
+.cryptfolio-wear {
+    display: inline-block;
+    width: 160px;
+    margin-right: 32px;
+}
+
+    .cryptfolio-wear .cryptfolio-screen-image {
+        width: 40%;
+        z-index: 1;
+    }
+
+
+.cryptfolio-phone {
+    display: inline-block;
+    width: 64px;
+    margin-right: 48px;
+}
+
+    .cryptfolio-phone .cryptfolio-screen-image {
+        width: 100%;
+        z-index: 1;
+    }
+
+
+.cryptfolio-tablet {
+    display: inline-block;
+    width: 110px;
+    margin-right: 64px;
+}
+
+    .cryptfolio-tablet .cryptfolio-screen-image {
+        width: 100%;
+        z-index: 1;
+    }
+
+    .cryptfolio-tablet .cryptfolio-link {
+        display: block;
+        z-index: 2;
+    }
+
+
+.cryptfolio-tv {
+    display: inline-block;
+    width: 300px;
+    margin-right: 80px;
+}
+
+    .cryptfolio-tv .cryptfolio-screen-image {
+        width: 100%;
+        z-index: 1;
+    }
+
+
+.cryptfolio-auto {
+    display: inline-block;
+    width: 300px;
+    overflow: hidden;
+}
+
+    .cryptfolio-auto .cryptfolio-screen-image {
+        display: block;
+        height: 300px;
+        z-index: 1;
+    }
+
+
+.cryptfolio-wear-section {
+    position: relative;
+    background: url('images/wear.png') center top no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+
+.cryptfolio-wear-band {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #37474f;
+}
+
+.cryptfolio-wear-band-text {
+    max-width: 800px;
+    margin-left: 25%;
+    padding: 24px;
+    text-align: left;
+    color: white;
+}
+
+    .cryptfolio-wear-band-text p {
+        padding-top: 8px;
+    }
+
+.cryptfolio-link {
+    text-decoration: none;
+    color: #8bc34a !important;
+}
+
+    .cryptfolio-link:hover {
+        color: #7cb342 !important;
+    }
+
+    .cryptfolio-link .material-icons {
+        position: relative;
+        top: -1px;
+        vertical-align: middle;
+    }
+
+.cryptfolio-alt-link {
+    text-decoration: none;
+    color: #64ffda !important;
+    font-size: 16px;
+}
+
+    .cryptfolio-alt-link:hover {
+        color: #00bfa5 !important;
+    }
+
+    .cryptfolio-alt-link .material-icons {
+        position: relative;
+        top: 6px;
+    }
+
+.cryptfolio-customized-section {
+    text-align: center;
+}
+
+.cryptfolio-customized-section-text {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 80px 16px 0 16px;
+}
+
+    .cryptfolio-customized-section-text p {
+        padding-top: 16px;
+    }
+
+.cryptfolio-customized-section-image {
+    background: url('images/devices.jpg') center top no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+
+.cryptfolio-more-section {
+    padding: 80px 0;
+    max-width: 1044px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .cryptfolio-more-section .cryptfolio-section-title {
+        margin-left: 12px;
+        padding-bottom: 24px;
+    }
+
+.cryptfolio-card-container {
+}
+
+    .cryptfolio-card-container .mdl-card__media {
+        overflow: hidden;
+        background: transparent;
+    }
+
+        .cryptfolio-card-container .mdl-card__media img {
+            width: 100%;
+        }
+
+    .cryptfolio-card-container .mdl-card__title {
+        background: transparent;
+        height: auto;
+    }
+
+    .cryptfolio-card-container .mdl-card__title-text {
+        color: black;
+        height: auto;
+    }
+
+    .cryptfolio-card-container .mdl-card__supporting-text {
+        height: auto;
+        color: black;
+        padding-bottom: 56px;
+    }
+
+    .cryptfolio-card-container .mdl-card__actions {
+        position: absolute;
+        bottom: 0;
+    }
+
+        .cryptfolio-card-container .mdl-card__actions a {
+            border-top: none;
+            font-size: 16px;
+        }
+
+.cryptfolio-footer {
+    background-color: #fafafa;
+    position: relative;
+}
+
+    .cryptfolio-footer a:hover {
+        color: #8bc34a;
+    }
+
+    .cryptfolio-footer .mdl-mega-footer--top-section::after {
+        border-bottom: none;
+    }
+
+    .cryptfolio-footer .mdl-mega-footer--middle-section::after {
+        border-bottom: none;
+    }
+
+    .cryptfolio-footer .mdl-mega-footer--bottom-section {
+        position: relative;
+    }
+
+        .cryptfolio-footer .mdl-mega-footer--bottom-section a {
+            margin-right: 2em;
+        }
+
+    .cryptfolio-footer .mdl-mega-footer--right-section a .material-icons {
+        position: relative;
+        top: 6px;
+    }
+
+
+.cryptfolio-link-menu:hover {
+    cursor: pointer;
+}
+
+

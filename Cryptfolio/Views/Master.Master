@@ -17,31 +17,71 @@
 </head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
-            <div class="mdl-layout__header-row portfolio-logo-row">
-                <span class="mdl-layout__title">
-                    <div class="portfolio-logo"></div>
-                    
-                </span>
-            </div>
-            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
-                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
-                    <a class="mdl-navigation__link" href="blog.html">Blog</a>
-                    <a class="mdl-navigation__link" href="about.html">About</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
-                </nav>
-            </div>
-        </header>
 
-      <main class="mdl-layout__content">
-        <div class="page-content">
-            <asp:ContentPlaceHolder ID="Body" runat="server">
-            </asp:ContentPlaceHolder>
+      <div class="cryptfolio-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="cryptfolio-title mdl-layout-title">
+            <a style="text-decoration:none; color:red;" href="./main.html">Cryptfolio</a>
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="cryptfolio-header-spacer mdl-layout-spacer"></div>
+          <div class="cryptfolio-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search-field">
+            </div>
+          </div>
+          <!-- Navigation -->
+          <div class="cryptfolio-navigation-container">
+            <nav class="cryptfolio-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Log In</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Regiter</a>
+            </nav>
+          </div>
         </div>
-      </main>
-    </div> 
+      </div>
+    
+    <div class="mdl-layout__content">
+        <a name="top"></a>
+        <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
+        <footer class="cryptfolio-footer mdl-mega-footer">
+        <div class="mdl-mega-footer--top-section">
+        <div class="mdl-mega-footer--left-section">
+            <button class="mdl-mega-footer--social-btn"></button>
+            &nbsp;
+            <button class="mdl-mega-footer--social-btn"></button>
+            &nbsp;
+            <button class="mdl-mega-footer--social-btn"></button>
+        </div>
+        <div class="mdl-mega-footer--right-section">
+            <a class="mdl-typography--font-light" href="#top">
+            Back to Top
+            <i class="material-icons">expand_less</i>
+            </a>
+        </div>
+        </div>
 
+        <div class="mdl-mega-footer--middle-section">
+        <p class="mdl-typography--font-light">&copy; All rights reserved to these individuals</p>
+        <p class="mdl-typography--font-light">Huy Dam - 101085183</p>
+        <p class="mdl-typography--font-light">Allan Martinez - 101094202</p>
+        <p class="mdl-typography--font-light">Duc Nguyen - 101095506</p>
+        </div>
+
+        <div class="mdl-mega-footer--bottom-section">
+
+        <a class="cryptfolio-link mdl-typography--font-light" href="./feedback.html">Feedback</a>
+        <a class="cryptfolio-link mdl-typography--font-light" href="./aboutus.html">About Us</a>
+        <a class="cryptfolio-link mdl-typography--font-light" href="./aboutus.html">Information</a>
+
+        </div>
+
+    </footer>
+    </div>
+    
+    </div>
     <asp:ContentPlaceHolder ID="Script" runat="server">
 
     </asp:ContentPlaceHolder>
