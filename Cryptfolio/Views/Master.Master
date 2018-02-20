@@ -9,6 +9,7 @@
     <script src="../Public/Resources/CSS/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../Public/Resources/CSS/styles.css" type ="text/css" />
     <asp:ContentPlaceHolder ID="Style" runat="server">
 
@@ -37,7 +38,7 @@
           <div class="cryptfolio-navigation-container">
             <nav class="cryptfolio-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Log In</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Regiter</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Register</a>
             </nav>
           </div>
         </div>
@@ -49,11 +50,11 @@
         <footer class="cryptfolio-footer mdl-mega-footer">
         <div class="mdl-mega-footer--top-section">
         <div class="mdl-mega-footer--left-section">
-            <button class="mdl-mega-footer--social-btn"></button>
+            <button class="mdl-mega-footer--social-btn "><i class="mdi mdi-facebook mdi-24px"></i></button>
             &nbsp;
-            <button class="mdl-mega-footer--social-btn"></button>
+            <button class="mdl-mega-footer--social-btn"><i class="mdi mdi-instagram mdi-24px"></i></button>
             &nbsp;
-            <button class="mdl-mega-footer--social-btn"></button>
+            <button class="mdl-mega-footer--social-btn"><i class="mdi mdi-twitter mdi-24px"></i></button>
         </div>
         <div class="mdl-mega-footer--right-section">
             <a class="mdl-typography--font-light" href="#top">
