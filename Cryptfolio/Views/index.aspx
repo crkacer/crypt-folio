@@ -17,7 +17,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
-    <header class="portfolio-header">
+    <header class="portfolio-header" style="min-height:1vh;">
         <div class="portfolio-logo-row">
             <span class="mdl-layout__title">
                 <div class="portfolio-logo"></div>
@@ -26,7 +26,7 @@
         </div>
     </header>
     <div class="mdl-grid" style="padding:0; margin:0;">
-        <div class="mdl-cell mdl-cell--6-col" style="min-height:400px;">
+        <div class="mdl-cell mdl-cell--6-col" style="min-height:40vh;">
             <div class="mdl-layout__title">
                 <div class="mdl-typography--display-3 mdl-animation--default" style="text-align:center; color:midnightblue;">Getting Started</div>
             </div>
@@ -39,15 +39,15 @@
             
             
         </div>
-        <div class="mdl-cell mdl-cell--6-col" style="min-height:400px; padding:0;margin:0;">
+        <div class="mdl-cell mdl-cell--6-col" style="padding:0;margin:0;">
             <div class="blockchain-logo" style="margin:50px 50px;">
                 <img src="../Public/Resources/Images/blockchain.jpg" alt="blockchain" style="height: 200px; width:200px;"/>
             </div>
         </div>
     </div>
     <div class="portfolio-more-section">
-        <div class="mdl-grid mdl-color--accent">
-            <div class="mdl-cell mdl-cell--6-col" style="min-height:300px;">
+        <div class="mdl-grid mdl-color--amber">
+            <div class="mdl-cell mdl-cell--6-col" style="min-height:40vh;">
                 <div class="mdl-layout__title">
                     <img src="../Public/Resources/Images/signin.png" alt="signin" style="height: 200px; width:200px;"/>
                 </div>
@@ -55,14 +55,14 @@
             <div class="mdl-cell mdl-cell--6-col" style="min-height:300px;">
                 <div class="mdl-layout__title">
                     <div class="mdl-typography--display-3" style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
-                    <button onclick="window.location.href='./signin.html'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Sign me in</button>
+                    <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Sign me in</button>
                 </div>
             </div>
         
             
         </div>
     </div>
-</asp:Content>
+</asp:Content> 
 
 
 

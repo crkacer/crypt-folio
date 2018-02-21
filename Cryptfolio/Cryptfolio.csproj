@@ -92,6 +92,8 @@
     <Content Include="Public\Resources\CSS\material.min.js" />
     <Content Include="Public\Resources\JS\jquery-3.3.1.min.js" />
     <Content Include="Views\index.aspx" />
+    <Content Include="Views\login.aspx" />
+    <Content Include="Views\feedback.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +114,20 @@
     </Compile>
     <Compile Include="Views\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\feedback.aspx.cs">
+      <DependentUpon>feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\feedback.aspx.designer.cs">
+      <DependentUpon>feedback.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

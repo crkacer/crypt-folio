@@ -191,7 +191,6 @@ a img {
     margin: 0 !important;
 }
 
-
 .mdl-textfield--expandable {
     width: auto;
 }
@@ -227,7 +226,7 @@ a img {
     }
 
     .cryptfolio-header .mdl-navigation__link {
-        color: #757575;
+        color: #3d3d3d;
         font-weight: 700;
         font-size: 14px;
     }
@@ -266,7 +265,7 @@ a img {
 }
 
     .cryptfolio-navigation .mdl-navigation__link:hover {
-        border-bottom: 4px solid #8bc34a;
+        border-bottom: 4px solid #fc6f6f;
     }
 
 .cryptfolio-search-box {
@@ -473,11 +472,11 @@ a img {
 
 .cryptfolio-link {
     text-decoration: none;
-    color: #8bc34a !important;
+    color: #ff8787 !important;
 }
 
     .cryptfolio-link:hover {
-        color: #7cb342 !important;
+        color: #ff4949 !important;
     }
 
     .cryptfolio-link .material-icons {
@@ -575,6 +574,7 @@ a img {
 .cryptfolio-footer {
     background-color: #fafafa;
     position: relative;
+    min-width:40vh;
 }
 
     .cryptfolio-footer a:hover {
