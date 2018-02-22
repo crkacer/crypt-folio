@@ -76,7 +76,12 @@
     <Content Include="Public\Resources\CSS\styles.css" />
     <Content Include="Public\Resources\Images\background.jpg" />
     <Content Include="Public\Resources\Images\logo.png" />
+    <Content Include="Public\Resources\JS\app.js" />
+    <Content Include="Public\Resources\JS\particles.js" />
+    <Content Include="Public\Resources\JS\particles.min.js" />
     <Content Include="Views\Master.Master" />
+    <Content Include="Public\Resources\JS\bower.json" />
+    <Content Include="Public\Resources\JS\package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

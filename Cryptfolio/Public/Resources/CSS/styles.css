@@ -1,7 +1,11 @@
-.portfolio-header {
-    position: relative;
-    background-image: url(../Images/background.png);
-    background-size: 50%;
+
+.particle-wrapper {
+    background-color: #222;
+    width: 100vw;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -21,9 +25,6 @@
     display: none;
 }
 
-.portfolio-logo-row {
-    min-height: 300px;
-}
 
 .is-compact .portfolio-logo-row {
     min-height: inherit;
@@ -34,7 +35,10 @@
     background-size: cover;
     height: 250px;
     width: 250px;
-    margin: auto auto auto;
+    position:absolute;
+    left:43%;
+    top: 10%;
+    z-index:50;
 }
 
 .is-compact .portfolio-logo {
@@ -166,7 +170,18 @@ img.article-image {
 body {
     margin: 0;
 }
-
+body:before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    z-index: 100;
+}
 /* Disable ugly boxes around images in IE10 */
 a img {
     border: 0px;
@@ -217,12 +232,11 @@ a img {
 }
 
     .cryptfolio-header .material-icons {
-        color: #767777 !important;
+        color: #CBDBD7;
     }
 
     .cryptfolio-header .mdl-layout__drawer-button {
-        background: transparent;
-        color: #767777;
+        color: #CBDBD7;
     }
 
     .cryptfolio-header .mdl-navigation__link {
@@ -608,3 +622,151 @@ a img {
 }
 
 
+.orbit {
+    position: absolute;
+    z-index: 10;
+    width: 100px;
+    height: 200px;
+    left: 75%;
+    top: 55%;
+    border: 4px solid rgba(49, 125, 247,0.5);
+    border-radius: 50%;
+    background-image: radial-gradient( rgba(188, 214, 255, 0.4), rgba(142, 186, 255, 0.4));
+}
+
+.rot45 {
+    z-index: 6;
+    transform: rotate(45deg);
+}
+
+.rot90 {
+    z-index: 4;
+    transform: rotate(90deg);
+}
+
+.rot135 {
+    z-index: 6;
+    transform: rotate(135deg);
+}
+
+.prot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    margin: 95px 45px;
+    border-radius: 50%;
+    background-color: rgb(37, 81, 150);
+    background-color: rgba(37, 81, 150, 0.7);
+    animation: pulse 5s infinite;
+}
+
+.elec {
+    position: absolute;
+    top: 96px;
+    left: -6px;
+}
+
+    .elec:after {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(0, 57, 147, .7);
+    }
+
+.sp1 {
+    animation: lr 10s infinite;
+}
+
+    .sp1:after {
+        animation: ud 10s infinite;
+    }
+
+.sp2 {
+    animation: lr 6s infinite;
+}
+
+    .sp2:after {
+        animation: ud 6s infinite;
+    }
+
+.sp3 {
+    animation: lr 16s infinite;
+}
+
+    .sp3:after {
+        animation: ud 16s infinite;
+    }
+
+.sp4 {
+    animation: lr 5s infinite;
+}
+
+    .sp4:after {
+        animation: ud 5s infinite;
+    }
+
+
+@keyframes pulse {
+    0%, 100% {
+        background-color: rgba(37, 81, 150, 0.7);
+    }
+
+    50% {
+        background-color: rgba(58, 133, 252, 0.8);
+        transform: scale(2);
+    }
+}
+
+@keyframes lr {
+    0% {
+        animation-timing-function: ease-in;
+        transform: translateX(0px);
+    }
+
+    25% {
+        animation-timing-function: ease-out;
+        transform: translateX(51px);
+    }
+
+    50% {
+        animation-timing-function: ease-in;
+        transform: translateX(104px);
+    }
+
+    75% {
+        animation-timing-function: ease-out;
+        transform: translateX(51px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes ud {
+    0% {
+        animation-timing-function: ease-out;
+        transform: translateY(0px);
+    }
+
+    25% {
+        animation-timing-function: ease-in;
+        transform: translateY(-102px);
+    }
+
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateY(0px);
+    }
+
+    75% {
+        animation-timing-function: ease-in;
+        transform: translateY(102px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}

@@ -10,23 +10,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+ 
     <script type="text/javascript" src="../Public/Resources/JS/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="../Public/Resources/CSS/styles.css" type ="text/css" />
     <asp:ContentPlaceHolder ID="Style" runat="server">
 
     </asp:ContentPlaceHolder>
     
-    <asp:ContentPlaceHolder ID="Script" runat="server">
 
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
       <div class="cryptfolio-header mdl-layout__header mdl-layout__header--waterfall">
-        <div class="mdl-layout__header-row" style="background-color:#fff7f4;">
+        <div class="mdl-layout__header-row" style="background-color:#3E606F;">
           <span class="cryptfolio-title mdl-layout-title">
-            <a style="text-decoration:none; color:red;" href="./index.aspx">Cryptfolio</a>
+            <a style="text-decoration:none; color:#CBDBD7;" href="./index.aspx">Cryptfolio</a>
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="cryptfolio-header-spacer mdl-layout-spacer"></div>
@@ -35,14 +34,14 @@
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search-field">
+              <input class="mdl-textfield__input" type="text" id="search-field" style="color:white;">
             </div>
           </div>
           <!-- Navigation -->
           <div class="cryptfolio-navigation-container">
             <nav class="cryptfolio-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./login.aspx">Log In</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">Register</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./login.aspx" style="color: #CBDBD7; ">Log In</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#" style="color: #CBDBD7;">Register</a>
             </nav>
           </div>
         </div>
@@ -87,5 +86,8 @@
     </div>
     
     </div>
+   <asp:ContentPlaceHolder ID="Script" runat="server">
+
+    </asp:ContentPlaceHolder>
 </body>
 </html>
