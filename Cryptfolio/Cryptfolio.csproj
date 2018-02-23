@@ -74,7 +74,6 @@
     <Content Include="Public\Resources\CSS\material.min.js.map" />
     <Content Include="Public\Resources\CSS\package.json" />
     <Content Include="Public\Resources\CSS\styles.css" />
-    <Content Include="Public\Resources\Images\background.jpg" />
     <Content Include="Public\Resources\Images\logo.png" />
     <Content Include="Public\Resources\JS\app.js" />
     <Content Include="Public\Resources\JS\particles.js" />

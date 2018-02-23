@@ -7,7 +7,26 @@
     margin: 0;
     overflow: hidden;
 }
-
+.getting-started {
+    min-height: 40vh;
+    background: url(../Images/getting-started-background.jpg) center center no-repeat #102026;
+    background-size:cover;
+    z-index: 50;
+}
+.portfolio-login-section{
+    min-height: 30vh;
+}
+.crypto-history-section {
+    background-color: #3E606F;
+    min-height: 30vh;
+    z-index:-1;
+}
+.team-section{
+    min-height: 30vh;
+}
+.history-section{
+    min-height: 30vh;
+}
 .portfolio-header .mdl-layout__header-row {
     padding: 0;
     -webkit-justify-content: center;
