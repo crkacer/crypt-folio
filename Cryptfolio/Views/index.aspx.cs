@@ -14,6 +14,7 @@ namespace Cryptfolio.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             StringBuilder sb = new StringBuilder();
 
             byte[] buf = new byte[8192];
@@ -44,6 +45,7 @@ namespace Cryptfolio.Views
             }
             while (count > 0);
             Response.Write(sb.ToString());
+            */
         }
     }
 }

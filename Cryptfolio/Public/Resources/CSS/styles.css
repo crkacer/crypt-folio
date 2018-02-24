@@ -27,6 +27,11 @@
 .history-section{
     min-height: 30vh;
 }
+.history-title {
+    color: #B2CED9;
+    margin: 3vh 2vw;
+    
+}
 .portfolio-header .mdl-layout__header-row {
     padding: 0;
     -webkit-justify-content: center;

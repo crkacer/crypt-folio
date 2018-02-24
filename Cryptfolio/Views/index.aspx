@@ -63,8 +63,15 @@
                     
                 </div>
             </div>
-            <div>
-
+            <div class="mdl-cell mdl-cell--6-col">
+                <div class="history-container mdl-layout__title">
+                    <div class="history-title mdl-typography--headline mdl-typography--text-justify">
+                        Cryptocurrencies are fast moving and constantly fluctuating on a regular basis. They are emerging and fast moving currencies that require time, knowledge, and information for appropriate management. <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over the management of your cryptocurrencies as a short as well as long term investment.
+                    </div>
+                    <button onclick="window.location.href='./information.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">I want to hear more</button>
+                </div>
+                
+                
             </div>
         </div>
     </div>
@@ -74,8 +81,8 @@
                
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="mdl-layout__title">
-                    <div class="mdl-typography--display-3" style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
+                <div class="mdl-layout__title ">
+                    <div class=" mdl-typography--display-3 member-login" style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
                     <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Sign me in</button>
                 </div>
             </div>
@@ -111,6 +118,8 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
+    
+    <script type="text/javascript" src="../Public/Resources/JS/jquery.waypoints.js"></script>
     <script type="text/javascript">
         
         var intro = 'Cryptfolio Project was established to manage cryptocurrency investments. Click the below button to explore our website functionalities.';
@@ -133,7 +142,6 @@
                 opacity: 1
             }, 100);
         });
-
     </script>
     <script src="../Public/Resources/JS/particles.js">
         
@@ -141,5 +149,4 @@
     <script src="../Public/Resources/JS/app.js">
 
     </script>
-    
 </asp:Content>

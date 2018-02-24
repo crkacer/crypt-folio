@@ -68,6 +68,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="favicon.ico" />
+    <Content Include="Public\Resources\CSS\animate.css" />
     <Content Include="Public\Resources\CSS\bower.json" />
     <Content Include="Public\Resources\CSS\LICENSE" />
     <Content Include="Public\Resources\CSS\material.min.css.map" />
@@ -76,8 +77,11 @@
     <Content Include="Public\Resources\CSS\styles.css" />
     <Content Include="Public\Resources\Images\logo.png" />
     <Content Include="Public\Resources\JS\app.js" />
+    <Content Include="Public\Resources\JS\jquery.waypoints.js" />
+    <Content Include="Public\Resources\JS\jquery.waypoints.min.js" />
     <Content Include="Public\Resources\JS\particles.js" />
     <Content Include="Public\Resources\JS\particles.min.js" />
+    <Content Include="Public\Resources\JS\viewportchecker.js" />
     <Content Include="Views\Master.Master" />
     <Content Include="Public\Resources\JS\bower.json" />
     <Content Include="Public\Resources\JS\package.json" />
