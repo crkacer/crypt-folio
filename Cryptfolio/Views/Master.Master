@@ -12,9 +12,15 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css"/>
     <link rel="stylesheet" href="../Public/Resources/CSS/styles.css" type ="text/css" />
-    <link rel="stylesheet" href="../Public/Resources/CSS/animate.css" />
     
     <script type="text/javascript" src="../Public/Resources/JS/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../Public/Resources/JS/scrollreveal.min.js"></script>
+    <script>
+        window.sr = ScrollReveal({ reset: true });
+        if (sr.isSupported()) {
+            document.documentElement.classList.add('sr');
+        }
+    </script>
     <asp:ContentPlaceHolder ID="Style" runat="server">
 
     </asp:ContentPlaceHolder>

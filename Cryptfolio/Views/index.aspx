@@ -11,6 +11,7 @@
             padding:0;
             margin:0;
         }
+        .sr .history-title .member-login {visibility:hidden;}
         
     </style>
 </asp:Content>
@@ -31,9 +32,9 @@
         <div class="mdl-grid" style="padding:0; margin:0;">
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-layout__title">
-                    <div class="gettingStarted-effect mdl-typography--display-3 mdl-animation--default" style="text-align:center; color:midnightblue; margin-top:5vh;"></div>
+                    <div class="gettingStarted-effect mdl-typography--display-3 mdl-animation--default" style="text-align:center; color:midnightblue; margin-top:3vh;"></div>
            
-                    <div class="css-typing mdl-typography--title" style="padding:10px 10px; margin: 2vw 2vh;">
+                    <div class="css-typing mdl-typography--title" style="padding:10px 10px; margin: 1vw 1vh;">
                     </div>
                
                     <div style="text-align:center;">
@@ -64,12 +65,15 @@
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="history-container mdl-layout__title">
-                    <div class="history-title mdl-typography--headline mdl-typography--text-justify">
-                        Cryptocurrencies are fast moving and constantly fluctuating on a regular basis. They are emerging and fast moving currencies that require time, knowledge, and information for appropriate management. <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over the management of your cryptocurrencies as a short as well as long term investment.
+                <div class="history-effect">
+                    <div class="history-container mdl-layout__title">
+                        <div class="history-title mdl-typography--headline mdl-typography--text-justify">
+                            Cryptocurrencies are fast moving and constantly fluctuating on a regular basis. They are emerging and fast moving currencies that require time, knowledge, and information for appropriate management. <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over the management of your cryptocurrencies as a short as well as long term investment.
+                        </div>
+                        <button onclick="window.location.href='./information.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">I want to hear more</button>
                     </div>
-                    <button onclick="window.location.href='./information.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">I want to hear more</button>
                 </div>
+                
                 
                 
             </div>
@@ -81,10 +85,13 @@
                
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="mdl-layout__title ">
-                    <div class=" mdl-typography--display-3 member-login" style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
-                    <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Sign me in</button>
+                <div class="member-login">
+                    <div class="mdl-layout__title ">
+                        <div class=" mdl-typography--display-3 " style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
+                        <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Sign me in</button>
+                    </div>
                 </div>
+                
             </div>
         
             
@@ -119,9 +126,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     
-    <script type="text/javascript" src="../Public/Resources/JS/jquery.waypoints.js"></script>
     <script type="text/javascript">
-        
         var intro = 'Cryptfolio Project was established to manage cryptocurrency investments. Click the below button to explore our website functionalities.';
         var gettingStarted = 'Getting Started'
         var spans = '<span>' + intro.split('').join('</span><span>') + '</span>';
@@ -142,7 +147,12 @@
                 opacity: 1
             }, 100);
         });
-    </script>
+        $(document).ready(function () {
+            sr.reveal('.history-effect', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.4, scale: 0.5 });
+            sr.reveal('.member-login', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 0, y: 0, z: 50 } })
+
+        });
+               </script>
     <script src="../Public/Resources/JS/particles.js">
         
     </script>
