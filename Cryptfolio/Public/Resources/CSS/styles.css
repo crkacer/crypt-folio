@@ -1,3 +1,4 @@
+
 .back-to-top:hover {
     color: #030B26 !important;
 }
@@ -134,9 +135,102 @@
     min-height: 50vh;
     z-index:-1;
 }
-.team-section{
-    height: 50vh;
+#team-section {
+
+    height: 70vh;
+    cursor:pointer;
 }
+#scene {
+    margin: 0 0;
+    padding: 0 0;
+    background-color: #8ae8ff;
+}
+
+.parallax-1 {
+    background: url("../Images/Parallax/parallax-1.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    z-index: 7;
+}
+
+.parallax-2 {
+    background: url("../Images/Parallax/parallax-2.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    z-index: 6;
+}
+
+.parallax-3 {
+    background: url("../Images/Parallax/parallax-3.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    z-index: 5;
+}
+
+.parallax-4 {
+    background: url("../Images/Parallax/parallax-4.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    z-index: 4;
+}
+
+.parallax-5 {
+    background: url("../Images/Parallax/parallax-5.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    z-index: 3;
+}
+
+.parallax-6 {
+    background: url("../Images/Parallax/parallax-6.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 2;
+}
+
+.parallax-7 {
+    background: url("../Images/Parallax/parallax-7.png") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+}
+
+.team-section-content{
+    position:absolute;
+    text-align:right;
+    height:70vh;
+    width:100vw;
+    z-index:100;
+}
+
+.duc-face{
+    position:relative;
+    width: 30vw;
+}
+.allan-face{
+    position:relative;
+    width: 24vw;
+}
+#huy-face{
+    position:absolute;
+    display:inline;
+    margin-left: 5vw;
+}
+
 .history-section{
     height: 50vh;
 }
@@ -185,7 +279,19 @@
         z-index: 50;
         -webkit-animation-delay: 0.5s;
     }
+    .duc-face {
+        position: relative;
+        margin-left: 25vw;
+    }
 
+    .allan-face {
+        position: relative;
+        width:40vw;
+    }
+
+    #huy-face {
+        display:inline;
+    }
 }
 .is-compact .portfolio-logo {
     height: 50px; width: 50px; margin-top: 7px;

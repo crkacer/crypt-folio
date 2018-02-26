@@ -76,6 +76,13 @@
     <Content Include="Public\Resources\CSS\package.json" />
     <Content Include="Public\Resources\CSS\styles.css" />
     <Content Include="Public\Resources\Images\logo.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-1.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-2.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-3.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-4.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-5.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-6.png" />
+    <Content Include="Public\Resources\Images\Parallax\parallax-7.png" />
     <Content Include="Public\Resources\JS\app.js" />
     <Content Include="Public\Resources\JS\particles.js" />
     <Content Include="Public\Resources\JS\particles.min.js" />

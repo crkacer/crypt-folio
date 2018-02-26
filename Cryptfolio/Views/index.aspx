@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="portfolio-login-section mdl-color--amber">
-        <div class="mdl-grid ">
+        <div class="mdl-grid" >
             <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
                 <div class="member-login">
                     <div class="mdl-layout__title ">
@@ -103,17 +103,47 @@
             
         </div>
     </div>
-    <div class="team-section mdl-color--blue">
-        <div class="mdl-grid ">
-            <div class="mdl-cell mdl-cell--6-col">
+    <div id="team-section" >
+        <div id="scene">
+            
+            <div data-depth="0.00"><div class="parallax-5"></div></div>
+            <div data-depth="0.00"><div class="parallax-4"></div></div>
+            <div data-depth="0.00"><div class="parallax-3"></div></div>
+            <div data-depth="0.00"><div class="parallax-2"></div></div>
+            <div data-depth="0.00"><div class="parallax-1"></div></div>
+            
+            
+            <div data-depth="0.35"><div class="parallax-6"></div></div>
+            <div data-depth="0.75"><div class="parallax-7"></div></div>
+            <div data-depth="0.00" class="team-section-content ">
+                <div class="mdl-grid ">
+                    <div class="mdl-cell mdl-cell--6-col">
 
-            </div>
-            <div class="mdl-cell mdl-cell--6-col">
-                <div class ="mdl-layout__title">
-
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col" id="teamImg">
+                        <div class="team-title" >
+                            <div class ="mdl-layout__title" >
+                                <div class="mdl-typography--display-3" style="color:midnightblue;">Meet our team</div>
+                            </div>
+                            <div class="duc-face">
+                                <img src="../Public/Resources/Images/Duc.png" style="width:128px; height:128px;" id="duc-face"/>
+                                
+                            </div>
+                            <div class="allan-face">
+                                <img src="../Public/Resources/Images/Allan.png" style="width:128px; height:128px;" id="allan-face"/>
+                                
+                                 <img src="../Public/Resources/Images/Huy.png" style="width:128px; height:128px;" id="huy-face"/>
+                                <span class="huy-face">
+                                </span>
+                            </div>
+                            
+                        </div>
+                    
+                    </div>
                 </div>
             </div>
         </div>
+        
     </div>
     
     <div class="history-section mdl-color--cyan">
@@ -122,7 +152,7 @@
 
             </div>
             <div class="mdl-cell mdl-cell--6">
-
+               
             </div>
         </div>
     </div>
@@ -159,21 +189,29 @@
             $('#coin').removeClass();
             if (flipResult == 1) {
                 $('#coin').addClass('heads');
-                console.log('it is head');
                 flipResult = 0;
             }
             else {
                 $('#coin').addClass('tails');
-                console.log('it is tails');
                 flipResult = 1;
             }
         }, 3000);
         $(document).ready(function () {
             sr.reveal('.history-effect', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.4, scale: 0.5 });
-            sr.reveal('.member-login', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 0, y: 0, z: 50 } })
-            sr.reveal('.member-login-logo', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 50, y: 0, z: 0 } })
-
+            sr.reveal('.member-login', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 0, y: 0, z: 50 } });
+            sr.reveal('.member-login-logo', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 50, y: 0, z: 0 } });
+            sr.reveal('#huy-face', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
+            sr.reveal('#allan-face', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
+            sr.reveal('.duc-face', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
+            $("#team-section").on("click", function () {
+                window.location.href = './aboutus.aspx';
+            });
         });
+        var scene = document.getElementById('scene');
+        var parallaxInstance = new Parallax(scene, {
+            relativeInput: true
+        });
+        
                </script>
     <script src="../Public/Resources/JS/particles.js">
         
