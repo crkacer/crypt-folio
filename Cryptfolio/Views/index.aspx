@@ -22,29 +22,30 @@
     
     <div class="particle-wrapper">
         <div id="particles-js" style="height:45vh;">
-            <div class="portfolio-logo">
-
+            <div class="portfolio-logo animated fadeIn">
+                <img src="../Public/Resources/Images/logo.png" />
             </div>
         </div>
         
     </div>
     <div class="getting-started">
-        <div class="mdl-grid" style="padding:0; margin:0;">
+        <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-layout__title">
-                    <div class="gettingStarted-effect mdl-typography--display-3 mdl-animation--default" style="text-align:center; color:midnightblue; margin-top:3vh;"></div>
-           
-                    <div class="css-typing mdl-typography--title" style="padding:10px 10px; margin: 1vw 1vh;">
-                    </div>
-               
-                    <div style="text-align:center;">
+                    <div class="getting-started-title">
+                        <div class="gettingStarted-effect mdl-typography--display-2" ></div>
+                        <div class="css-typing mdl-typography--title" >
+                        </div>
+                        <div>
                         <button onclick="window.location.href='./home.html'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Take me there!</button>
+                        </div>
                     </div>
+                   
                  </div>
             
             </div>
-            <div class="mdl-cell mdl-cell--6-col" style="padding:0;margin:0;">
-                <div class="blockchain-logo" style="margin:50px 50px;">
+            <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet">
+                <div class="blockchain-logo">
                     <div class="orbit">
                       <div class="prot"></div>
                       <div class="elec sp1"></div>
@@ -60,8 +61,11 @@
     <div class="crypto-history-section">
         <div class="mdl-grid ">
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="mdl-layout__title">
-                    
+                <div id="coin">
+                  <div class="side-a">
+                  </div>
+                  <div class="side-b">
+                  </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
@@ -70,7 +74,7 @@
                         <div class="history-title mdl-typography--headline mdl-typography--text-justify">
                             Cryptocurrencies are fast moving and constantly fluctuating on a regular basis. They are emerging and fast moving currencies that require time, knowledge, and information for appropriate management. <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over the management of your cryptocurrencies as a short as well as long term investment.
                         </div>
-                        <button onclick="window.location.href='./information.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">I want to hear more</button>
+                        <button onclick="window.location.href='./information.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">I want to hear more</button>
                     </div>
                 </div>
                 
@@ -81,15 +85,17 @@
     </div>
     <div class="portfolio-login-section mdl-color--amber">
         <div class="mdl-grid ">
-            <div class="mdl-cell mdl-cell--6-col">
-               
-            </div>
-            <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
                 <div class="member-login">
                     <div class="mdl-layout__title ">
                         <div class=" mdl-typography--display-3 " style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
-                        <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Sign me in</button>
-                    </div>
+                        <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign me in</button>
+                   </div>
+                </div>
+           </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+                <div class="member-login-logo">
+                    <img src="../Public/Resources/Images/user-login.png" />
                 </div>
                 
             </div>
@@ -147,9 +153,25 @@
                 opacity: 1
             }, 100);
         });
+        var flipResult = 1;
+        setInterval(function () {
+            
+            $('#coin').removeClass();
+            if (flipResult == 1) {
+                $('#coin').addClass('heads');
+                console.log('it is head');
+                flipResult = 0;
+            }
+            else {
+                $('#coin').addClass('tails');
+                console.log('it is tails');
+                flipResult = 1;
+            }
+        }, 3000);
         $(document).ready(function () {
             sr.reveal('.history-effect', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.4, scale: 0.5 });
             sr.reveal('.member-login', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 0, y: 0, z: 50 } })
+            sr.reveal('.member-login-logo', { duration: 500, container: '.mdl-layout__content', viewFactor: 0.5, rotate: { x: 50, y: 0, z: 0 } })
 
         });
                </script>

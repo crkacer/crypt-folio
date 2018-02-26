@@ -68,6 +68,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="favicon.ico" />
+    <Content Include="Public\Resources\CSS\animate.css" />
     <Content Include="Public\Resources\CSS\bower.json" />
     <Content Include="Public\Resources\CSS\LICENSE" />
     <Content Include="Public\Resources\CSS\material.min.css.map" />
