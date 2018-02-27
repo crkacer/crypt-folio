@@ -107,6 +107,7 @@
     <Content Include="Views\index.aspx" />
     <Content Include="Views\login.aspx" />
     <Content Include="Views\feedback.aspx" />
+    <Content Include="Views\main.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,13 @@
     </Compile>
     <Compile Include="Views\feedback.aspx.designer.cs">
       <DependentUpon>feedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
