@@ -12,6 +12,7 @@ namespace Cryptfolio.Views
 {
     public partial class WebForm4 : System.Web.UI.Page
     {
+        protected String[] Data_COINS = new String[20] { "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB" };
 
         protected String Send_GET_REQUEST(String[] coins, String[] currencies)
         {
@@ -67,25 +68,26 @@ namespace Cryptfolio.Views
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            String a = Send_GET_REQUEST(new String[20] { "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB" }, new String[1] { "USD" });
+            String a = Send_GET_REQUEST(Data_COINS, new String[1] { "USD" });
             // Response.Write(a);
+            Dictionary<String, String> historical_coins = new Dictionary<String, String>();
+            for (int i = 0; i < Data_COINS.Length; i++)
+            {
+                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 30));
+            }
+            Response.Write(historical_coins.ToString());
 
 
         }
 
         // Handle BUY coin
 
-        protected void Buy_Coin(String coin, int userID)
-        {
-            String price = Send_GET_REQUEST(new String[1] { coin }, new String[1] { "USD" });
-
-        }
 
         protected string ALL_COINS
         {
             get
             {
-                return Send_GET_REQUEST(new String[20] { "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB" }, new String[1] { "USD" });
+                return Send_GET_REQUEST(Data_COINS, new String[1] { "USD" });
 
             }
         }
@@ -97,9 +99,61 @@ namespace Cryptfolio.Views
 
         // Handle SELL coin
 
-        protected void Sell_Coin(String coin, int userID)
+        [System.Web.Services.WebMethod]
+        public string Sell_Coin(String coin, int userID)
         {
             String price = Send_GET_REQUEST(new String[1] { coin }, new String[1] { "USD" });
+            return coin;
         }
+
+
+        [System.Web.Services.WebMethod]
+        public string Buy_Coin(String coin, int userID)
+        {
+            String price = Send_GET_REQUEST(new String[1] { coin }, new String[1] { "USD" });
+
+            return coin;
+        }
+
+        protected String Send_GET_REQUEST_Historical(String coin, String currency, int limit)
+        {
+            // https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=60&aggregate=3&e=CCCAGG
+
+
+            // handle GET request
+            StringBuilder sb = new StringBuilder();
+
+            byte[] buf = new byte[8192];
+
+            //do get request
+
+            String url = "https://min-api.cryptocompare.com/data/histoday?fsym=" + coin + "&tsym=" + currency + "&limit=" + limit + "&aggregate=3&e=CCCAGG";
+            HttpWebRequest request = (HttpWebRequest)
+                WebRequest.Create(url);
+
+
+            HttpWebResponse response = (HttpWebResponse)
+                request.GetResponse();
+
+
+            Stream resStream = response.GetResponseStream();
+
+            string tempString = null;
+            int count = 0;
+            //read the data and print it
+            do
+            {
+                count = resStream.Read(buf, 0, buf.Length);
+                if (count != 0)
+                {
+                    tempString = Encoding.ASCII.GetString(buf, 0, count);
+
+                    sb.Append(tempString);
+                }
+            }
+            while (count > 0);
+            return sb.ToString();
+        }
+
     }
 }
