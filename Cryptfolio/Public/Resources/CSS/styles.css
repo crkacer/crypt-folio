@@ -482,12 +482,15 @@
         margin-top:10vh;
     }
 }
-@media (max-width:1366px){
+@media (min-width:1360px){
+    #team-section {
+        height: 80vh;
+    }
     .parallax-6 {
         background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
         background-size: cover;
-        height: 100vh;
-        width: 150vw;
+        height: 80vh;
+        width: 100vw;
         position: absolute;
         z-index: 2;
     }
@@ -495,42 +498,13 @@
     .parallax-7 {
         background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
         background-size: cover;
-        height: 100vh;
-        width: 150vw;
+        height: 80vh;
+        width: 100vw;
         position: absolute;
         z-index: 1;
     }
-
-    .history-section-info {
-        position: relative;
-        line-height: 4vh;
-        margin-left: 35vw;
-        margin-right: 35vw;
-    }
-
-    .explore-button {
-        padding-top: 2vh;
-        margin-left: 46vw;
-        margin-right: 46vw;
-    }
-}
-@media (max-width: 1900px){
-    .parallax-6 {
-        background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
-        background-size: cover;
-        height: 90vh;
-        width: 200vw;
-        position: absolute;
-        z-index: 2;
-    }
-
-    .parallax-7 {
-        background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
-        background-size: cover;
-        height: 90vh;
-        width: 200vw;
-        position: absolute;
-        z-index: 1;
+    .history-section-title{
+        padding-top: 10vh;
     }
     .history-section-info {
         position: relative;
@@ -540,9 +514,118 @@
     }
 
     .explore-button {
-        padding-top: 2vh;
+        padding-top: 3vh;
         margin-left: 46vw;
         margin-right: 46vw;
+    }
+
+    #history-section-content {
+        position: absolute;
+        z-index: 50;
+        background: url(../Images/Parallax/panel.png) 50% 50% no-repeat;
+        background-position: center center;
+        background-size: 35% 90%;
+        vertical-align: middle;
+    }
+}
+@media (max-width: 1900px){
+    #team-section {
+        height: 110vh;
+    }
+    #scene {
+        margin: 0 0;
+        padding: 0 0;
+        background-color: #8ae8ff;
+    }
+
+    .parallax-1 {
+        background: url("../Images/Parallax/parallax-1.png") no-repeat center center;
+        background-size: cover;
+        height: 110vh;
+        width: 100vw;
+        position: relative;
+        z-index: 7;
+    }
+
+    .parallax-2 {
+        background: url("../Images/Parallax/parallax-2.png") no-repeat center center;
+        background-size: cover;
+        height: 110vh;
+        width: 100vw;
+        position: relative;
+        z-index: 6;
+    }
+
+    .parallax-3 {
+        background: url("../Images/Parallax/parallax-3.png") no-repeat center center;
+        background-size: cover;
+        height: 110vh;
+        width: 100vw;
+        position: relative;
+        z-index: 5;
+    }
+
+    .parallax-4 {
+        background: url("../Images/Parallax/parallax-4.png") no-repeat center center;
+        background-size: cover;
+        height: 110vh;
+        width: 100vw;
+        position: relative;
+        z-index: 4;
+    }
+
+    .parallax-5 {
+        background: url("../Images/Parallax/parallax-5.png") no-repeat center center;
+        background-size: cover;
+        height: 110vh;
+        width: 100vw;
+        position: relative;
+        z-index: 3;
+    }
+    .parallax-6 {
+        background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
+        background-size: cover;
+        height: 90vh;
+        width: 110vw;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .parallax-7 {
+        background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
+        background-size: cover;
+        height: 90vh;
+        width: 110vw;
+        position: absolute;
+        z-index: 1;
+    }
+    #huy-face {
+        position: absolute;
+        display: inline;
+        margin-left: 4vw;
+    }
+    .history-section-title {
+        padding-top: 5vh;
+    }
+    .history-section-info {
+        position: relative;
+        line-height: 5vh;
+        margin-left: 34vw;
+        margin-right: 34vw;
+    }
+
+    .explore-button {
+        padding-top: 3vh;
+        margin-left: 46vw;
+        margin-right: 46vw;
+    }
+    #history-section-content {
+        position: absolute;
+        z-index: 50;
+        background: url(../Images/Parallax/panel.png) 50% 50% no-repeat;
+        background-position: center center;
+        background-size: 35% 90%;
+        vertical-align: middle;
     }
     
 }

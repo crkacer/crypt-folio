@@ -115,7 +115,7 @@
         </div>
         
     </div>
-    <div class="portfolio-login-section mdl-color--amber">
+    <div class="portfolio-login-section">
         <div class="mdl-grid" >
             <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
                 <div class="member-login">
@@ -171,8 +171,8 @@
             <div data-depth="0.00"><div class="parallax-1"></div></div>
             
             
-            <div data-depth="0.35" class="mdl-cell--hide-phone mdl-cell--hide-tablet"><div class="parallax-6"></div></div>
-            <div data-depth="0.75" class="mdl-cell--hide-phone mdl-cell--hide-tablet"><div class="parallax-7"></div></div>
+            <div data-depth="0.55" class="mdl-cell--hide-phone mdl-cell--hide-tablet"><div class="parallax-6"></div></div>
+            <div data-depth="1.00" class="mdl-cell--hide-phone mdl-cell--hide-tablet"><div class="parallax-7"></div></div>
             
         </div>
         

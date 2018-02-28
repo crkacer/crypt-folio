@@ -10,7 +10,14 @@
             margin-top:20vh;
         }
         .login-instruction{
-            border-left: 2px solid #ff9393;
+            border-left: 2px solid #CBDBD7;
+            
+        }
+
+        @media (max-width: 479px){
+            .login-instruction{
+                border-left: none;
+            }
         }
         .error-message{
             color:red;
@@ -25,7 +32,7 @@
         }
       
         .instruction-section{
-            margin-top:9vh;
+            margin-top:5vh;
             margin-left:5vw;
             margin-right:2vw;
         }
@@ -63,8 +70,8 @@
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password has to be in a correct format" ControlToValidate="Password" Display="Dynamic" ViewStateMode="Inherit" ValidationExpression="^[^\d]((?=.*\d)(?=.*[a-z])(?=.*[!\*]).{8,16})"></asp:RegularExpressionValidator>
                     </div>
-                    <input type="submit" class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Log in"/>
-                    <input type="reset" class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="clearButton" value="Clear"/>
+                    <input type="submit" class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" value="Log in"/>
+                    <input type="reset" class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="clearButton" value="Clear"/>
                 </form>
          
             
