@@ -1,4 +1,14 @@
+.website-description{
+    min-height: 30vh;
+}
+.coins-table{
+    min-height: 50vh;
+    
+}
 
+.news-table {
+    min-height: 50vh;
+}
 .back-to-top:hover {
     color: #030B26 !important;
 }
@@ -120,25 +130,25 @@
 }
 .portfolio-login-section {
     height: 50vh;
-    background: url("../Images/login-background.jpg") center center no-repeat;
+    background: url("../Images/background.jpeg") center center no-repeat;
     background-size: cover;
     display:block !important;
+    position:relative;
+    z-index: 60;
 }
 .member-login{
-    margin: 7vh auto;
+    margin: 15vh auto;
 }
-.member-login-logo{
-    margin: 7vh 19vw;
-}
+
 .crypto-history-section {
     background-color: #3E606F;
     min-height: 50vh;
     z-index:-1;
 }
 #team-section {
-
     height: 70vh;
-    cursor:pointer;
+    position:relative;
+    z-index:200;
 }
 #scene {
     margin: 0 0;
@@ -216,7 +226,9 @@
     width:100vw;
     z-index:100;
 }
-
+#teamImg {
+    cursor: pointer;
+}
 .duc-face{
     position:relative;
     width: 30vw;
@@ -232,7 +244,191 @@
 }
 
 .history-section{
-    height: 50vh;
+    height: 70vh;
+}
+#scene2 {
+    margin: 0 0;
+    padding: 0 0;
+}
+.back {
+    height: 70vh;
+    
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+    .back div {
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+.history-section-background {
+    background: url(../Images/Parallax/background-history.jpg) no-repeat 50% 100%;
+    bottom: 96px;
+    background-size: cover;
+    height: 70vh;
+    width: 110vw;
+}
+.black{
+    position: relative;
+    top:90%;
+    background-position: center bottom;
+    background-color:black;
+    background-repeat:repeat-x;
+    width: 300vw;
+    left:-100vw;
+    height: 30vh;
+    z-index: 99;
+
+}
+.wave{
+    background: transparent repeat-x;
+    position:absolute;
+    width: 300vw;
+    left: -100vw;
+
+}
+    .wave::after {
+        background-color: black;
+        position: absolute;
+        display: block;
+        height: 500px;
+        width: 100%;
+        top: 100%;
+        left: 0;
+    }
+.wave.plain{
+    background-image: url(../Images/Parallax/wave-plain.png);
+}
+.wave.paint{
+    background-image:url(../Images/Parallax/wave-paint.png);
+}
+.wave.depth-30{
+    -webkit-animation: wave 7.11111s 0.1s infinite linear;
+    -moz-animation: wave 7.11111s 0.1s infinite linear;
+    animation: wave 7.11111s 0.1s infinite linear;
+    bottom: 100px;
+    margin: 0px 0px;
+    background-position: center bottom;
+    background-size: auto 101%;
+    height: 48px; 
+}
+    .wave.depth-30::after{
+        height: 112px;
+    }
+.wave.depth-40 {
+    -webkit-animation: wave 6.66667s 0.1s infinite linear;
+    -moz-animation: wave 6.66667s 0.1s infinite linear;
+    animation: wave 6.66667s 0.1s infinite linear;
+    bottom: 80px;
+    margin: 0px 0px;
+    background-position: center bottom;
+    background-size: auto 101%;
+    height: 64px;
+}
+
+    .wave.depth-40:after {
+        height: 96px;
+    }
+.wave.depth-50 {
+    -webkit-animation: wave 6.22222s 0.1s infinite linear;
+    -moz-animation: wave 6.22222s 0.1s infinite linear;
+    animation: wave 6.22222s 0.1s infinite linear;
+    bottom: 60px;
+    margin: 0px 0px;
+    background-position: center bottom;
+    background-size: auto 101%;
+    height: 80px;
+}
+
+    .wave.depth-50:after {
+        height: 80px;
+    }
+.wave.depth-60 {
+    -webkit-animation: wave 5.77778s 0.1s infinite linear;
+    -moz-animation: wave 5.77778s 0.1s infinite linear;
+    animation: wave 5.77778s 0.1s infinite linear;
+    bottom: 40px;
+    margin: 0px 0px;
+    background-position: center bottom;
+    background-size: auto 101%;
+    height: 96px;
+}
+
+    .wave.depth-60:after {
+        height: 64px;
+    }
+
+.wave.depth-80 {
+    -webkit-animation: wave 4.88889s 0.1s infinite linear;
+    -moz-animation: wave 4.88889s 0.1s infinite linear;
+    animation: wave 4.88889s 0.1s infinite linear;
+    bottom: 0px;
+    margin: 0px 0px;
+    background-position: center bottom;
+    background-size: auto 101%;
+    height: 128px;
+}
+
+    .wave.depth-80:after {
+        height: 32px;
+    }
+
+
+.wave.depth-100 {
+    -webkit-animation: wave 4s 0.1s infinite linear;
+    -moz-animation: wave 4s 0.1s infinite linear;
+    animation: wave 4s 0.1s infinite linear;
+    bottom: -40px;
+    margin: 0px 0px;
+    background-position: center bottom;
+    background-size: auto 101%;
+    height: 160px;
+}
+
+    .wave.depth-100:after {
+        height: 0px;
+    }
+#history-section-content{
+    position:absolute;
+    z-index:50;
+    background: url(../Images/Parallax/panel.png) 50% 50% no-repeat;
+    vertical-align: middle;
+    
+}
+
+.history-section-title{
+    padding-top:15vh;
+}
+.history-section-info{
+    position:relative;
+    line-height:4vh;
+    margin-left:38vw;
+    margin-right:38vw;
+}
+.explore-button {
+    padding-top:3vh;
+    margin-left: 48vw;
+    margin-right: 48vw;
+}
+@keyframes wave{
+    0% {
+        -webkit-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+        -moz-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+        transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+    }
+    100% {
+        -webkit-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+        -moz-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+        transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+    }
 }
 .history-title {
     color: #B2CED9;
@@ -269,6 +465,87 @@
     z-index: 50;
     -webkit-animation-delay: 0.5s;
 }
+@media (min-width: 1900px){
+    .getting-started-title{
+        margin-top: 15vh;
+    }
+    .gettingStarted-effect{
+        font-size: 4em;
+    } 
+    .blockchain-logo {
+        margin-top: 15vh;
+    }
+    #coin{
+        margin-top:10vh;
+    }
+    .history-effect{
+        margin-top:10vh;
+    }
+}
+@media (max-width:1366px){
+    .parallax-6 {
+        background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
+        background-size: cover;
+        height: 100vh;
+        width: 150vw;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .parallax-7 {
+        background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
+        background-size: cover;
+        height: 100vh;
+        width: 150vw;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .history-section-info {
+        position: relative;
+        line-height: 4vh;
+        margin-left: 35vw;
+        margin-right: 35vw;
+    }
+
+    .explore-button {
+        padding-top: 2vh;
+        margin-left: 46vw;
+        margin-right: 46vw;
+    }
+}
+@media (max-width: 1900px){
+    .parallax-6 {
+        background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
+        background-size: cover;
+        height: 90vh;
+        width: 200vw;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .parallax-7 {
+        background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
+        background-size: cover;
+        height: 90vh;
+        width: 200vw;
+        position: absolute;
+        z-index: 1;
+    }
+    .history-section-info {
+        position: relative;
+        line-height: 4vh;
+        margin-left: 34vw;
+        margin-right: 34vw;
+    }
+
+    .explore-button {
+        padding-top: 2vh;
+        margin-left: 46vw;
+        margin-right: 46vw;
+    }
+    
+}
 @media (max-width: 479px) {
     .portfolio-logo {
         height: 250px;
@@ -279,19 +556,308 @@
         z-index: 50;
         -webkit-animation-delay: 0.5s;
     }
+    .portfolio-login-section {
+        height: 70vh;
+        background: url("../Images/background.jpeg") center center no-repeat;
+        background-size: cover;
+        display: block !important;
+    }
+
+    .member-login {
+        margin: 15vh auto;
+    }
+    #team-section {
+        height: 150vh;
+        
+    }
+
+    #scene {
+        margin: 0 0;
+        padding: 0 0;
+        background-color: #8ae8ff;
+    }
+
+    .parallax-1 {
+        background: url("../Images/Parallax/parallax-1.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 100vw;
+        position: relative;
+        z-index: 7;
+    }
+
+    .parallax-2 {
+        background: url("../Images/Parallax/parallax-2.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 100vw;
+        position: relative;
+        z-index: 6;
+    }
+
+    .parallax-3 {
+        background: url("../Images/Parallax/parallax-3.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 100vw;
+        position: relative;
+        z-index: 5;
+    }
+
+    .parallax-4 {
+        background: url("../Images/Parallax/parallax-4.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 100vw;
+        position: relative;
+        z-index: 4;
+    }
+
+    .parallax-5 {
+        background: url("../Images/Parallax/parallax-5.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 100vw;
+        position: relative;
+        z-index: 3;
+    }
+
+    .parallax-6 {
+        background: url("../Images/Parallax/parallax-6.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 50vw;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .parallax-7 {
+        background: url("../Images/Parallax/parallax-7.png") no-repeat center center;
+        background-size: cover;
+        height: 150vh;
+        width: 50vw;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .team-section-content {
+        position: absolute;
+        text-align: right;
+        height: 150vh;
+        width: 100vw;
+        z-index: 100;
+     
+    }
+
     .duc-face {
         position: relative;
-        margin-left: 25vw;
+    
+        margin-left: 30vw;
     }
 
     .allan-face {
         position: relative;
-        width:40vw;
+        margin-right: 20vw;
+        width: 80vw;
     }
 
     #huy-face {
-        display:inline;
+        position: relative;
+        display: inline;
     }
+    .history-section {
+        height: 150vh;
+    }
+    .meet-our-team{
+        font-size: 3em !important;
+    }
+    #scene2 {
+        margin: 0 0;
+        padding: 0 0;
+    }
+
+    .back {
+        height: 150vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+
+        .back div {
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+    .history-section-background {
+        background: url(../Images/Parallax/background-history.jpg) no-repeat 50% 100%;
+        bottom: 96px;
+        background-size: cover;
+        height: 150vh;
+        width: 110vw;
+    }
+
+    .black {
+        position: relative;
+        top: 95%;
+        background-position: center bottom;
+        background-color: black;
+        height: 40vh;
+        width: 300vw;
+        left: -150vw;
+    }
+
+    .wave {
+        background: transparent repeat-x;
+        position: absolute;
+        width: 300vw;
+        left: -150vw;
+    }
+
+        .wave::after {
+            background-color: black;
+            position: absolute;
+            display: block;
+            height: 500px;
+            width: 100%;
+            top: 100%;
+            left: 0;
+        }
+
+        .wave.plain {
+            background-image: url(../Images/Parallax/wave-plain.png);
+        }
+
+        .wave.paint {
+            background-image: url(../Images/Parallax/wave-paint.png);
+        }
+
+        .wave.depth-30 {
+            -webkit-animation: wave 7.11111s 0.1s infinite linear;
+            -moz-animation: wave 7.11111s 0.1s infinite linear;
+            animation: wave 7.11111s 0.1s infinite linear;
+            bottom: 100px;
+            margin: 0px 0px;
+            background-position: center bottom;
+            background-size: auto 101%;
+            height: 48px;
+        }
+
+            .wave.depth-30::after {
+                height: 112px;
+            }
+
+        .wave.depth-40 {
+            -webkit-animation: wave 6.66667s 0.1s infinite linear;
+            -moz-animation: wave 6.66667s 0.1s infinite linear;
+            animation: wave 6.66667s 0.1s infinite linear;
+            bottom: 80px;
+            margin: 0px 0px;
+            background-position: center bottom;
+            background-size: auto 101%;
+            height: 64px;
+        }
+
+            .wave.depth-40:after {
+                height: 96px;
+            }
+
+        .wave.depth-50 {
+            -webkit-animation: wave 6.22222s 0.1s infinite linear;
+            -moz-animation: wave 6.22222s 0.1s infinite linear;
+            animation: wave 6.22222s 0.1s infinite linear;
+            bottom: 60px;
+            margin: 0px 0px;
+            background-position: center bottom;
+            background-size: auto 101%;
+            height: 80px;
+        }
+
+            .wave.depth-50:after {
+                height: 80px;
+            }
+
+        .wave.depth-60 {
+            -webkit-animation: wave 5.77778s 0.1s infinite linear;
+            -moz-animation: wave 5.77778s 0.1s infinite linear;
+            animation: wave 5.77778s 0.1s infinite linear;
+            bottom: 40px;
+            margin: 0px 0px;
+            background-position: center bottom;
+            background-size: auto 101%;
+            height: 96px;
+        }
+
+            .wave.depth-60:after {
+                height: 64px;
+            }
+
+        .wave.depth-80 {
+            -webkit-animation: wave 4.88889s 0.1s infinite linear;
+            -moz-animation: wave 4.88889s 0.1s infinite linear;
+            animation: wave 4.88889s 0.1s infinite linear;
+            bottom: 0px;
+            margin: 0px 0px;
+            background-position: center bottom;
+            background-size: auto 101%;
+            height: 128px;
+        }
+
+            .wave.depth-80:after {
+                height: 32px;
+            }
+
+
+        .wave.depth-100 {
+            -webkit-animation: wave 4s 0.1s infinite linear;
+            -moz-animation: wave 4s 0.1s infinite linear;
+            animation: wave 4s 0.1s infinite linear;
+            bottom: -40px;
+            margin: 0px 0px;
+            background-position: center bottom;
+            background-size: auto 101%;
+            height: 160px;
+        }
+
+            .wave.depth-100:after {
+                height: 0px;
+            }
+
+    #history-section-content {
+        position: absolute;
+        z-index: 50;
+        background: url(../Images/Parallax/panel.png) 50% 50% no-repeat;
+        background-position: center center;
+        background-size: 90% 55%;
+        
+        vertical-align: middle;
+    }
+
+    .history-section-title {
+ 
+        padding-top: 45vh;
+    }
+
+    .history-section-info {
+        position: relative;
+        line-height: 4vh;
+        margin-left: 8vw;
+        margin-right: 8vw;
+    }
+
+    .explore-button {
+        padding-top: 3vh;
+        margin-left: 38vw;
+        margin-right: 38vw;
+    }
+
 }
 .is-compact .portfolio-logo {
     height: 50px; width: 50px; margin-top: 7px;

@@ -83,6 +83,38 @@
             </div>
         </div>
     </div>
+    <div class="history-section">
+        <div id="history-section-content" class="back">
+            <div>
+                <div class="mdl-typography--display-3 history-section-title mdl-typography--text-center">
+                    Our History
+                </div>
+                <div class="mdl-typography--title history-section-info">
+                    Created in 2018, <b style="color:midnightblue;">Crytfolio</b> focuses on creating value by  providing a Crypto  currency portfolio service in order to satisfy the investing needs of our customers. We strive  to make the future better for our customers, and our  communities by becoming Canada's  most efficient and  innovative Crypto currency manager. 
+                </div>
+                <div class="explore-button">
+                    <button onclick="window.location.href='./aboutus.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Explore</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="scene2" data-friction-x="0.1"
+			data-friction-y="0.1"
+			data-scalar-x="25"
+			data-scalar-y="15">
+            
+            <div class="back" data-depth="0.00"><div class="history-section-background"></div></div>
+            <div class="back" data-depth="0.60"><div class="black"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave paint depth-30"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave plain depth-40"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave paint depth-50"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave plain depth-60"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave paint depth-80"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave plain depth-100"></div></div>
+            
+        </div>
+        
+    </div>
     <div class="portfolio-login-section mdl-color--amber">
         <div class="mdl-grid" >
             <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
@@ -95,7 +127,6 @@
            </div>
             <div class="mdl-cell mdl-cell--6-col mdl-cell--hide-phone mdl-cell--hide-tablet">
                 <div class="member-login-logo">
-                    <img src="../Public/Resources/Images/user-login.png" />
                 </div>
                 
             </div>
@@ -104,18 +135,7 @@
         </div>
     </div>
     <div id="team-section" >
-        <div id="scene">
-            
-            <div data-depth="0.00"><div class="parallax-5"></div></div>
-            <div data-depth="0.00"><div class="parallax-4"></div></div>
-            <div data-depth="0.00"><div class="parallax-3"></div></div>
-            <div data-depth="0.00"><div class="parallax-2"></div></div>
-            <div data-depth="0.00"><div class="parallax-1"></div></div>
-            
-            
-            <div data-depth="0.35"><div class="parallax-6"></div></div>
-            <div data-depth="0.75"><div class="parallax-7"></div></div>
-            <div data-depth="0.00" class="team-section-content ">
+        <div class="team-section-content ">
                 <div class="mdl-grid ">
                     <div class="mdl-cell mdl-cell--6-col">
 
@@ -123,7 +143,7 @@
                     <div class="mdl-cell mdl-cell--6-col" id="teamImg">
                         <div class="team-title" >
                             <div class ="mdl-layout__title" >
-                                <div class="mdl-typography--display-3" style="color:midnightblue;">Meet our team</div>
+                                <div class="mdl-typography--display-3 meet-our-team" style="color:midnightblue;">Meet our team</div>
                             </div>
                             <div class="duc-face">
                                 <img src="../Public/Resources/Images/Duc.png" style="width:128px; height:128px;" id="duc-face"/>
@@ -142,20 +162,23 @@
                     </div>
                 </div>
             </div>
+        <div id="scene">
+            
+            <div data-depth="0.00"><div class="parallax-5"></div></div>
+            <div data-depth="0.00"><div class="parallax-4"></div></div>
+            <div data-depth="0.00"><div class="parallax-3"></div></div>
+            <div data-depth="0.00"><div class="parallax-2"></div></div>
+            <div data-depth="0.00"><div class="parallax-1"></div></div>
+            
+            
+            <div data-depth="0.35" class="mdl-cell--hide-phone mdl-cell--hide-tablet"><div class="parallax-6"></div></div>
+            <div data-depth="0.75" class="mdl-cell--hide-phone mdl-cell--hide-tablet"><div class="parallax-7"></div></div>
+            
         </div>
         
     </div>
     
-    <div class="history-section mdl-color--cyan">
-        <div class="mdl-grid ">
-            <div class="mdl-cell mdl-cell--6">
-
-            </div>
-            <div class="mdl-cell mdl-cell--6">
-               
-            </div>
-        </div>
-    </div>
+    
 </asp:Content> 
 
 
@@ -203,7 +226,9 @@
             sr.reveal('#huy-face', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
             sr.reveal('#allan-face', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
             sr.reveal('.duc-face', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
-            $("#team-section").on("click", function () {
+            sr.reveal('.history-section-info', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
+            sr.reveal('.explore-button', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
+            $("#teamImg").on("click", function () {
                 window.location.href = './aboutus.aspx';
             });
         });
@@ -211,7 +236,11 @@
         var parallaxInstance = new Parallax(scene, {
             relativeInput: true
         });
-        
+
+        var scene2 = document.getElementById('scene2');
+        var parallaxInstance = new Parallax(scene2, {
+            relativeInput: true
+        });
                </script>
     <script src="../Public/Resources/JS/particles.js">
         

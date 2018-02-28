@@ -16,6 +16,9 @@
     <script type="text/javascript" src="../Public/Resources/JS/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../Public/Resources/JS/scrollreveal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script>
         window.sr = ScrollReveal({ reset: true });
         if (sr.isSupported()) {
