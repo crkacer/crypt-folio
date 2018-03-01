@@ -3,8 +3,7 @@
     <link rel="stylesheet" href="../Public/Resources/CSS/aboutus-style.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
-    <div class="info-section back">
-        <div class="book">
+    <div class="book">
             <div id="flipbook">
                 <div id="front-page" class="hard">
                     <div class="cryptfolio-logo"><img src="../Public/Resources/Images/logo.png" /></div>
@@ -29,22 +28,24 @@
                 <div id="back-page3" class="hard"></div>
             </div>
         </div>
-            <div id="scene2" data-friction-x="0.1"
-	            data-friction-y="0.1"
-	            data-scalar-x="25"
-	            data-scalar-y="15">
+    <div class="info-section back">
+        
+        <div id="scene2" data-friction-x="0.1"
+	        data-friction-y="0.1"
+	        data-scalar-x="25"
+	        data-scalar-y="15">
             
-                <div class="back" data-depth="0.00"><div class="history-section-background"></div></div>
-                <div class="back" data-depth="0.60"><div class="black"></div></div>
-                <div class="back" data-depth="0.60"><div class="wave paint depth-30"></div></div>
-                <div class="back" data-depth="0.60"><div class="wave plain depth-40"></div></div>
-                <div class="back" data-depth="0.60"><div class="wave paint depth-50"></div></div>
-                <div class="back" data-depth="0.60"><div class="wave plain depth-60"></div></div>
-                <div class="back" data-depth="0.60"><div class="wave paint depth-80"></div></div>
-                <div class="back" data-depth="0.60"><div class="wave plain depth-100"></div></div>
+            <div class="back" data-depth="0.00"><div class="history-section-background"></div></div>
+            <div class="back" data-depth="0.60"><div class="black"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave paint depth-30"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave plain depth-40"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave paint depth-50"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave plain depth-60"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave paint depth-80"></div></div>
+            <div class="back" data-depth="0.60"><div class="wave plain depth-100"></div></div>
             
-            </div>
         </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript" src="../Public/Resources/JS/zoom.min.js"></script>
@@ -54,29 +55,30 @@
 
     <script type="text/javascript">
         //URIs
-        Hash.on('^page\/([0-9]*)$', {
-            yep: function (path, parts) {
-                var page = parts[1];
+        //Hash.on('^page\/([0-9]*)$', {
+        //    yep: function (path, parts) {
+        //        var page = parts[1];
 
-                if (page !== undefined) {
-                    if ($('.sample-docs').turn('is'))
-                        $('.sample-docs').turn('page', page);
-                }
+        //        if (page !== undefined) {
+        //            if ($('.sample-docs').turn('is'))
+        //                $('.sample-docs').turn('page', page);
+        //        }
 
-            },
-            nop: function (path) {
+        //    },
+        //    nop: function (path) {
 
-                if ($('.sample-docs').turn('is'))
-                    $('.sample-docs').turn('page', 1);
-            }
-        });
+        //        if ($('.sample-docs').turn('is'))
+        //            $('.sample-docs').turn('page', 1);
+        //    }
+        //});
         //Initialize book
         $("#flipbook").turn({
             autoCenter: true,
             elevation: 50,
-            acceleration: false,
+            acceleration: true,
             gradients: true,
-            duration: 1000
+            duration: 500,
+            
         });
         var scene2 = document.getElementById('scene2');
         var parallaxInstance = new Parallax(scene2, {
