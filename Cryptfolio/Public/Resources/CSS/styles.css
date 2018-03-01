@@ -481,54 +481,10 @@
     .history-effect{
         margin-top:10vh;
     }
+    
 }
-@media (min-width:1360px){
-    #team-section {
-        height: 80vh;
-    }
-    .parallax-6 {
-        background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
-        background-size: cover;
-        height: 80vh;
-        width: 100vw;
-        position: absolute;
-        z-index: 2;
-    }
 
-    .parallax-7 {
-        background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
-        background-size: cover;
-        height: 80vh;
-        width: 100vw;
-        position: absolute;
-        z-index: 1;
-    }
-    .history-section-title{
-        padding-top: 10vh;
-    }
-    .history-section-info {
-        position: relative;
-        line-height: 4vh;
-        margin-left: 34vw;
-        margin-right: 34vw;
-    }
-
-    .explore-button {
-        padding-top: 3vh;
-        margin-left: 46vw;
-        margin-right: 46vw;
-    }
-
-    #history-section-content {
-        position: absolute;
-        z-index: 50;
-        background: url(../Images/Parallax/panel.png) 50% 50% no-repeat;
-        background-position: center center;
-        background-size: 35% 90%;
-        vertical-align: middle;
-    }
-}
-@media (max-width: 1900px){
+@media (max-widt#: 1800px){
     #team-section {
         height: 110vh;
     }

@@ -1,0 +1,122 @@
+﻿.info-section {
+    height: 70vh;
+}   
+.book{
+    position:absolute;
+    z-index:1;
+    margin-left:30vw;
+    margin-top: 5vh;
+}
+#flipbook {
+    width: 40vw;
+    height: 50vh;
+}
+
+#flipbook .page {
+    width: 40vw;
+    height: 50vh;
+    background: white !important;
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -ms-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -o-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    
+}
+
+
+#flipbook .page-wrapper {
+    -webkit-perspective: 2000px;
+    -moz-perspective: 2000px;
+    -ms-perspective: 2000px;
+    -o-perspective: 2000px;
+    perspective: 2000px;
+}
+.cryptfolio-logo {
+    height: 200px;
+    width: 200px;
+    padding-left: 5vw;
+    padding-top: 5vh;
+    z-index: 50;
+}
+.sub-header{
+    padding-top: 5vh;
+    color: aliceblue !important
+}
+#flipbook #front-page{
+    background: url(../Images/login-background.jpg) no-repeat center center !important;
+    background-size:cover !important
+}
+#flipbook #front-page2 {
+    background: url(../Images/front-page2.png) no-repeat center center !important;
+    background-size:cover !important;
+}
+#flipbook #back-page2{
+    background: url(../Images/back-page.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook #back-page3 {
+    background: url(../Images/login-background.jpg) no-repeat center center !important;
+    background-size: cover !important
+}
+#flipbook .p3-content {
+    padding-top: 10vh;
+    
+}
+#flipbook .hard {
+    background: #ccc !important;
+    color: #333;
+    -webkit-box-shadow: inset 0 0 10px #666;
+    -moz-box-shadow: inset 0 0 10px #666;
+    -o-box-shadow: inset 0 0 10px #666;
+    -ms-box-shadow: inset 0 0 10px #666;
+    box-shadow: inset 0 0 10px #666;
+    font-weight: bold;
+}
+#flipbook .odd {
+    background: -webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
+    background-image: -webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image: -moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image: -ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image: -o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image: linear-gradient(red, yellow);
+    -webkit-box-shadow: inset 0 0 5px #666;
+    -moz-box-shadow: inset 0 0 5px #666;
+    -o-box-shadow: inset 0 0 5px #666;
+    -ms-box-shadow: inset 0 0 5px #666;
+    box-shadow: inset 0 0 5px #666;
+}
+#flipbook .odd .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../Images/left-border.png);
+    background-position: left top;
+    background-repeat: repeat-y;
+}
+
+#flipbook .even {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
+    background-image: -webkit-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image: -moz-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image: -ms-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image: -o-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image: linear-gradient(left, #fff 95%, #dadada 100%);
+    -webkit-box-shadow: inset 0 0 5px #666;
+    -moz-box-shadow: inset 0 0 5px #666;
+    -o-box-shadow: inset 0 0 5px #666;
+    -ms-box-shadow: inset 0 0 5px #666;
+    box-shadow: inset 0 0 5px #666;
+}
+#flipbook .even .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../Images/right-border.png);
+    background-position: right top;
+    background-repeat: repeat-y;
+}

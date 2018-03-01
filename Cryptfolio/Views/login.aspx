@@ -23,7 +23,7 @@
             color:red;
             font-family:'Roboto';
             font-size:12px;
-            margin-left:11vw;
+            margin-left:12vw;
         }
         .button-submit{
             margin-top:30px;
@@ -32,7 +32,7 @@
         }
       
         .instruction-section{
-            margin-top:5vh;
+            margin-top:9vh;
             margin-left:5vw;
             margin-right:2vw;
         }

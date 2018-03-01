@@ -68,6 +68,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="favicon.ico" />
+    <Content Include="Public\Resources\CSS\aboutus-style.css" />
     <Content Include="Public\Resources\CSS\animate.css" />
     <Content Include="Public\Resources\CSS\bower.json" />
     <Content Include="Public\Resources\CSS\LICENSE" />
@@ -84,9 +85,13 @@
     <Content Include="Public\Resources\Images\Parallax\parallax-6.png" />
     <Content Include="Public\Resources\Images\Parallax\parallax-7.png" />
     <Content Include="Public\Resources\JS\app.js" />
+    <Content Include="Public\Resources\JS\hash.js" />
     <Content Include="Public\Resources\JS\particles.js" />
     <Content Include="Public\Resources\JS\particles.min.js" />
+    <Content Include="Public\Resources\JS\scissor.min.js" />
     <Content Include="Public\Resources\JS\scrollreveal.min.js" />
+    <Content Include="Public\Resources\JS\turn.min.js" />
+    <Content Include="Public\Resources\JS\zoom.min.js" />
     <Content Include="Views\Master.Master" />
     <Content Include="Public\Resources\JS\bower.json" />
     <Content Include="Public\Resources\JS\package.json" />
@@ -108,6 +113,7 @@
     <Content Include="Views\login.aspx" />
     <Content Include="Views\feedback.aspx" />
     <Content Include="Views\main.aspx" />
+    <Content Include="Views\aboutus.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +155,13 @@
     </Compile>
     <Compile Include="Views\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\aboutus.aspx.cs">
+      <DependentUpon>aboutus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\aboutus.aspx.designer.cs">
+      <DependentUpon>aboutus.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
