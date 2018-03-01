@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,6 +15,8 @@ namespace Cryptfolio.Views
     {
         protected String[] Data_COINS = new String[20] { "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB" };
 
+        protected Object Data_COINS_Historical;
+        protected Object Data_COINS_Current;
         protected String Send_GET_REQUEST(String[] coins, String[] currencies)
         {
             // generate coins string
@@ -68,19 +71,19 @@ namespace Cryptfolio.Views
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            String a = Send_GET_REQUEST(Data_COINS, new String[1] { "USD" });
+            Data_COINS_Current = Send_GET_REQUEST(Data_COINS, new String[1] { "USD" });
             // Response.Write(a);
             Dictionary<String, String> historical_coins = new Dictionary<String, String>();
             for (int i = 0; i < Data_COINS.Length; i++)
             {
-                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 30));
+                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 1000));
             }
-            Response.Write(historical_coins.ToString());
+            var serializer = new JavaScriptSerializer();
+            var json = serializer.Serialize(historical_coins);
+            Data_COINS_Historical = json;
 
 
         }
-
-        // Handle BUY coin
 
 
         protected string ALL_COINS
@@ -92,10 +95,7 @@ namespace Cryptfolio.Views
             }
         }
 
-        protected string SINGLE_COIN(String coin)
-        {
-            return Send_GET_REQUEST(new String[1] { coin }, new String[1] { "USD" });
-        }
+
 
         // Handle SELL coin
 
@@ -117,7 +117,7 @@ namespace Cryptfolio.Views
 
         protected String Send_GET_REQUEST_Historical(String coin, String currency, int limit)
         {
-            // https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=60&aggregate=3&e=CCCAGG
+            // https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1000&aggregate=3&e=CCCAGG
 
 
             // handle GET request
