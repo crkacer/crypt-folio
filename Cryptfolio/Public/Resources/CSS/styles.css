@@ -578,17 +578,16 @@
         margin-left: 4vw;
     }
     .history-section-title {
-        padding-top: 5vh;
+        padding-top: 10vh;
     }
     .history-section-info {
         position: relative;
-        line-height: 5vh;
+        line-height: 3vh;
         margin-left: 34vw;
         margin-right: 34vw;
     }
 
     .explore-button {
-        padding-top: 3vh;
         margin-left: 46vw;
         margin-right: 46vw;
     }
