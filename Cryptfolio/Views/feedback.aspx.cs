@@ -13,5 +13,12 @@ namespace Cryptfolio.Views
         {
 
         }
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Server.Transfer("feedback-confirmation.aspx");
+            }
+        }
     }
 }

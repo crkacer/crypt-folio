@@ -47,7 +47,7 @@
             <div class="mdl-typography--display-2 mdl-typography--text-center">Welcome back</div>
             <div class="mdl-typography--headline mdl-typography--text-center">Please enter your email and password to login</div>
             
-                <form action="#" runat="server">
+                <form ref="form" action="#" runat="server" >
                     <div class="mdl-typography--text-center">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <asp:TextBox class="mdl-textfield__input" ID="emailInput" runat="server"></asp:TextBox>
@@ -70,8 +70,9 @@
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password has to be in a correct format" ControlToValidate="Password" Display="Dynamic" ViewStateMode="Inherit" ValidationExpression="^[^\d]((?=.*\d)(?=.*[a-z])(?=.*[!\*]).{8,16})"></asp:RegularExpressionValidator>
                     </div>
-                    <input type="submit" class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" value="Log in"/>
-                    <input type="reset" class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="clearButton" value="Clear"/>
+                    <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"  ID="Submit" runat="server" Text="Log in" OnClick="Submit_Click" />
+                    <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Clear" runat="server" Text="Clear" OnClientClick="this.form.reset();return false;" />
+
                 </form>
          
             
@@ -121,5 +122,7 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
-
+    <script type="text/javascript">
+        
+    </script>
 </asp:Content>

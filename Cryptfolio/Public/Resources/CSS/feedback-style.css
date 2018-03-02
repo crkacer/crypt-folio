@@ -1,0 +1,44 @@
+﻿.feedback-header{
+    height: 20vh;
+}
+.feedback-title{
+    display:inline-block;
+    padding-top: 2vh;
+}
+.feedback-subtitle{
+    display:inline-block;
+}
+.feedback-form-section{
+    height:60vh;
+}
+
+.error-message {
+    color: red;
+    font-family: 'Roboto';
+    font-size: 12px;
+    
+}
+.button-submit {
+    margin-top: 30px;
+    margin-left: 35vw;
+
+}
+.input-form{
+    margin-left: -15vw;
+}
+.button-clear{
+    margin-top: 30px;
+    margin-left: 20vw;
+}
+.mdl-textfield__input{
+    width: 30vw !important;
+}
+.is-focused{
+    width: 30vw !important;
+    margin-left:14.5vw;
+}
+.button-list {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    padding-left: 35vw;
+}

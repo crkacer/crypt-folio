@@ -71,6 +71,8 @@
     <Content Include="Public\Resources\CSS\aboutus-style.css" />
     <Content Include="Public\Resources\CSS\animate.css" />
     <Content Include="Public\Resources\CSS\bower.json" />
+    <Content Include="Public\Resources\CSS\feedback-style.css" />
+    <Content Include="Public\Resources\CSS\information-style.css" />
     <Content Include="Public\Resources\CSS\LICENSE" />
     <Content Include="Public\Resources\CSS\material.min.css.map" />
     <Content Include="Public\Resources\CSS\material.min.js.map" />
@@ -114,6 +116,9 @@
     <Content Include="Views\feedback.aspx" />
     <Content Include="Views\main.aspx" />
     <Content Include="Views\aboutus.aspx" />
+    <Content Include="Views\information.aspx" />
+    <Content Include="Views\login-confirmation.aspx" />
+    <Content Include="Views\feedback-confirmation.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +167,27 @@
     </Compile>
     <Compile Include="Views\aboutus.aspx.designer.cs">
       <DependentUpon>aboutus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\information.aspx.cs">
+      <DependentUpon>information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\information.aspx.designer.cs">
+      <DependentUpon>information.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\login-confirmation.aspx.cs">
+      <DependentUpon>login-confirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\login-confirmation.aspx.designer.cs">
+      <DependentUpon>login-confirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\feedback-confirmation.aspx.cs">
+      <DependentUpon>feedback-confirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\feedback-confirmation.aspx.designer.cs">
+      <DependentUpon>feedback-confirmation.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
