@@ -37,7 +37,7 @@
                         <div class="css-typing mdl-typography--title" >
                         </div>
                         <div>
-                        <button onclick="window.location.href='./home.html'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Take me there!</button>
+                        <button onclick="window.location.href='./main.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Take me there!</button>
                         </div>
                     </div>
                    

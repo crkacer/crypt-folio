@@ -9,14 +9,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
     <div class="mdl-typography--text-center website-description">
-        <div class="mdl-typography--display-3" style="color:midnightblue;">Cryptfolio</div>
+<%--        <div class="mdl-typography--display-3" style="color:midnightblue;">Cryptfolio</div>
         <div class="mdl-layout__title">
             <div class="mdl-typography--title">
                 Website description
             </div>
+        </div>--%>
+        <div class="mdl-typography--display-1">
+            PAGE IS UNDER CONSTRUCTION AND NOT PART OF ASSIGNMENT 1
+            
         </div>
+        <img src="../Public/Resources/Images/underConstruction.png" style="width: 802px; height: 320px;" />
     </div>
-    <div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+<%--    <div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
         <div class="mdl-tabs__tab-bar">
             <a href="#coins" class="mdl-tabs__tab is-active">Coin</a>
             <a href="#news" class="mdl-tabs__tab">News</a>
@@ -44,7 +49,7 @@
         <div class="mdl-tabs__panel news-table" id="news">
 
         </div>
-    </div>
+    </div>--%>
     
 
 </asp:Content>
