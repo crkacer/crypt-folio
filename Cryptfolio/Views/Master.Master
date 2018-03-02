@@ -66,7 +66,8 @@
     
     <div class="mdl-layout__content" 
             style="height:auto;
-            transform-style: preserve-3d;">
+            transform-style: preserve-3d;
+            -webkit-overflow-scrolling: auto;">
         <a name="top"></a>
         <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
         <footer class="cryptfolio-footer mdl-mega-footer">

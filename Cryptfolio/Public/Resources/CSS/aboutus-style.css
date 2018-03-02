@@ -1,9 +1,207 @@
-﻿.info-section {
+﻿@media (min-width: 320px) and (max-width: 480px) {
+    .aboutus-content {
+        height: 70vh !important;
+    }
+
+    .info-section {
+        height: 70vh !important;
+    }
+
+    .book {
+        position: absolute;
+        z-index: -1;
+        height: 40vh !important;
+        margin: 3vh 0 !important;
+
+    }
+    #scene2 {
+        margin: 0 0;
+        padding: 0 0;
+        height: 70vh !important;
+    }
+    .history-section-background {
+        background: url(../Images/Parallax/background-history.jpg) no-repeat 50% 100%;
+        bottom: 96px;
+        background-size: cover;
+        height: 70vh !important;
+        width: 110vw;
+    }
+
+    .black {
+        position: relative;
+        top: 95%;
+        background-position: center bottom;
+        background-color: black;
+        height: 40vh;
+        width: 300vw;
+        left: -150vw;
+    }
+    .back {
+        height: 70vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+    #flipbook {
+        width: 100vw !important;
+        height: 40vh !important;
+        margin-right: 10vw;
+    }
+
+        #flipbook .page {
+            width: 100vw;
+            height: 40vh;
+            background: white;
+            -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            -ms-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            -o-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        }
+
+
+        #flipbook .page-wrapper {
+            -webkit-perspective: 2000px;
+            -moz-perspective: 2000px;
+            -ms-perspective: 2000px;
+            -o-perspective: 2000px;
+            perspective: 2000px;
+        }
+
+        #flipbook #front-page {
+            background: url(../Images/Book/front-page.png) no-repeat top center !important;
+            background-size: cover !important
+        }
+
+        #flipbook #front-page2 {
+            background: url(../Images/front-page2.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook #back-page2 {
+            background: url(../Images/back-page.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook #back-page3 {
+            background: url(../Images/login-background.jpg) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p3 {
+            background: url(../Images/Book/page3.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p4 {
+            background: url(../Images/Book/page4.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p5 {
+            background: url(../Images/Book/page5.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p6 {
+            background: url(../Images/Book/page6.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p7 {
+            background: url(../Images/Book/page7.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p8 {
+            background: url(../Images/Book/page8.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p9 {
+            background: url(../Images/Book/page9.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p10 {
+            background: url(../Images/Book/page10.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p11 {
+            background: url(../Images/Book/page11.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .p12 {
+            background: url(../Images/Book/page12.png) no-repeat center center !important;
+            background-size: cover !important;
+        }
+
+        #flipbook .hard {
+            background: #ccc !important;
+            color: #333;
+            -webkit-box-shadow: inset 0 0 10px #666;
+            -moz-box-shadow: inset 0 0 10px #666;
+            -o-box-shadow: inset 0 0 10px #666;
+            -ms-box-shadow: inset 0 0 10px #666;
+            box-shadow: inset 0 0 10px #666;
+            font-weight: bold;
+        }
+
+        #flipbook .odd {
+            background: -webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
+            background-image: -webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: -moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: -ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: -o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+            background-image: linear-gradient(right, #fff 95%, #c4c4c4 100%);
+        }
+
+            #flipbook .odd .gradient {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(../Images/left-border.png);
+                background-position: left top;
+                background-repeat: repeat-y;
+            }
+
+        #flipbook .even {
+            background: -webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
+            background-image: -webkit-linear-gradient(left, #fff 95%, #dadada 100%);
+            background-image: -moz-linear-gradient(left, #fff 95%, #dadada 100%);
+            background-image: -ms-linear-gradient(left, #fff 95%, #dadada 100%);
+            background-image: -o-linear-gradient(left, #fff 95%, #dadada 100%);
+            background-image: linear-gradient(left, #fff 95%, #dadada 100%);
+        }
+
+            #flipbook .even .gradient {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(../Images/right-border.png);
+                background-position: right top;
+                background-repeat: repeat-y;
+            }
+
+}
+.aboutus-content {
+    height: 70vh;
+}
+    
+.info-section {
     height: 70vh;
 }   
 .book{
     position:absolute;
     z-index:1;
+    height:70vh;
     margin-left:30vw;
     margin-top: 5vh;
 }
@@ -16,11 +214,11 @@
     width: 40vw;
     height: 50vh;
     background: white;
-    -webkit-box-shadow: 0 0 20px rgba(0,0,0,1);
-    -moz-box-shadow: 0 0 20px rgba(0,0,0,1);
-    -ms-box-shadow: 0 0 20px rgba(0,0,0,1);
-    -o-box-shadow: inset 0 0 20px rgba(0,0,0,1);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    -ms-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    -o-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
 
     
 }
@@ -31,22 +229,12 @@
     -moz-perspective: 2000px;
     -ms-perspective: 2000px;
     -o-perspective: 2000px;
-    perspective: 4000px;
+    perspective: 2000px;
 }
-.cryptfolio-logo {
-    height: 200px;
-    width: 200px;
-    padding-left: 5vw;
-    padding-top: 5vh;
-    z-index: 50;
-}
-.sub-header{
-    padding-top: 5vh;
-    color: aliceblue !important
-}
+
 #flipbook #front-page{
-    background: url(../Images/login-background.jpg) no-repeat center center !important;
-    background-size:cover !important
+    background: url(../Images/Book/front-page.png) no-repeat top center!important;
+    background-size: cover !important
 }
 #flipbook #front-page2 {
     background: url(../Images/front-page2.png) no-repeat center center !important;
@@ -58,10 +246,47 @@
 }
 #flipbook #back-page3 {
     background: url(../Images/login-background.jpg) no-repeat center center !important;
-    background-size: cover !important
+    background-size: cover !important;
 }
-#flipbook .p3-content {
-    padding-top: 10vh;
+#flipbook .p3 {
+    background: url(../Images/Book/page3.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p4 {
+    background: url(../Images/Book/page4.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p5 {
+    background: url(../Images/Book/page5.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p6 {
+    background: url(../Images/Book/page6.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p7 {
+    background: url(../Images/Book/page7.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p8 {
+    background: url(../Images/Book/page8.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p9 {
+    background: url(../Images/Book/page9.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p10 {
+    background: url(../Images/Book/page10.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p11 {
+    background: url(../Images/Book/page11.png) no-repeat center center !important;
+    background-size: cover !important;
+}
+#flipbook .p12 {
+    background: url(../Images/Book/page12.png) no-repeat center center !important;
+    background-size: cover !important;
 }
 #flipbook .hard {
     background: #ccc !important;

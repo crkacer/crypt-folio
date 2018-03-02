@@ -75,7 +75,7 @@
         var number = row.insertCell(0);
         number.innerHTML = 1;
         var coin = row.insertCell(1);
-        coin.innerHTML = "ETH";
+        coin.innerHTML = "BTC";
         var price = row.insertCell(2);
         price.innerHTML = "$ 1";
         var totalVol24H = row.insertCell(3);

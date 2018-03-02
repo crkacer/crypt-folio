@@ -484,7 +484,7 @@
     
 }
 
-@media (max-widt#: 1800px){
+@media (max-width: 1800px){
     #team-section {
         height: 110vh;
     }
@@ -580,7 +580,7 @@
         z-index: 50;
         background: url(../Images/Parallax/panel.png) 50% 50% no-repeat;
         background-position: center center;
-        background-size: 35% 90%;
+        background-size: 40% 80%;
         vertical-align: middle;
     }
     

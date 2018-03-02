@@ -229,7 +229,7 @@
             sr.reveal('.history-section-info', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
             sr.reveal('.explore-button', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5 });
             $("#teamImg").on("click", function () {
-                window.location.href = './aboutus.aspx';
+                window.location.href = './aboutus.aspx#page/6';
             });
         });
         var scene = document.getElementById('scene');
