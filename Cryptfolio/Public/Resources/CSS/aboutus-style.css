@@ -166,11 +166,11 @@
 }
 @media (max-width: 1800px){
     .aboutus-content {
-        height: 70vh !important;
+        height: 100vh !important;
     }
 
     .info-section {
-        height: 70vh !important;
+        height: 100vh !important;
     }
 
     .book {
@@ -182,14 +182,14 @@
     }
 
     #flipbook {
-        width: 60vw !important;
-        height: 50vh !important;
-        margin-right: 10vw;
+        width: 50vw !important;
+        height: 70vh !important;
+        margin-right: 5vw;
     }
 
         #flipbook .page {
             width: 50vw;
-            height: 50vh;
+            height: 65vh;
             background: white;
             -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
             -moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -329,6 +329,49 @@
                 background-position: right top;
                 background-repeat: repeat-y;
             }
+    .history-section-background {
+        background: url(../Images/Parallax/background-history.jpg) no-repeat 50% 100%;
+        bottom: 96px;
+        background-size: cover;
+        height: 100vh !important;
+        width: 110vw;
+    }
+
+    .black {
+        position: relative;
+        top: 90%;
+        background-position: center bottom;
+        background-color: black;
+        background-repeat: repeat-x;
+        width: 300vw;
+        left: -100vw;
+        height: 30vh;
+        z-index: 99;
+    }
+
+    .wave {
+        background: transparent repeat-x;
+        position: absolute;
+        width: 300vw;
+        left: -100vw;
+    }
+
+        .wave::after {
+            background-color: black;
+            position: absolute;
+            display: block;
+            height: 500px;
+            width: 100%;
+            top: 100%;
+            left: 0;
+        }
+    .back {
+        height: 100vh !important;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
 
 }
 @media (min-width: 320px) and (max-width: 480px) {
