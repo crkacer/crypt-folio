@@ -22,9 +22,7 @@
     
     <div class="particle-wrapper">
         <div id="particles-js" style="height:45vh;">
-            <div class="portfolio-logo animated fadeIn">
-                <img src="../Public/Resources/Images/logo.png" />
-            </div>
+            <img class="portfolio-logo animated fadeIn" src="../Public/Resources/Images/logo.png" />
         </div>
         
     </div>

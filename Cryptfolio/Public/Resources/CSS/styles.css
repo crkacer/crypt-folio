@@ -477,8 +477,8 @@
     height: 200px;
     width: 200px;
     position: absolute;
-    padding-left: 43vw;
-    padding-top: 5vh;
+    margin-left: 43vw;
+    margin-top: 5vh;
     z-index: 50;
     -webkit-animation-delay: 0.5s;
 }
@@ -503,7 +503,7 @@
 
 @media (max-width: 1800px){
     #team-section {
-        height: 110vh;
+        height: 80vh;
     }
     #scene {
         margin: 0 0;
@@ -514,7 +514,7 @@
     .parallax-1 {
         background: url("../Images/Parallax/parallax-1.png") no-repeat center center;
         background-size: cover;
-        height: 110vh;
+        height: 80vh;
         width: 100vw;
         position: relative;
         z-index: 7;
@@ -523,7 +523,7 @@
     .parallax-2 {
         background: url("../Images/Parallax/parallax-2.png") no-repeat center center;
         background-size: cover;
-        height: 110vh;
+        height: 80vh;
         width: 100vw;
         position: relative;
         z-index: 6;
@@ -532,7 +532,7 @@
     .parallax-3 {
         background: url("../Images/Parallax/parallax-3.png") no-repeat center center;
         background-size: cover;
-        height: 110vh;
+        height: 80vh;
         width: 100vw;
         position: relative;
         z-index: 5;
@@ -541,7 +541,7 @@
     .parallax-4 {
         background: url("../Images/Parallax/parallax-4.png") no-repeat center center;
         background-size: cover;
-        height: 110vh;
+        height: 80vh;
         width: 100vw;
         position: relative;
         z-index: 4;
@@ -550,7 +550,7 @@
     .parallax-5 {
         background: url("../Images/Parallax/parallax-5.png") no-repeat center center;
         background-size: cover;
-        height: 110vh;
+        height: 80vh;
         width: 100vw;
         position: relative;
         z-index: 3;
@@ -558,8 +558,8 @@
     .parallax-6 {
         background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
         background-size: cover;
-        height: 90vh;
-        width: 110vw;
+        height: 50vh;
+        width: 100vw;
         position: absolute;
         z-index: 2;
     }
@@ -567,8 +567,8 @@
     .parallax-7 {
         background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
         background-size: cover;
-        height: 90vh;
-        width: 110vw;
+        height: 50vh;
+        width: 100vw;
         position: absolute;
         z-index: 1;
     }
@@ -606,8 +606,8 @@
         height: 250px;
         width: 250px;
         position: absolute;
-        padding-left: 25vw;
-        padding-top: 7vh;
+        margin-left: 25vw;
+        margin-top: 7vh;
         z-index: 50;
         -webkit-animation-delay: 0.5s;
     }

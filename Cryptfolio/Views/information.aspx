@@ -12,7 +12,7 @@
                 <div class="mdl-typography--display-3"><span class="the-idea-title">The Idea</span></div>
                 <div class="mdl-typography--title"><span class="the-idea-content">Cryptfolio raises from the need for a friendly, up to date application which manages your investments regarding crypto currencies. With many different crypto applications in the market, Cryptfolio stands out from the test when it comes to simplicity, user friendliness and professionalism. </span></div>
             </div>
-            <div class="mdl-cell mdl-cell-4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+            <div class="the-idea-image mdl-cell mdl-cell-4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
                 <img src="../Public/Resources/Images/the-idea-image.png" alt="The idea image" style="height:500px; width: 538px;"/>
             </div>
         </div>
@@ -33,9 +33,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-            sr.reveal('.the-idea-title', { duration: 1000, container: '.mdl-layout__content', viewFactor: 1, scale: 0.5 });
+            sr.reveal('.the-idea-title', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5, scale: 0.5 });
             sr.reveal('.the-idea-content', { duration: 1000, container: '.mdl-layout__content', viewFactor: 1, scale: 0.5 });
-            sr.reveal('.the-future-title', { duration: 1000, container: '.mdl-layout__content', viewFactor: 1, scale: 0.5 });
+            sr.reveal('.the-future-title', { duration: 1000, container: '.mdl-layout__content', viewFactor: 0.5, scale: 0.5 });
             sr.reveal('.the-future-content', { duration: 1000, container: '.mdl-layout__content', viewFactor: 1, scale: 0.5 });
         });
     </script>

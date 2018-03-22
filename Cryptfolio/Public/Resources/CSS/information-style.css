@@ -1,49 +1,172 @@
-﻿.why-cryptfolio {
-    height: 30vh;
-    background: url(../Images/information-background.jpg) no-repeat ;
-    background-size: cover;
-}
-.why-cryptfolio-title {
-    margin-top: 10vh;
-    color: midnightblue;
-    display: inline-block;
-    border-bottom: 2px solid #5B9496;
-    padding-bottom: 2px;
-}
+﻿@media (min-width: 800px) and (max-width: 1300px) {
+    .why-cryptfolio {
+        height: 40vh;
+        background: url(../Images/information-background.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    .why-cryptfolio-title {
+        margin-top: 15vh;
+        color: midnightblue;
+        display: inline-block;
+        border-bottom: 2px solid #5B9496;
+        padding-bottom: 2px;
+    }
 
 
-.the-idea {
-    height: 50vh;
-    background-color: #F5E9DC;
+    .the-idea {
+        height: 60vh;
+        background-color: #F5E9DC;
+    }
+
+    .the-idea-title {
+        display: inline-block;
+        padding-top: 15vh;
+        color: midnightblue;
+        margin-bottom: 2vh;
+        padding-left: 3vw;
+    }
+
+    .the-idea-content {
+        display: inline-block;
+        padding-top: 2vh;
+        padding-right: 15vw;
+        padding-left: 3vw;
+    }
+
+    .the-future {
+        height: 60vh;
+        background-color: #F2F2F0;
+    }
+
+    .the-future-title {
+        display: inline-block;
+        padding-top: 10vh;
+        color: midnightblue;
+        margin-bottom: 2vh;
+        padding-right: 7vw;
+        text-align:right!important;
+    }
+
+    .the-future-content {
+        display: inline-block;
+        padding-top: 2vh;
+        padding-right: 7vw;
+        padding-left: 12vw;
+    }
+    .the-idea-image{
+        margin-left:-10vw;
+    }
 }
-.the-idea-title{
-    display:inline-block;
-    padding-top: 10vh;
-    color:midnightblue;
-    margin-bottom: 2vh;
-    padding-left: 3vw;
-}
-.the-idea-content{
-    display:inline-block;
-    padding-top: 2vh;
-    padding-right: 15vw;
-    padding-left: 3vw;
-}
-.the-future {
-    height: 50vh;
-    background-color: #F2F2F0;
-}
-.the-future-title {
-    display: inline-block;
-    padding-top: 10vh;
-    color: midnightblue;
-    margin-bottom: 2vh;
-    padding-right: 10vw;
-}
-.the-future-content {
-    display: inline-block;
-    padding-top: 2vh;
-    padding-right: 10vw;
-    padding-left: 9vw;
+@media (min-width: 1301px) {
+    .why-cryptfolio {
+        height: 30vh;
+        background: url(../Images/information-background.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    .why-cryptfolio-title {
+        margin-top: 10vh;
+        color: midnightblue;
+        display: inline-block;
+        border-bottom: 2px solid #5B9496;
+        padding-bottom: 2px;
+    }
+
+
+    .the-idea {
+        height: 50vh;
+        background-color: #F5E9DC;
+    }
+
+    .the-idea-title {
+        display: inline-block;
+        padding-top: 10vh;
+        color: midnightblue;
+        margin-bottom: 2vh;
+        padding-left: 3vw;
+    }
+
+    .the-idea-content {
+        display: inline-block;
+        padding-top: 2vh;
+        padding-right: 15vw;
+        padding-left: 3vw;
+    }
+
+    .the-future {
+        height: 50vh;
+        background-color: #F2F2F0;
+    }
+
+    .the-future-title {
+        display: inline-block;
+        padding-top: 10vh;
+        color: midnightblue;
+        margin-bottom: 2vh;
+        padding-right: 10vw;
   
+    }
+
+    .the-future-content {
+        display: inline-block;
+        padding-top: 2vh;
+        padding-right: 10vw;
+        padding-left: 9vw;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px){
+    .why-cryptfolio {
+        height: 60vh;
+        background: url(../Images/information-background.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    .why-cryptfolio-title {
+        margin-top: 5vh;
+        color: midnightblue;
+        display: inline-block;
+        padding-bottom: 2px;
+    }
+
+
+    .the-idea {
+        height: 70vh;
+        background-color: #F5E9DC;
+    }
+
+    .the-idea-title {
+        display: inline-block;
+  
+        color: midnightblue;
+        margin-bottom: 2vh;
+        padding-left: 3vw;
+    }
+
+    .the-idea-content {
+        display: inline-block;
+        padding-top: 2vh;
+        padding-right: 15vw;
+        padding-left: 3vw;
+    }
+
+    .the-future {
+        height: 70vh;
+        background-color: #F2F2F0;
+    }
+
+    .the-future-title {
+        display: inline-block;
+        color: midnightblue;
+        margin-bottom: 2vh;
+        padding-right: 10vw;
+    }
+
+    .the-future-content {
+        text-align:left !important;
+        display: inline-block;
+        padding-top: 2vh;
+        padding-right: 10vw;
+        padding-left: 9vw;
+    }
 }

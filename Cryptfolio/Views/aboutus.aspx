@@ -8,20 +8,16 @@
             <div id="flipbook">
                 <div id="front-page" class="hard"></div>
                 <div id="front-page2" class="hard"></div>
-                <div>
-                    
-                </div>
-	            <div>
-                    
-	            </div>
-	            <div >  </div>
-	            <div > </div>
-	            <div >  </div>
-	            <div >  </div>
-	            <div ></div>
-	            <div ></div>
-                <div ></div>
-                <div ></div>
+                <div></div>
+	            <div></div>
+	            <div></div>
+	            <div></div>
+	            <div></div>
+	            <div></div>
+	            <div></div>
+	            <div></div>
+                <div></div>
+                <div></div>
                 <div id="back-page2" class="hard"></div>
                 <div id="back-page3" class="hard"></div>
             </div>

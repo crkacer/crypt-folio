@@ -1,6 +1,6 @@
-﻿@media (max-width: 1300px){
+﻿@media (min-width: 1000px) and (max-width: 1300px){
     .aboutus-content {
-        height: 70vh !important;
+        height: 100vh !important;
     }
 
     .info-section {
@@ -12,17 +12,17 @@
         z-index: 1;
         height: 70vh;
         margin-left: 30vw;
-        margin-top: 5vh;
+        margin-top: 10vh !important;
     }
 
     #flipbook {
-        width: 40vw !important;
+        width: 60vw !important;
         height: 60vh !important;
         margin-right: 10vw;
     }
 
         #flipbook .page {
-            width: 40vw;
+            width: 60vw;
             height: 60vh;
             background: white;
             -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -163,8 +163,52 @@
                 background-position: right top;
                 background-repeat: repeat-y;
             }
+    .history-section-background {
+        background: url(../Images/Parallax/background-history.jpg) no-repeat 50% 100%;
+        bottom: 96px;
+        background-size: cover;
+        height: 100vh !important;
+        width: 110vw;
+    }
+
+    .black {
+        position: relative;
+        top: 90%;
+        background-position: center bottom;
+        background-color: black;
+        background-repeat: repeat-x;
+        width: 300vw;
+        left: -100vw;
+        height: 30vh;
+        z-index: 99;
+    }
+
+    .wave {
+        background: transparent repeat-x;
+        position: absolute;
+        width: 300vw;
+        left: -100vw;
+    }
+
+        .wave::after {
+            background-color: black;
+            position: absolute;
+            display: block;
+            height: 500px;
+            width: 100%;
+            top: 100%;
+            left: 0;
+        }
+
+    .back {
+        height: 100vh !important;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
 }
-@media (max-width: 1800px){
+@media (min-width: 1301px) and (max-width: 1800px){
     .aboutus-content {
         height: 100vh !important;
     }
