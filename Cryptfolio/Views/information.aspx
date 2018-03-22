@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="information.aspx.cs" Inherits="Cryptfolio.Views.WebForm6" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="information.aspx.cs" Inherits="Cryptfolio.Views.WebForm6" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
     <link rel="stylesheet" href="../Public/Resources/CSS/information-style.css" type="text/css" />
 </asp:Content>
@@ -23,8 +23,8 @@
                 <img src="../Public/Resources/Images/the-future-image.png" alt="The future image" style="height:500px; width: 538px;"/>
             </div>
             <div class="mdl-cell mdl-cell--8-col">
-                <div class="mdl-typography--display-3 mdl-typography--text-right"><span class="the-future-title">The Future</span></div>
-                <div class="mdl-typography--title mdl-typography--text-right"><span class="the-future-content">Cryptfolio has started with the most popular crypto currencies relevant to investors in the market place. However, the application will seek to grow in order to provide further services such as: automated API integration for popular exchanges, ability to bulk import trades from unpopular exchanges as well as the ability to import balances and transactions from wallets. </span></div>
+                <div class="mdl-typography--display-3 text-future"><span class="the-future-title">The Future</span></div>
+                <div class="mdl-typography--title"><span class="the-future-content">Cryptfolio has started with the most popular crypto currencies relevant to investors in the market place. However, the application will seek to grow in order to provide further services such as: automated API integration for popular exchanges, ability to bulk import trades from unpopular exchanges as well as the ability to import balances and transactions from wallets. </span></div>
             </div>
         </div>
     </div>

@@ -47,8 +47,12 @@
         padding-right: 7vw;
         text-align:right!important;
     }
+    .text-future {
+        text-align: right !important;
+    }
 
     .the-future-content {
+        text-align: right !important;
         display: inline-block;
         padding-top: 2vh;
         padding-right: 7vw;
@@ -75,7 +79,7 @@
 
 
     .the-idea {
-        height: 50vh;
+        height: 60vh;
         background-color: #F5E9DC;
     }
 
@@ -95,11 +99,12 @@
     }
 
     .the-future {
-        height: 50vh;
+        height: 60vh;
         background-color: #F2F2F0;
     }
 
     .the-future-title {
+
         display: inline-block;
         padding-top: 10vh;
         color: midnightblue;
@@ -107,8 +112,11 @@
         padding-right: 10vw;
   
     }
-
+    .text-future{
+        text-align:right!important;
+    }
     .the-future-content {
+        text-align: right !important;
         display: inline-block;
         padding-top: 2vh;
         padding-right: 10vw;
@@ -165,8 +173,8 @@
     .the-future-content {
         text-align:left !important;
         display: inline-block;
-        padding-top: 2vh;
-        padding-right: 10vw;
-        padding-left: 9vw;
+        padding-right: 15vw;
+        padding-left: 3vw;
     }
+    
 }
