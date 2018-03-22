@@ -221,7 +221,8 @@
 .parallax-6 {
     background: url("../Images/Parallax/parallax-6.png") no-repeat center center;
     background-size: cover;
-    height: 70vh;
+
+    height: 80vh;
     width: 100vw;
     position: absolute;
     z-index: 2;
@@ -230,7 +231,7 @@
 .parallax-7 {
     background: url("../Images/Parallax/parallax-7.png") no-repeat center center;
     background-size: cover;
-    height: 70vh;
+    height: 80vh;
     width: 100vw;
     position: absolute;
     z-index: 1;
