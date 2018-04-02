@@ -63,7 +63,7 @@
           </div>
         </div>
       </div>
-    
+
     <div class="mdl-layout__content" 
             style="height:auto;
             transform-style: preserve-3d;
@@ -71,38 +71,38 @@
         <a name="top"></a>
         <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
         <footer class="cryptfolio-footer mdl-mega-footer">
-        <div class="mdl-mega-footer--top-section">
-        <div class="mdl-mega-footer--left-section">
-            <button class="mdl-mega-footer--social-btn "><i class="mdi mdi-facebook mdi-24px"></i></button>
-            &nbsp;
-            <button class="mdl-mega-footer--social-btn"><i class="mdi mdi-instagram mdi-24px"></i></button>
-            &nbsp;
-            <button class="mdl-mega-footer--social-btn"><i class="mdi mdi-twitter mdi-24px"></i></button>
-        </div>
-        <div class="mdl-mega-footer--right-section ">
-            <a class="mdl-typography--font-light back-to-top" href="#top" >
-            Back to Top
-            <i class="material-icons">expand_less</i>
-            </a>
-        </div>
-        </div>
+            <div class="mdl-mega-footer--top-section">
+            <div class="mdl-mega-footer--left-section">
+                <button class="mdl-mega-footer--social-btn "><i class="mdi mdi-facebook mdi-24px"></i></button>
+                &nbsp;
+                <button class="mdl-mega-footer--social-btn"><i class="mdi mdi-instagram mdi-24px"></i></button>
+                &nbsp;
+                <button class="mdl-mega-footer--social-btn"><i class="mdi mdi-twitter mdi-24px"></i></button>
+            </div>
+            <div class="mdl-mega-footer--right-section ">
+                <a class="mdl-typography--font-light back-to-top" href="#top" >
+                Back to Top
+                <i class="material-icons">expand_less</i>
+                </a>
+            </div>
+            </div>
 
-        <div class="mdl-mega-footer--middle-section">
-        <p class="mdl-typography--font-light">&copy; All rights reserved to these individuals</p>
-        <p class="mdl-typography--font-light">Huy Dam - 101085183</p>
-        <p class="mdl-typography--font-light">Allan Martinez - 101094202</p>
-        <p class="mdl-typography--font-light">Duc Nguyen - 101095506</p>
-        </div>
+            <div class="mdl-mega-footer--middle-section">
+            <p class="mdl-typography--font-light">&copy; All rights reserved to these individuals</p>
+            <p class="mdl-typography--font-light">Huy Dam - 101085183</p>
+            <p class="mdl-typography--font-light">Allan Martinez - 101094202</p>
+            <p class="mdl-typography--font-light">Duc Nguyen - 101095506</p>
+            </div>
 
-        <div class="mdl-mega-footer--bottom-section">
+            <div class="mdl-mega-footer--bottom-section">
 
-        <a class="cryptfolio-link mdl-typography--font-light" href="./feedback.aspx">Feedback</a>
-        <a class="cryptfolio-link mdl-typography--font-light" href="./aboutus.aspx">About Us</a>
-        <a class="cryptfolio-link mdl-typography--font-light" href="./information.aspx">Information</a>
+            <a class="cryptfolio-link mdl-typography--font-light" href="./feedback.aspx">Feedback</a>
+            <a class="cryptfolio-link mdl-typography--font-light" href="./aboutus.aspx">About Us</a>
+            <a class="cryptfolio-link mdl-typography--font-light" href="./information.aspx">Information</a>
 
-        </div>
+            </div>
 
-    </footer>
+        </footer>
     </div>
     
     </div>

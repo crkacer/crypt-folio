@@ -1,12 +1,22 @@
-﻿svg.highcharts-root {
+﻿
+svg.highcharts-root {
     width: 15vw !important;
-    height: 10vh !important;
+    height: 5vh !important;
+}
+.main-outer-box{
+    min-height:200vh;
 }
 .main-content {
+    min-height:200vh;
+    background-color: #587AA6;
+    text-align: center;
+    
+}
+.main-inside-content {
     margin-left: 10vw;
     margin-right: 10vw;
     background-color: white;
-    height: 100vh;
+    min-height: 200vh;
     box-shadow: rgba(0,0,0,4) 1px 1px;
 }
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after {
@@ -20,14 +30,14 @@
     background-color: #B3D5F2;
 }
 .tabs-bar {
+    right:1px;
+    top: 1px;
+    position:relative;
+    z-index:10;
     justify-content: left !important;
     margin: auto;
     width: 55vw;
-    border-bottom:none !important;
-}
-section {
-    background-color: #587AA6;
-    text-align: center; 
+    border-bottom: none !important;
 }
 .main-table{
     height:70vh;
@@ -37,8 +47,10 @@ section {
     margin-left:auto;
     margin-right:auto;
     padding: 10px;
+    height:auto;
 }
 #coins {
+    padding-bottom:10px;
     padding-top: 10px;
     margin: auto;
     width: 55vw;

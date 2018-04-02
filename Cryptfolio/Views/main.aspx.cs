@@ -76,7 +76,7 @@ namespace Cryptfolio.Views
             Dictionary<String, String> historical_coins = new Dictionary<String, String>();
             for (int i = 0; i < Data_COINS.Length; i++)
             {
-                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 1000));
+                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 30));
             }
             var serializer = new JavaScriptSerializer();
             var json = serializer.Serialize(historical_coins);
