@@ -1,0 +1,48 @@
+﻿svg.highcharts-root {
+    width: 15vw !important;
+    height: 10vh !important;
+}
+.main-content {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: white;
+    height: 100vh;
+    box-shadow: rgba(0,0,0,4) 1px 1px;
+}
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after {
+    height:5px!important;
+    top: 0;
+}
+
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: #B3D5F2;
+}
+.tabs-bar {
+    justify-content: left !important;
+    margin: auto;
+    width: 55vw;
+    border-bottom:none !important;
+}
+section {
+    background-color: #587AA6;
+    text-align: center; 
+}
+.main-table{
+    height:70vh;
+
+}
+#crypto-table{
+    margin-left:auto;
+    margin-right:auto;
+    padding: 10px;
+}
+#coins {
+    padding-top: 10px;
+    margin: auto;
+    width: 55vw;
+    border: 1px solid black;
+   
+    background-color: #B3D5F2;
+}
