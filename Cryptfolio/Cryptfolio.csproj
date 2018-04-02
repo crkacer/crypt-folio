@@ -74,6 +74,7 @@
     <Content Include="Public\Resources\CSS\feedback-style.css" />
     <Content Include="Public\Resources\CSS\information-style.css" />
     <Content Include="Public\Resources\CSS\LICENSE" />
+    <Content Include="Public\Resources\CSS\main-style.css" />
     <Content Include="Public\Resources\CSS\material.min.css.map" />
     <Content Include="Public\Resources\CSS\material.min.js.map" />
     <Content Include="Public\Resources\CSS\package.json" />

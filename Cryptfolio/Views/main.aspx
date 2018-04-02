@@ -1,55 +1,52 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="main.aspx.cs" Inherits="Cryptfolio.Views.WebForm4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
-    <style>
-        svg.highcharts-root{
-            width: 30vw !important;
-            height: 20vh !important;
-        }
-    </style>
+    <link href="../Public/Resources/CSS/main-style.css" type="text/css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
-    <div class="mdl-typography--text-center website-description">
-<%--        <div class="mdl-typography--display-3" style="color:midnightblue;">Cryptfolio</div>
-        <div class="mdl-layout__title">
-            <div class="mdl-typography--title">
-                Website description
+    <section>
+        <div class="main-content">
+           <div class="mdl-typography--text-center">
+                <div class="mdl-typography--display-3" style="color:midnightblue;">Cryptfolio</div>
+                <div class="mdl-layout__title">
+                    <div class="mdl-typography--title">
+                        Website description
+                    </div>
+                </div>
             </div>
-        </div>--%>
-        <div class="mdl-typography--display-1">
-            PAGE IS UNDER CONSTRUCTION AND NOT PART OF ASSIGNMENT 1
-            
-        </div>
-        <img src="../Public/Resources/Images/underConstruction.png" style="width: 802px; height: 320px;" />
-    </div>
-<%--    <div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-        <div class="mdl-tabs__tab-bar">
-            <a href="#coins" class="mdl-tabs__tab is-active">Coin</a>
-            <a href="#news" class="mdl-tabs__tab">News</a>
-        </div>
-        <div class="mdl-tabs__panel is-active coins-table" id="coins">
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="crypto-table" style="width: 100vw;">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th class="mdl-data-table__cell--non-numeric">Coin</th>
-                        <th class="mdl-data-table__cell--non-numeric">Price</th>
-                        <th class="mdl-data-table__cell--non-numeric">Total Vol. 24H</th>
-                        <th class="mdl-data-table__cell--non-numeric">Market Cap</th>
-                        <th class="mdl-data-table__cell--non-numeric">7d Chart (US)</th>
-                        <th>Change 24H</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect main-table">
+                <div class="mdl-tabs__tab-bar tabs-bar">
+                    <a href="#coins" class="mdl-tabs__tab is-active">Coin</a>
+                    <a href="#news" class="mdl-tabs__tab">News</a>
+                </div>
+                <div class="mdl-tabs__panel is-active coins-table" id="coins">
 
-                </tbody>
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="crypto-table" >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="mdl-data-table__cell--non-numeric">Coin</th>
+                                <th class="mdl-data-table__cell--non-numeric">Price</th>
+                                <th class="mdl-data-table__cell--non-numeric">Total Vol. 24H</th>
+                                <th class="mdl-data-table__cell--non-numeric">Market Cap</th>
+                                <th class="mdl-data-table__cell--non-numeric">7d Chart (US)</th>
+                                <th>Change 24H</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
                 
-            </table>
-            <div id="container" style="height: 30vh; width: 70vw;"></div>
-        </div>
-        <div class="mdl-tabs__panel news-table" id="news">
+                    </table>
+                    <div id="container" style="height: 30vh; width: 70vw;"></div>
+                </div>
+                <div class="mdl-tabs__panel news-table" id="news">
 
+                </div>
+            </div>
+         
         </div>
-    </div>--%>
+    </section>
+    
     
 
 </asp:Content>
@@ -61,11 +58,11 @@
         console.log(all_coins_current);
         var all_coins_historical = (<%=Data_COINS_Historical%>);
 
-        //console.log(all_coins_historical);
+        console.log(all_coins_historical);
         var Data_Graph = {};
         for (var e in all_coins_historical) {
-            //console.log(e);
-            //console.log(JSON.parse(all_coins_historical[e])['Data']);
+            console.log(e);
+            console.log(JSON.parse(all_coins_historical[e])['Data']);
             var p = [];
             JSON.parse(all_coins_historical[e])['Data'].forEach(function (el) {
                 p[p.length] = [el['time'], el['close']];
@@ -90,9 +87,10 @@
         var chart = row.insertCell(5);
         div[0] = document.createElement('div');
         div[0].setAttribute('id', 'coinName');
-        div[0].style.height = '20vh';
-        div[0].style.width = '30vw';
+        div[0].style.height = '10vh';
+        div[0].style.width = '15vw';
         chart.appendChild(div[0]);
+
         Highcharts.stockChart('coinName', {
             scrollbar: {
                 enabled: false
@@ -100,7 +98,27 @@
             series: [{
 
                 data: data
-            }]
+            }],
+            xAxis: {
+                visible: false
+            },
+            yAxis: {
+                visible: false
+            },
+            rangeSelector: {
+                enabled: false
+            },
+            navigation: {
+                buttonOptions: {
+                    enabled: false
+                }
+            },
+            navigator: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            }
         });
 
 
