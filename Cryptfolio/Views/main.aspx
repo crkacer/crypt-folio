@@ -14,13 +14,12 @@
                         </div>
                     </div>
                 </div>
-                <div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect main-table">
+                <div  class="mdl-tabs mdl-js-tabs main-table">
                     <div class="mdl-tabs__tab-bar tabs-bar">
                         <a href="#coins" class="mdl-tabs__tab is-active">Coin</a>
-                        <a href="#news" class="mdl-tabs__tab">News</a>
+                        <a href="#news" class="mdl-tabs__tab" id="newsTab">News</a>
                     </div>
                     <div class="mdl-tabs__panel is-active coins-table" id="coins">
-
                         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="crypto-table" >
                             <thead>
                                 <tr>
@@ -41,7 +40,7 @@
                     
                     </div>
                     <div class="mdl-tabs__panel news-table" id="news">
-
+                        
                     </div>
                 </div>
            </div>
@@ -59,22 +58,25 @@
 
         var all_coins_current = <%=Data_COINS_Current%>;
         var all_news = <%=DATA_NEWS_JSON%>;
-        console.log(all_news);
-        console.log(all_coins_current);
+        var articles = [];
+        JSON.parse(all_news)['articles'].forEach(function (e) {
+            articles.push(e);
+        });
+        console.log(articles);
+
         var all_coins_historical = (<%=Data_COINS_Historical%>);
 
-        //console.log(all_coins_historical);
+
         var Data_Graph = {};
         for (var e in all_coins_historical) {
-            //console.log(e);
-            //console.log(JSON.parse(all_coins_historical[e])['Data']);
+
             var p = [];
             JSON.parse(all_coins_historical[e])['Data'].forEach(function (el) {
                 p[p.length] = [el['time'], el['close']];
             });
             Data_Graph[e] = p;
         }
-        console.log(Data_Graph);
+
         var div = new Array(20);
         var chartData = new Array(20);
         var tableData = [];
@@ -118,8 +120,8 @@
                     searchPlaceholder: "User Search",
                     
                     "sLengthMenu": ' Choice: ' + '<select>' +
-                    '<option value="5">5 ITEMS PER PAGE</option>' +
-                    '<option value="10">10 ITEMS PER PAGE</option>'+
+                    '<option value="5">5 COINS PER PAGE</option>' +
+                    '<option value="10">10 COINS PER PAGE</option>'+
                     '</select>',
                     "sLoadingRecords": "Please wait - loading..."
                 }
@@ -135,7 +137,33 @@
                     drawGraph(info[i].chart);
                 }
             });
+            
         });
+
+        $('#newsTab').one("click", function () {
+           
+            console.log(articles[0]);
+            generateArticle(articles[0]);
+        });
+        //Generate Articles
+        function generateArticle(article) {
+            var lastUpdated = getLastUpdated(new Date(), new Date(article.publishedAt));
+            var $news = $('#news');
+            var $cardImg = $('<div class="article-card-image mdl-card mdl-shadow--2dp"></div >').css({'display': 'inline-block', 'width' : '100px', 'height' : '100px', 'background' : 'url(' + article.urlToImage + ') center/cover'});
+            
+            var $card = $('<div class="article-card-description mdl-card mdl-shadow--2dp"></div>').css({ 'display': 'inline-block'});
+            var $titleDiv = $('<div class="mdl-card__title mdl-card--expand"></div>');
+            var $news = $('<h6 class="mdl-color--deep-orange-500">' + articles.source.name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Updated at: ' + lastUpdated + '</h6>');
+            $titleDiv.append($news);
+            var $supportingText = $('<div class="mdl-card__supporting-text"></div>');
+            var $title = $('<a>' + article.title + '</a>').attr({ 'href': article.url, 'target':'_blank' }).css({'text-decoration' : 'none', 'color':'black','font-weight':'700'});
+            var $description = $('<p>' + article.description + '</p>');
+            $supportingText.add($title);
+            $supportingText.add($description);
+
+        }
+
+        //Draw Graph
         function drawGraph(currVal) {
             
             var data = Data_Graph[currVal];
@@ -188,7 +216,31 @@
 
             return foo;
         }
+        
+        function getLastUpdated(date1, date2) {
 
+            var diff = (date2 - date1) / 1000;
+            var diff = Math.abs(Math.floor(diff));
+
+            var days = Math.floor(diff / (24 * 60 * 60));
+            var leftSec = diff - days * 24 * 60 * 60;
+
+            var hrs = Math.floor(leftSec / (60 * 60));
+            var leftSec = leftSec - hrs * 60 * 60;
+
+            var min = Math.floor(leftSec / (60));
+            var leftSec = leftSec - min * 60;
+
+            return (days != 0 ? days.toString() + " day(s) ago" :
+                (hrs != 0 ? hrs.toString() + " hour(s) ago" :
+                    (min != 0 ? min.toString() + " minute(s) ago" :
+                        (leftSec != 0 ? leftSec.toString() + " second(s) ago" : "Just now")
+                    )
+                )
+            )
+            
+            
+        }
     </script>
 
 </asp:Content>
