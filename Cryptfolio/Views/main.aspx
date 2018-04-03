@@ -6,11 +6,11 @@
   
         <div class="main-content">
            <div class="main-inside-content">
-               <div class="mdl-typography--text-center">
-                    <div class="mdl-typography--display-3" style="color:midnightblue;">Cryptfolio</div>
+               <div class="mdl-typography--text-center" style="margin-bottom: 10vh;">
+                    <div class="mdl-typography--display-3" style="color:midnightblue; margin-bottom: 5vh;">Cryptfolio</div>
                     <div class="mdl-layout__title">
                         <div class="mdl-typography--title">
-                            Website description
+                            <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over <br /> the management of your cryptocurrencies as a short as well as long term investment.
                         </div>
                     </div>
                 </div>
@@ -53,10 +53,13 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
+    
+
     <script type="text/javascript">
 
         var all_coins_current = <%=Data_COINS_Current%>;
-
+        var all_news = <%=DATA_NEWS_JSON%>;
+        console.log(all_news);
         console.log(all_coins_current);
         var all_coins_historical = (<%=Data_COINS_Historical%>);
 
@@ -74,33 +77,69 @@
         console.log(Data_Graph);
         var div = new Array(20);
         var chartData = new Array(20);
+        var tableData = [];
         Object.keys(Data_Graph).forEach(function (e, i) {
-            addData(e, i);
+            tableData.push(addData(e, i));
         });
+        $(document).ready(function () {
+            var table = $('#crypto-table').DataTable({
+                responsive: true,
+                "data": tableData,
+                "iDisplayLength": 5,
+                "columns": [
+                    { "data": "number" },
+                    { "data": "coin" },
+                    { "data": "price" },
+                    { "data": "totalVol24H" },
+                    { "data": "marketcap" },
+                    {
+                        "data": "chart",
+                        "render": function (data, type, row, meta) {
+                            if (type === 'display' || type === 'filter') {
+                                return $('<div>')
+                                    .attr('id', data + "-chart")
+                                    .text('Error')
+                                    .css({"height":"5vh","width":"15vw"})
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
+                                
+                            }
 
-        function addData(currVal, index) {
+                            return data;
+                            
+                        }
+                                
+                    },
+                    { "data": "change24H" }
+                ],
+                language: {
+                    search: "Search",
+                    searchPlaceholder: "User Search",
+                    
+                    "sLengthMenu": ' Choice: ' + '<select>' +
+                    '<option value="5">5 ITEMS PER PAGE</option>' +
+                    '<option value="10">10 ITEMS PER PAGE</option>'+
+                    '</select>',
+                    "sLoadingRecords": "Please wait - loading..."
+                }
+
+            });
+            for (var i = 0; i < 5; i++) {
+                drawGraph(tableData[i].chart);
+            }
+            $('#crypto-table').on('draw.dt', function () {
+                var info = table.rows({ page: 'current' }).data();
+                for (var i = 0; i < info.length; i++) {
+                    
+                    drawGraph(info[i].chart);
+                }
+            });
+        });
+        function drawGraph(currVal) {
+            
             var data = Data_Graph[currVal];
-            var table = document.getElementById('crypto-table');
-            var row = table.insertRow(index+1);
-            var number = row.insertCell(0);
-            number.innerHTML = index+1;
-            var coin = row.insertCell(1);
-            coin.innerHTML = currVal;
-            var price = row.insertCell(2);
-            price.innerHTML = all_coins_current[currVal].USD.toString();
-            var totalVol24H = row.insertCell(3);
-            totalVol24H.innerHTML = "$ 1 B";
-            var marketcap = row.insertCell(4);
-            marketcap.innerHTML = "$ 180.22 B";
-            chartData[index] = row.insertCell(5);
-            div[index] = document.createElement('div');
-            div[index].setAttribute('id', currVal + "-chart");
-            div[index].setAttribute('class', 'mdl-data-table__cell--non-numeric');
             var id = currVal + "-chart";
-            div[index].style.height = '5vh';
-            div[index].style.width = '15vw';
-            chartData[index].appendChild(div[index]);
-
             Highcharts.stockChart(id, {
                 scrollbar: {
                     enabled: false
@@ -133,12 +172,23 @@
                     enabled: false
                 }
             });
-
-
-            var change24H = row.insertCell(6);
-            change24H.innerHTML = "6 %";
         }
-        
+        function addData(currVal, index) {
+
+            var foo = {};
+            foo.number = index + 1;
+            foo.coin = currVal;
+            foo.price = all_coins_current[currVal].USD.toString();
+            foo.totalVol24H = "$ 1 B";
+            foo.marketcap = "$ 180.22 B";
+            div[index] = currVal;
+
+            foo.chart = div[index];
+            foo.change24H = "6 %";
+
+            return foo;
+        }
+
     </script>
 
 </asp:Content>

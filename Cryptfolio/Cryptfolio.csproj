@@ -120,6 +120,7 @@
     <Content Include="Views\information.aspx" />
     <Content Include="Views\login-confirmation.aspx" />
     <Content Include="Views\feedback-confirmation.aspx" />
+    <Content Include="Views\portfolio.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="Views\feedback-confirmation.aspx.designer.cs">
       <DependentUpon>feedback-confirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\portfolio.aspx.cs">
+      <DependentUpon>portfolio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\portfolio.aspx.designer.cs">
+      <DependentUpon>portfolio.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

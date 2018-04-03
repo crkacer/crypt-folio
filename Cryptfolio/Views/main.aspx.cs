@@ -15,8 +15,7 @@ namespace Cryptfolio.Views
     {
         protected String[] Data_COINS = new String[20] { "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB" };
 
-        protected Object Data_COINS_Historical;
-        protected Object Data_COINS_Current;
+        protected Object Data_COINS_Historical, Data_COINS_Current, Data_NEWS, DATA_NEWS_JSON;
         protected String Send_GET_REQUEST(String[] coins, String[] currencies)
         {
             // generate coins string
@@ -71,18 +70,62 @@ namespace Cryptfolio.Views
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            // GET DATA FOR CRYPTOCURRENCIES PRICE
             Data_COINS_Current = Send_GET_REQUEST(Data_COINS, new String[1] { "USD" });
-            // Response.Write(a);
             Dictionary<String, String> historical_coins = new Dictionary<String, String>();
             for (int i = 0; i < Data_COINS.Length; i++)
             {
-                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 30));
+                historical_coins.Add(Data_COINS[i].ToString(), Send_GET_REQUEST_Historical(Data_COINS[i], "USD", 50));
             }
             var serializer = new JavaScriptSerializer();
-            var json = serializer.Serialize(historical_coins);
-            Data_COINS_Historical = json;
+            var json_data = serializer.Serialize(historical_coins);
+            Data_COINS_Historical = json_data;
+
+            // GET DATA FOR CRYPTOCURRENCIES NEWS
+            Data_NEWS = Send_NEWS_REQUEST();
+            var json_news = serializer.Serialize(Data_NEWS);
+            DATA_NEWS_JSON = json_news;
 
 
+        }
+
+        protected String Send_NEWS_REQUEST()
+        {
+
+            // API key = 9dc5275ccfee46dc98bdd1eac762e520
+
+            StringBuilder sb = new StringBuilder();
+
+            byte[] buf = new byte[8192];
+
+
+            String url = "https://newsapi.org/v2/everything?sources=crypto-coins-news&apiKey=9dc5275ccfee46dc98bdd1eac762e520";
+            HttpWebRequest request = (HttpWebRequest)
+                WebRequest.Create(url);
+
+
+            HttpWebResponse response = (HttpWebResponse)
+                request.GetResponse();
+
+
+            Stream resStream = response.GetResponseStream();
+
+            string tempString = null;
+            int count = 0;
+            //read the data and print it
+            do
+            {
+                count = resStream.Read(buf, 0, buf.Length);
+                if (count != 0)
+                {
+                    tempString = Encoding.ASCII.GetString(buf, 0, count);
+
+                    sb.Append(tempString);
+                }
+            }
+            while (count > 0);
+            return sb.ToString();
         }
 
 
