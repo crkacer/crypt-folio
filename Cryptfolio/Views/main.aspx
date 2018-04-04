@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
   
-        <div class="main-content">
+        <div class="main-content" id="app">
            <div class="main-inside-content">
                <div class="mdl-typography--text-center" style="margin-bottom: 10vh;">
                     <div class="mdl-typography--display-3" style="color:midnightblue; margin-bottom: 5vh;">Cryptfolio</div>
@@ -28,7 +28,7 @@
                                     <th class="mdl-data-table__cell--non-numeric">Price</th>
                                     <th class="mdl-data-table__cell--non-numeric">Total Vol. 24H</th>
                                     <th class="mdl-data-table__cell--non-numeric">Market Cap</th>
-                                    <th class="mdl-data-table__cell--non-numeric">7d Chart (US)</th>
+                                    <th class="mdl-data-table__cell--non-numeric mdl-col">7d Chart (US)</th>
                                     <th>Change 24H</th>
                                 </tr>
                             </thead>
@@ -40,7 +40,17 @@
                     
                     </div>
                     <div class="mdl-tabs__panel news-table" id="news">
-                        
+                        <div class="news-tab" v-for="(article, i) in articles" :key="i" >
+                            <div class="article-card-event" >
+                                <img :src=article.urlToImage class="article-card-image" />
+                                <div class="mdl-card__title mdl-card--expand" style="text-align:left;">
+                                    <h6 style="color:coral;">{{article.author}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight:400; color: gray;">{{getLastUpdated(new Date(), new Date(article.publishedAt))}}</span></h6>
+                                    <a style="font-size: 14px; font-weight:700; text-decoration:none; color:black; display:block;" :href=article.url target="_blank">{{article.title}}</a>
+                                    <p style="font-size:12px;">{{getRefinedDescriptions(article.description)}}</p>
+                                </div>
+                                
+                            </div>
+                        </div>                            
                     </div>
                 </div>
            </div>
@@ -59,9 +69,11 @@
         var all_coins_current = <%=Data_COINS_Current%>;
         var all_news = <%=DATA_NEWS_JSON%>;
         var articles = [];
-        JSON.parse(all_news)['articles'].forEach(function (e) {
+        JSON.parse(all_news)['articles'].some(function (e,i) {
             articles.push(e);
+            return i === 4;
         });
+        
         console.log(articles);
 
         var all_coins_historical = (<%=Data_COINS_Historical%>);
@@ -83,6 +95,8 @@
         Object.keys(Data_Graph).forEach(function (e, i) {
             tableData.push(addData(e, i));
         });
+
+        //Draw the Graph
         $(document).ready(function () {
             var table = $('#crypto-table').DataTable({
                 responsive: true,
@@ -140,28 +154,39 @@
             
         });
 
-        $('#newsTab').one("click", function () {
-           
-            console.log(articles[0]);
-            generateArticle(articles[0]);
-        });
-        //Generate Articles
-        function generateArticle(article) {
-            var lastUpdated = getLastUpdated(new Date(), new Date(article.publishedAt));
-            var $news = $('#news');
-            var $cardImg = $('<div class="article-card-image mdl-card mdl-shadow--2dp"></div >').css({'display': 'inline-block', 'width' : '100px', 'height' : '100px', 'background' : 'url(' + article.urlToImage + ') center/cover'});
-            
-            var $card = $('<div class="article-card-description mdl-card mdl-shadow--2dp"></div>').css({ 'display': 'inline-block'});
-            var $titleDiv = $('<div class="mdl-card__title mdl-card--expand"></div>');
-            var $news = $('<h6 class="mdl-color--deep-orange-500">' + articles.source.name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Updated at: ' + lastUpdated + '</h6>');
-            $titleDiv.append($news);
-            var $supportingText = $('<div class="mdl-card__supporting-text"></div>');
-            var $title = $('<a>' + article.title + '</a>').attr({ 'href': article.url, 'target':'_blank' }).css({'text-decoration' : 'none', 'color':'black','font-weight':'700'});
-            var $description = $('<p>' + article.description + '</p>');
-            $supportingText.add($title);
-            $supportingText.add($description);
+        //Vue.js
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                articles : articles
+            },
+            methods: {
+                getLastUpdated: function (date1, date2) {
+                    var diff = (date2 - date1) / 1000;
+                    var diff = Math.abs(Math.floor(diff));
+                    var days = Math.floor(diff / (24 * 60 * 60));
+                    var leftSec = diff - days * 24 * 60 * 60;
+                    var hrs = Math.floor(leftSec / (60 * 60));
+                    var leftSec = leftSec - hrs * 60 * 60;
+                    var min = Math.floor(leftSec / (60));
+                    var leftSec = leftSec - min * 60;
+                    
+                    return (days != 0 ? days.toString() + " day(s) ago" :
+                        (hrs != 0 ? hrs.toString() + " hour(s) ago" :
+                            (min != 0 ? min.toString() + " minute(s) ago" :
+                                (leftSec != 0 ? leftSec.toString() + " second(s) ago" : "Just now")
+                            )
+                        )
+                    )
+                },
+                getRefinedDescriptions: function (str) {
 
-        }
+                    return str.length > 500 ? str.replace(/[?]/g,".").substring(0, 300) + "..." : str.replace(/[?]/g,".");
+                }
+
+            }
+
+        });
 
         //Draw Graph
         function drawGraph(currVal) {
@@ -217,30 +242,6 @@
             return foo;
         }
         
-        function getLastUpdated(date1, date2) {
-
-            var diff = (date2 - date1) / 1000;
-            var diff = Math.abs(Math.floor(diff));
-
-            var days = Math.floor(diff / (24 * 60 * 60));
-            var leftSec = diff - days * 24 * 60 * 60;
-
-            var hrs = Math.floor(leftSec / (60 * 60));
-            var leftSec = leftSec - hrs * 60 * 60;
-
-            var min = Math.floor(leftSec / (60));
-            var leftSec = leftSec - min * 60;
-
-            return (days != 0 ? days.toString() + " day(s) ago" :
-                (hrs != 0 ? hrs.toString() + " hour(s) ago" :
-                    (min != 0 ? min.toString() + " minute(s) ago" :
-                        (leftSec != 0 ? leftSec.toString() + " second(s) ago" : "Just now")
-                    )
-                )
-            )
-            
-            
-        }
     </script>
 
 </asp:Content>

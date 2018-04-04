@@ -78,6 +78,7 @@
     <Content Include="Public\Resources\CSS\material.min.css.map" />
     <Content Include="Public\Resources\CSS\material.min.js.map" />
     <Content Include="Public\Resources\CSS\package.json" />
+    <Content Include="Public\Resources\CSS\portfolio-style.css" />
     <Content Include="Public\Resources\CSS\styles.css" />
     <Content Include="Public\Resources\Images\logo.png" />
     <Content Include="Public\Resources\Images\Parallax\parallax-1.png" />

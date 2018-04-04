@@ -1,4 +1,4 @@
-﻿@media only screen and (min-width : 1224px) {
+﻿@media only screen and (min-width : 1000px) {
     svg.highcharts-root {
         width: 15vw !important;
         height: 5vh !important;
@@ -67,6 +67,7 @@
         height: 70vh;
     }
     #news {
+        text-align:center;
         padding-bottom: 10px;
         padding-top: 10px;
         margin: auto;
@@ -74,6 +75,41 @@
         border: 1px solid black;
         background-color: #B3D5F2;
     }
+    .article-card-image{
+ 
+        display:inline-block;
+        float:left;
+        padding: 20px;
+        width:100px;
+        height:100px;
+    }
+    .article-card-event {
+        background-color: white;
+        display: inline;
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #e2e2e2;
+    }
+    .article-card-event > .mdl-card__title {
+        display: inline;
+    }
+    .article-card-event > .mdl-card__title > h6{
+        margin: 0;
+    }
+    .article-card-event > .mdl-card__title > h4{
+        margin: 0;
+    }
+
+    .news-tab {
+        
+        position: relative;
+        margin: auto;
+        width: 95%;
+    }
+    .article-card-event > .mdl-card__title{
+    
+    }
+        
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .main-outer-box {

@@ -1,0 +1,62 @@
+﻿.wallet-content {
+    min-height: 120vh;
+    background-color: #587AA6;
+    text-align: center;
+}
+.wallet-inside-content {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: white;
+    min-height: 120vh;
+    box-shadow: rgba(0,0,0,4) 1px 1px;
+}
+.wallet-title {
+    border-bottom: 1px solid #9ec1ff;
+}
+.wallet-option {
+    background-color: #d1e2ff;
+    text-align: right;
+    border-bottom: 1px solid #9ec1ff;
+}
+.wallet-summary{
+    margin: 20px;
+    text-align: right;
+    
+
+}
+.wallet-summary > .acquisition-cost.mdl-card {
+    width: 200px;
+    min-height:100px!important;
+    display: inline-block;
+    margin-right: 10px;
+}
+.wallet-summary > .acquisition-cost > .mdl-card__title {
+      
+    background-color: #5693ff;
+}
+.wallet-summary > .profit-loss.mdl-card {
+    width: 300px;
+    min-height: 100px !important;
+    display: inline-block;
+    margin-right: 10px;
+}
+    .wallet-summary > .profit-loss > .mdl-card__title {
+
+        background-color: #5693ff;
+    }
+
+.wallet-summary > .holdings {
+    width: 150px;
+    display: inline-block;
+    margin-right: 10px;
+}
+    .wallet-summary > .holdings > .mdl-card__title {
+        background-color: #5693ff;
+    }
+.wallet-summary > .day-profit-loss {
+    width: 300px;
+    display: inline-block;
+}
+    .wallet-summary > .day-profit-loss > .mdl-card__title {
+        background-color: #5693ff;
+    }
