@@ -50,6 +50,34 @@
                        </div>
                    </div>
                </div>
+               <div class="outer-overview">
+                   <div class="overview mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--6dp">
+                       <div class="mdl-tabs__tab-bar overview-tabs-bar">
+                           <a href="#summary" class="mdl-tabs__tab is-active"><i class="material-icons" style="vertical-align:middle;">assignment</i>&nbsp;&nbsp;Overview</a>
+                           <a href="#accounting" class="mdl-tabs__tab" id="newsTab"><i class="material-icons" style="vertical-align:middle;">attach_money</i>Accounting</a>
+                       </div>
+                       <div class="mdl-tabs__panel is-active overview-summary" id="summary">
+                           <div class="mdl-grid">
+                               <div class="mdl-cell mdl-cell--4-col wallet-change">
+                                    <div class="stats-header">
+
+                                    </div>
+                                    <div>
+
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--8-col chart">
+
+                                </div>
+                           </div> 
+                           
+                       </div>
+                       <div class="mdl-tabs__panel calculating-sales" id="accounting">
+
+                       </div>
+                   </div>
+               </div>
+               
            </div>
 
     </div>

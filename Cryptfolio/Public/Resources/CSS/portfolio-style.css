@@ -1,5 +1,5 @@
 ﻿.wallet-content {
-    min-height: 120vh;
+    min-height: 150vh;
     background-color: #587AA6;
     text-align: center;
 }
@@ -7,8 +7,7 @@
     margin-left: 10vw;
     margin-right: 10vw;
     background-color: white;
-    min-height: 120vh;
-    box-shadow: rgba(0,0,0,4) 1px 1px;
+    min-height: 150vh;
 }
 .wallet-title {
     border-bottom: 1px solid #9ec1ff;
@@ -40,23 +39,44 @@
     display: inline-block;
     margin-right: 10px;
 }
-    .wallet-summary > .profit-loss > .mdl-card__title {
+.wallet-summary > .profit-loss > .mdl-card__title {
 
-        background-color: #5693ff;
-    }
+    background-color: #5693ff;
+}
 
-.wallet-summary > .holdings {
+.wallet-summary > .holdings.mdl-card {
     width: 150px;
+    min-height: 100px !important;
     display: inline-block;
     margin-right: 10px;
 }
-    .wallet-summary > .holdings > .mdl-card__title {
-        background-color: #5693ff;
-    }
-.wallet-summary > .day-profit-loss {
+.wallet-summary > .holdings > .mdl-card__title {
+    background-color: #5693ff;
+}
+.wallet-summary > .day-profit-loss.mdl-card {
     width: 300px;
+    min-height: 100px !important;
     display: inline-block;
 }
-    .wallet-summary > .day-profit-loss > .mdl-card__title {
-        background-color: #5693ff;
-    }
+.wallet-summary > .day-profit-loss > .mdl-card__title {
+    background-color: #5693ff;
+}
+.outer-overview{
+    text-align:center;
+}
+.overview {
+    margin: auto;
+    min-height: 70vh;
+    max-width: 70vw;
+}
+
+
+.overview-tabs-bar {
+    border: 1px solid #e2e2e2;
+    position: relative;
+    z-index: 10;
+    justify-content: left !important;
+    margin: auto;
+    width: 70vw;
+    background-color: #B3D5F2;
+}
