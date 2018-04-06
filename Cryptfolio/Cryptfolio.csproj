@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="App_Data\Cryptofolio.mdf" />
     <Content Include="favicon.ico" />
     <Content Include="Public\Resources\CSS\aboutus-style.css" />
     <Content Include="Public\Resources\CSS\animate.css" />
@@ -200,10 +201,7 @@
       <DependentUpon>portfolio.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

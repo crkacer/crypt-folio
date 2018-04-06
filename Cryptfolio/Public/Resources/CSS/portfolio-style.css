@@ -66,7 +66,6 @@
 }
 .overview {
     margin: auto;
-    min-height: 70vh;
     max-width: 70vw;
 }
 
@@ -79,4 +78,50 @@
     margin: auto;
     width: 70vw;
     background-color: #B3D5F2;
+}
+
+
+.stats-header {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #999;
+}
+.label-portfolio-stat {
+    margin: 5px;
+    font-size: 14px;
+    display: block;
+    line-height: 20px;
+    color: #396aab;
+}
+.period-change.value-portfolio-stat {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    padding-right: 80px;
+}
+.block-stat {
+    display:inline-block;
+    position:relative;
+    margin:0;
+    float:left;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+.value-portfolio-stat{
+    font-size: 13px;
+}
+.wallet-change {
+    margin: auto !important;
+    border-right: 1px solid #eee;
+    padding: 15px;
+    margin: 0px;
+}
+svg.highcharts-root {
+    width: inherit !important;
+    height: inherit !important;
+}
+#chart-portfolio > .highcharts-container{
+    height:inherit !important;
 }
