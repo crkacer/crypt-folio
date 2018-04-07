@@ -46,7 +46,7 @@
                                 <div class="mdl-card__title mdl-card--expand" style="text-align:left;">
                                     <h6 style="color:coral;">{{article.author}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight:400; color: gray;">{{getLastUpdated(new Date(), new Date(article.publishedAt))}}</span></h6>
                                     <a style="font-size: 14px; font-weight:700; text-decoration:none; color:black; display:block;" :href=article.url target="_blank">{{article.title}}</a>
-                                    <p style="font-size:12px;">{{getRefinedDescriptions(article.description)}}</p>
+                                    <p style="font-size:12px; margin:0;">{{getRefinedDescriptions(article.description)}}</p>
                                 </div>
                                 
                             </div>

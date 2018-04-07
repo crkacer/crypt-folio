@@ -100,11 +100,157 @@
                            
                        </div>
                        <div class="mdl-tabs__panel calculating-sales" id="accounting">
-
+                           <div class="mdl-grid" style="padding:0;">
+                               <div class="mdl-cel mdl-cell--4-col holdings-pie-chart" style="padding-top:20px; padding-left:10px;">
+                                    <h4 style="font-size: 17px;
+                                              color: #ff8e13;
+                                              text-align:left;">Coins</h4>
+                                    <div id="pie-chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                               </div>
+                               <div class="mdl-cell mdl-cell--5-col-desktop income-statement" style="padding:20px; overflow-x:auto;">
+                                   <h4 style="font-size: 17px;
+                                              color: #ff8e13;
+                                              text-align:left;">Income Statement</h4>
+                                   <table class="mdl-data-table mdl-js-data-table" >
+                                       <thead>
+                                           <tr>
+                                               <th>Item</th>
+                                               <th>Amount</th>  
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                           <tr>
+                                               <td>Total Investment On Sold Positions</td>
+                                               <td>Money here</td>
+                                           </tr>
+                                           <tr>
+                                               <td>Total Revenue</td>
+                                               <td>Money here</td>
+                                           </tr>
+                                           <tr>
+                                               <td >Realized P/L</td>
+                                               <td>Money here</td>
+                                           </tr>
+                                       </tbody>
+                                   </table>
+                               </div>
+                               <div class="mdl-cell mdl-cell--3-col-desktop cashflow-statement" style="padding-top: 20px; ">
+                                   <h4 style="font-size: 17px;
+                                              color: #ff8e13;
+                                              text-align:left;">Cashflow Statement</h4>
+                                   <table class="mdl-data-table mdl-js-data-table" >
+                                       <thead>
+                                           <tr>
+                                               <th>Item</th>
+                                               <th>Amount</th>  
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                           <tr>
+                                               <td>Total Investment</td>
+                                               <td>Money here</td>
+                                           </tr>
+                                           <tr>
+                                               <td>Total Revenue</td>
+                                               <td>Money here</td>
+                                           </tr>
+                                           <tr>
+                                               <td>Net Cashflow</td>
+                                               <td>Money here</td>
+                                           </tr>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
                        </div>
                    </div>
                </div>
-               
+               <div class="outer-detail-view">
+                   <div class="detail-view mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                        <div class="mdl-tabs__tab-bar detail-tabs-bar">
+                           <a href="#current" class="mdl-tabs__tab is-active"><i class="material-icons" style="vertical-align:middle;">timeline</i>&nbsp;&nbsp;Current</a>
+                           <a href="#sold" class="mdl-tabs__tab"><i class="material-icons" style="vertical-align:middle;">indeterminate_check_box</i>Sold</a>
+                       </div>
+                       <div class="mdl-tabs__panel is-active coin-current" id="current">
+                           <%--Vuetify Data Tables--%>
+                           <v-dialog v-model="dialog" max-width="500px">
+
+                                <v-card>
+                                  <v-card-title>
+                                    <span class="headline">{{ formTitle }}</span>
+                                  </v-card-title>
+                                  <v-card-text>
+                                    <v-container grid-list-md>
+                                      <v-layout wrap>
+                                        <v-flex xs12 sm6 md4>
+                                          <v-text-field label="Dessert name" v-model="editedItem.name"></v-text-field>
+                                        </v-flex>
+                                        <v-flex xs12 sm6 md4>
+                                          <v-text-field label="Calories" v-model="editedItem.calories"></v-text-field>
+                                        </v-flex>
+                                        <v-flex xs12 sm6 md4>
+                                          <v-text-field label="Fat (g)" v-model="editedItem.fat"></v-text-field>
+                                        </v-flex>
+                                        <v-flex xs12 sm6 md4>
+                                          <v-text-field label="Carbs (g)" v-model="editedItem.carbs"></v-text-field>
+                                        </v-flex>
+                                        <v-flex xs12 sm6 md4>
+                                          <v-text-field label="Protein (g)" v-model="editedItem.protein"></v-text-field>
+                                        </v-flex>
+                                      </v-layout>
+                                    </v-container>
+                                  </v-card-text>
+                                  <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                                    <v-btn color="blue darken-1" flat @click.native="save">Update</v-btn>
+                                  </v-card-actions>
+                                </v-card>
+                              </v-dialog>
+                           <v-app id="inspire">
+                               <v-data-table
+                                   
+                                   class="detailTable"
+                                   :headers="headers"
+                                   :items="items"
+                                   :search="search"
+                                   :pagination.sync="pagination"
+                                   hide-actions
+                                >
+                                   <template slot="headerCell" slot-scope="props">
+                                       <v-tooltip bottom>
+                                           <span slot="activator">
+                                               {{props.header.text}}
+                                           </span>
+                                           <span>
+                                               {{props.header.text}}
+                                           </span>
+                                       </v-tooltip>
+                                   </template>
+                                   <template slot="items" slot-scope="props">
+                                       <td>{{props.item.coin}}</td>
+                                       <td class="text-xs-center">{{props.item.price}} USD</td>
+                                       <td class="text-xs-right">{{props.item.totalValue}} USD</td>
+                                       <td class="text-xs-right">{{props.item.profitLoss}} USD</td>
+                                       <td class="text-xs-right">{{props.item.change}} %</td>
+                                       <td class="justify-center layout px-0">
+                                            <v-btn icon class="mx-0" @click="editItem(props.item)">
+                                              <i class="material-icons" color="teal">mode_edit</i>
+                                            </v-btn>
+                                            <v-btn icon class="mx-0" @click="deleteItem(props.item)">
+                                              <i class="material-icons" color="pink">delete</i>
+                                            </v-btn>
+                                      </td>
+                                   </template>
+                               </v-data-table>
+                               <div class="text-xs-center">
+                                   <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+                               </div>
+                           </v-app> 
+                       </div>
+                       <div class="mdl-tabs__panel coin-sold" id="sold"></div>
+                   </div>
+               </div>
            </div>
 
     </div>
@@ -134,6 +280,155 @@
                     console.log(data);
                 }
             });
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                
+                dialog: false,
+                search: '',
+                pagination: {},
+                selected: [],
+                headers: [
+                    {
+                        text: '#  Coin',
+                        align: 'left',
+                        value: 'coin'
+                    },
+                    {
+                        text: 'Price',
+                        align: 'center',
+                        value: 'price'
+                    },
+                    {
+                        text: 'Total Value',
+                        align: 'right',
+                        value: 'totalValue'
+                    },
+                    {
+                        text: 'Profit/Loss',
+                        align: 'right',
+                        value: 'profitLoss'
+                    },
+                    {
+                        text: 'Change',
+                        align: 'right',
+                        value: 'change'
+                    }
+                ],
+                items: [
+                    
+                ],
+                editedIndex: -1,
+                editedItem: {
+                    coin: '',
+                    amount: 0,
+                    buyPrice: 0,
+
+                }
+            },
+            computed: {
+                formTitle() {
+                    return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+                },
+                pages() {
+                    if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) {
+                        return 0;
+                    }
+                    return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
+                }
+            }, watch: {
+                dialog(val) {
+                    val || this.close()
+                }
+            },
+
+            created() {
+                this.initialize()
+            },
+
+            methods: {
+                initialize() {
+                    this.items = [
+                        {
+                            value: false,
+                            coin: 'Bitcoin (BTC)',
+                            price: 8589.55,
+                            totalValue: '93.46k',
+                            profitLoss: '-28.76k',
+                            change: -23.53
+                        },
+                        {
+                            value: false,
+                            coin: 'Bitcoin (BTC)',
+                            price: 8589.55,
+                            totalValue: '93.46k',
+                            profitLoss: '-28.76k',
+                            change: -23.53
+                        },
+                        {
+                            value: false,
+                            coin: 'Bitcoin (BTC)',
+                            price: 8589.55,
+                            totalValue: '93.46k',
+                            profitLoss: '-28.76k',
+                            change: -23.53
+                        },
+                        {
+                            value: false,
+                            coin: 'Bitcoin (BTC)',
+                            price: 8589.55,
+                            totalValue: '93.46k',
+                            profitLoss: '-28.76k',
+                            change: -23.53
+                        },
+                        {
+                            value: false,
+                            coin: 'Bitcoin (BTC)',
+                            price: 8589.55,
+                            totalValue: '93.46k',
+                            profitLoss: '-28.76k',
+                            change: -23.53
+                        },
+                        {
+                            value: false,
+                            coin: 'Bitcoin (BTC)',
+                            price: 8589.55,
+                            totalValue: '93.46k',
+                            profitLoss: '-28.76k',
+                            change: -23.53
+                        }
+                    ]
+                },
+
+                editItem(item) {
+                    this.editedIndex = this.items.indexOf(item)
+                    this.editedItem = Object.assign({}, item)
+                    this.dialog = true
+                },
+
+                deleteItem(item) {
+                    const index = this.items.indexOf(item)
+                    confirm('Are you sure you want to delete this item?') && this.items.splice(index, 1)
+                },
+
+                close() {
+                    this.dialog = false
+                    setTimeout(() => {
+                        this.editedItem = Object.assign({}, this.defaultItem)
+                        this.editedIndex = -1
+                    }, 300)
+                },
+
+                save() {
+                    if (this.editedIndex > -1) {
+                        Object.assign(this.items[this.editedIndex], this.editedItem)
+                    } else {
+                        this.items.push(this.editedItem)
+                    }
+                    this.close()
+                }
+            }
         });
         function drawPortfolioChart() {
             var data =
@@ -2042,6 +2337,62 @@
                 }
             });
         }
+        function drawPieChart() {
+            Highcharts.chart('pie-chart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Coins Held'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Coin',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'BTC',
+                        y: 61.41,
+                        sliced: true,
+                        selected: true
+                    }, {
+                        name: 'ETH',
+                        y: 11.84
+                    }, {
+                        name: 'XRP',
+                        y: 10.85
+                    }, {
+                        name: 'XLM',
+                        y: 4.67
+                    }, {
+                        name: 'TRX',
+                        y: 4.18
+                    }, {
+                        name: 'CVC',
+                        y: 7.05
+                    }]
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+        }
         drawPortfolioChart();
+        drawPieChart();
+        
     </script>
 </asp:Content>

@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css"/>
     <link rel="stylesheet" href="../Public/Resources/CSS/styles.css" type ="text/css" />
     <link rel="stylesheet" href="../Public/Resources/CSS/animate.css" type="text/css" />
+
     <script type="text/javascript" src="../Public/Resources/JS/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../Public/Resources/JS/scrollreveal.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
@@ -30,11 +33,9 @@
         }
     </script>
     <style>
-        mdl-layout__content{
-            height:auto;
-            transform-style: preserve-3d;
-        }
+       
     </style>
+    
     <asp:ContentPlaceHolder ID="Style" runat="server">
 
     </asp:ContentPlaceHolder>
@@ -69,9 +70,7 @@
       </div>
 
     <div class="mdl-layout__content" 
-            style="height:auto;
-            transform-style: preserve-3d;
-            -webkit-overflow-scrolling: auto;">
+            style="transform-style: preserve-3d;">
         <a name="top"></a>
         <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
         <footer class="cryptfolio-footer mdl-mega-footer">

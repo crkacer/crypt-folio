@@ -116,7 +116,7 @@
     .article-card-event > .mdl-card__title {
     }
 }
-@media only screen and (min-width : 1224px) {
+@media (min-width : 1224px) {
     svg.highcharts-root {
         width: 15vw !important;
         height: 5vh !important;
@@ -182,10 +182,10 @@
         background-color: #B3D5F2;
     }
     .news-table{
-        height: 70vh;
+        min-height: 75vh;
     }
     #news {
-        text-align:center;
+        text-align: center;
         padding-bottom: 10px;
         padding-top: 10px;
         margin: auto;
