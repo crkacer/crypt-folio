@@ -324,20 +324,94 @@
                     },
                     { text: 'Actions', value: 'name', sortable: false }
                 ],
-                itemsToDisplay: [
-                    
+                items: [
+                    {
+                        coin: 'Bitcoin (BTC)',
+                        price: 8589.55,
+                        totalValue: '93.46k',
+                        profitLoss: '-28.76k',
+                        change: -23.53,
+                        amount: 10,
+                        buyPrice: 1000.00,
+                        buyDate: '1997-03-06'
+                    },
+                    {
+                       
+                        coin: 'Bitcoin (BTC)',
+                        price: 8589.55,
+                        totalValue: '93.46k',
+                        profitLoss: '-28.76k',
+                        change: -23.53,
+                        amount: 10,
+                        buyPrice: 1000.00,
+                        buyDate: '1997-03-06'
+                    },
+                    {
+                        
+                        coin: 'Bitcoin (BTC)',
+                        price: 8589.55,
+                        totalValue: '93.46k',
+                        profitLoss: '-28.76k',
+                        change: -23.53,
+                        amount: 10,
+                        buyPrice: 1000.00,
+                        buyDate: '1997-03-06'
+                    },
+                    {
+                       
+                        coin: 'Bitcoin (BTC)',
+                        price: 8589.55,
+                        totalValue: '93.46k',
+                        profitLoss: '-28.76k',
+                        change: -23.53,
+                        amount: 10,
+                        buyPrice: 1000.00,
+                        buyDate: '1997-03-06'
+                    },
+                    {
+                        
+                        coin: 'Bitcoin (BTC)',
+                        price: 8589.55,
+                        totalValue: '93.46k',
+                        profitLoss: '-28.76k',
+                        change: -23.53,
+                        amount: 10,
+                        buyPrice: 1000.00,
+                        buyDate: '1997-03-06'
+                    },
+                    {
+                        
+                        coin: 'Bitcoin (BTC)',
+                        price: 8589.55,
+                        totalValue: '93.46k',
+                        profitLoss: '-28.76k',
+                        change: -23.53,
+                        amount: 10,
+                        buyPrice: 1000.00,
+                        buyDate: '1997-03-06'
+                    },
+
                 ],
+                itemsToDisplay: [],
                 editedItem: {
                     coin: '',
+                    price: 0,
+                    totalValue: '0',
+                    profitLoss: '0',
+                    change: 0,
                     amount: 0,
-                    buyPrice: 0,
-                    buyDate: '03/06/1997'
+                    buyPrice: 0.00,
+                    buyDate: ''
                 },
                 defaultItem: {
                     coin: '',
+                    price: 0,
+                    totalValue: '0',
+                    profitLoss: '0',
+                    change: 0,
                     amount: 0,
-                    buyPrice: 0,
-                    buyDate: '03/06/1997'
+                    buyPrice: 0.00,
+                    buyDate: ''
                 }
             },
             computed: {
@@ -359,68 +433,31 @@
             },
 
             methods: {
-                initialize() {
-                    this.itemsToDisplay = [
-                        {
-                            value: false,
-                            coin: 'Bitcoin (BTC)',
-                            price: 8589.55,
-                            totalValue: '93.46k',
-                            profitLoss: '-28.76k',
-                            change: -23.53
-                        },
-                        {
-                            value: false,
-                            coin: 'Bitcoin (BTC)',
-                            price: 8589.55,
-                            totalValue: '93.46k',
-                            profitLoss: '-28.76k',
-                            change: -23.53
-                        },
-                        {
-                            value: false,
-                            coin: 'Bitcoin (BTC)',
-                            price: 8589.55,
-                            totalValue: '93.46k',
-                            profitLoss: '-28.76k',
-                            change: -23.53
-                        },
-                        {
-                            value: false,
-                            coin: 'Bitcoin (BTC)',
-                            price: 8589.55,
-                            totalValue: '93.46k',
-                            profitLoss: '-28.76k',
-                            change: -23.53
-                        },
-                        {
-                            value: false,
-                            coin: 'Bitcoin (BTC)',
-                            price: 8589.55,
-                            totalValue: '93.46k',
-                            profitLoss: '-28.76k',
-                            change: -23.53
-                        },
-                        {
-                            value: false,
-                            coin: 'Bitcoin (BTC)',
-                            price: 8589.55,
-                            totalValue: '93.46k',
-                            profitLoss: '-28.76k',
-                            change: -23.53
-                        }
-                    ]
+                populate(item) {
+                    var foo = [];
+                    foo["coin"] = item.coin;
+                    foo["price"] = item.price;
+                    foo["totalValue"] = item.totalValue;
+                    foo["profitLoss"] = item.profitLoss;
+                    foo["change"] = item.change;
+                    return foo;
                 },
+                initialize() {
+                    this.items.forEach((item, index) =>{
 
+                        this.itemsToDisplay.push(this.populate(item));
+                    });
+                },
+                
                 editItem(item) {
-                    this.editedIndex = this.items.indexOf(item)
-                    this.editedItem = Object.assign({}, item)
+                    this.editedIndex = this.itemsToDisplay.indexOf(item)
+                    this.editedItem = this.items[this.editedIndex]
                     this.dialog = true
                 },
 
                 deleteItem(item) {
-                    const index = this.items.indexOf(item)
-                    confirm('Are you sure you want to delete this item?') && this.items.splice(index, 1)
+                    const index = this.itemsToDisplay.indexOf(item)
+                    confirm('Are you sure you want to delete this item?') && this.itemsToDisplay.splice(index, 1)
                 },
 
                 close() {
@@ -434,10 +471,12 @@
                 save() {
                     if (this.editedIndex > -1) {
                         Object.assign(this.items[this.editedIndex], this.editedItem)
+                        location.reload()
+                        this.close()
                     } else {
                         this.items.push(this.editedItem)
                     }
-                    this.close()
+                    
                 },
                 allowedDates(date) {
                     const day = new Date()
