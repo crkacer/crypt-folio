@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="portfolio.aspx.cs" Inherits="Cryptfolio.Views.WebForm9" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
     <link type="text/css" rel="stylesheet" href="../Public/Resources/CSS/portfolio-style.css" />
+    <link type="text/css" rel="stylesheet" href="../Public/Resources/CSS/vuetify.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
     <div class="wallet-content" id="app">
@@ -177,26 +178,32 @@
 
                                 <v-card>
                                   <v-card-title>
-                                    <span class="headline">{{ formTitle }}</span>
+                                    <span class="headline">Edit Coin</span>
                                   </v-card-title>
                                   <v-card-text>
                                     <v-container grid-list-md>
                                       <v-layout wrap>
                                         <v-flex xs12 sm6 md4>
-                                          <v-text-field label="Dessert name" v-model="editedItem.name"></v-text-field>
+                                          <v-text-field label="Coin Name" v-model="editedItem.coin" disabled></v-text-field>
                                         </v-flex>
                                         <v-flex xs12 sm6 md4>
-                                          <v-text-field label="Calories" v-model="editedItem.calories"></v-text-field>
+                                          <v-text-field label="Amount" v-model="editedItem.amount"></v-text-field>
                                         </v-flex>
                                         <v-flex xs12 sm6 md4>
-                                          <v-text-field label="Fat (g)" v-model="editedItem.fat"></v-text-field>
+                                          <v-text-field label="Buy Price" v-model="editedItem.buyPrice"></v-text-field>
                                         </v-flex>
                                         <v-flex xs12 sm6 md4>
-                                          <v-text-field label="Carbs (g)" v-model="editedItem.carbs"></v-text-field>
+                                          <v-text-field label="Bought on" v-model="editedItem.buyDate"></v-text-field>
                                         </v-flex>
-                                        <v-flex xs12 sm6 md4>
-                                          <v-text-field label="Protein (g)" v-model="editedItem.protein"></v-text-field>
-                                        </v-flex>
+                                        <v-date-picker v-model="editedItem.buyDate" no-title scrollable actions :allowed-dates="allowedDates">
+                                            <template slot-scope="{ save, cancel }">
+                                                <v-card-actions>
+                                                    <v-spacer></v-spacer>
+                                                    <v-btn flat color="primary" @click.native="cancel">Cancel</v-btn>
+                                                    <v-btn flat color="primary" @click.native="save">OK</v-btn>
+                                                </v-card-actions>
+                                            </template>
+                                        </v-date-picker>    
                                       </v-layout>
                                     </v-container>
                                   </v-card-text>
@@ -212,7 +219,7 @@
                                    
                                    class="detailTable"
                                    :headers="headers"
-                                   :items="items"
+                                   :items="itemsToDisplay"
                                    :search="search"
                                    :pagination.sync="pagination"
                                    hide-actions
@@ -314,23 +321,27 @@
                         text: 'Change',
                         align: 'right',
                         value: 'change'
-                    }
+                    },
+                    { text: 'Actions', value: 'name', sortable: false }
                 ],
-                items: [
+                itemsToDisplay: [
                     
                 ],
-                editedIndex: -1,
                 editedItem: {
                     coin: '',
                     amount: 0,
                     buyPrice: 0,
-
+                    buyDate: '03/06/1997'
+                },
+                defaultItem: {
+                    coin: '',
+                    amount: 0,
+                    buyPrice: 0,
+                    buyDate: '03/06/1997'
                 }
             },
             computed: {
-                formTitle() {
-                    return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-                },
+                
                 pages() {
                     if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) {
                         return 0;
@@ -349,7 +360,7 @@
 
             methods: {
                 initialize() {
-                    this.items = [
+                    this.itemsToDisplay = [
                         {
                             value: false,
                             coin: 'Bitcoin (BTC)',
@@ -427,6 +438,29 @@
                         this.items.push(this.editedItem)
                     }
                     this.close()
+                },
+                allowedDates(date) {
+                    const day = new Date()
+                    const d = new Date()
+                    d.setFullYear(day.getFullYear() - 17)
+                    return this.compare(d, date) == 1 ? date : null
+                },
+                compare(a, b) {
+                    return (
+                        isFinite(a = this.convertToDateObject(a).valueOf()) &&
+                            isFinite(b = this.convertToDateObject(b).valueOf()) ?
+                            (a > b) - (a < b) :
+                            NaN
+                    )
+                },
+                convertToDateObject(dateString) {
+                    return (
+                        dateString.constructor === Date ? dateString :
+                            dateString.constructor === Number ? new Date(dateString) :
+                                dateString.constructor === String ? new Date(dateString) :
+                                    typeof dateString === "object" ? new Date(dateString.year, dateString.month, dateString.date) :
+                                        NaN
+                    )
                 }
             }
         });
