@@ -70,6 +70,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="App_Data\Cryptofolio.mdf" />
+    <Content Include="App_Data\Cryptofolio_log.ldf">
+      <DependentUpon>Cryptofolio.mdf</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Public\Resources\CSS\aboutus-style.css" />
     <Content Include="Public\Resources\CSS\animate.css" />
