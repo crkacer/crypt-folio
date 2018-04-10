@@ -32,12 +32,8 @@
             document.documentElement.classList.add('sr');
         }
     </script>
-    <style>
-       
-    </style>
-    
-    <asp:ContentPlaceHolder ID="Style" runat="server">
 
+    <asp:ContentPlaceHolder ID="Style" runat="server">
     </asp:ContentPlaceHolder>
 
 </head>

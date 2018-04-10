@@ -5414,7 +5414,7 @@ p {
 }
 
 .application.theme--light {
-    background: #fafafa;
+   
     color: rgba(0,0,0,.87)
 }
 
@@ -6692,7 +6692,7 @@ p {
 
 .card__text {
     padding: 16px;
-    width: 100%
+    width: 90%;
 }
 
 .card__media {
