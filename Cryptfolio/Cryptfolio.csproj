@@ -103,6 +103,7 @@
     <Content Include="Public\Resources\JS\scissor.min.js" />
     <Content Include="Public\Resources\JS\scrollreveal.min.js" />
     <Content Include="Public\Resources\JS\turn.min.js" />
+    <Content Include="Public\Resources\JS\vuetify.min.js" />
     <Content Include="Public\Resources\JS\zoom.min.js" />
     <Content Include="Views\Master.Master" />
     <Content Include="Public\Resources\JS\bower.json" />

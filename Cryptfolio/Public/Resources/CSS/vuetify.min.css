@@ -12953,8 +12953,8 @@ table.table {
 }
 
 .tabs__items {
-    overflow: hidden;
-    position: relative
+
+    position: relative;
 }
 
 .tabs__content {
@@ -13405,3 +13405,5 @@ table.table {
         padding: 10px 16px
     }
 }
+
+

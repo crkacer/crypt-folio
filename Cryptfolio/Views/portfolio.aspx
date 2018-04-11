@@ -10,10 +10,81 @@
                    <h2 style="margin:0; padding:10px;"><i class="material-icons" style="font-size:32px;top:2px;">account_balance_wallet</i>&nbsp;&nbsp;My Portfolio</h2>
                </div>
                <div class="wallet-option">
-                   <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" >
-                       <i class="material-icons">info_outline</i>
-                   </button>
-                   <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin:10px;">
+                   <v-app id="app3">
+                       <v-dialog
+                            v-model="createCoinDialog"
+                            max-width="600px"
+                       >
+                           <v-form v-model="validCreate" ref="formCreate">
+                                <v-card>
+                                    <v-card-title>
+                                    <span class="headline">Add Coin</span>
+                                    </v-card-title>
+                                    <v-card-text>
+                                            <v-container grid-list-md>
+                                                <v-layout wrap>
+                                                <v-flex xs12>
+                                                    <v-select
+                                                        label="Coin Name"
+                                                        autocomplete
+                                                        :loading="loading"
+                                                        cache-items
+                                                        required
+                                                        :items="coinList"
+                                                        attach
+                                                        :rules="createRules"
+                                                        :search-input.sync="searchForCoin"
+                                                        v-model="coinCreate.coin"
+                                                        id="coinNameInput"
+                                                        ></v-select>
+                                                </v-flex>
+                                                <v-flex xs12 sm6 md3>
+                                                    <v-text-field label="Amount" v-model="coinCreate.amount" :rules="amountRules"></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 sm6 md4>
+                                                    <v-text-field label="Buy Price" v-model="coinCreate.buyPrice" :rules="priceRules"></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs12 sm6 md4>
+                                                    <v-menu
+                                                        ref="menuCreate"
+                                                        lazy
+                                                        attach="createDatePicker"
+                                                        :close-on-content-click="false"
+                                                        v-model="menuCreate"
+                                                        transition="scale-transition"
+                                                        full-width
+                                                        offset-y
+                                                        :nudge-right="40"
+                                                        max-width="290px"
+                                                        min-width="290px"
+                                                        :return-value.sync="coinCreate.buyDate"
+                                                    >
+                                                            <v-text-field slot="activator" label="Bought on" v-model="coinCreate.buyDate" readonly :rules="dateRules" id="createDate"></v-text-field>
+                                                            <v-date-picker v-model="coinCreate.buyDate" no-title scrollable actions>
+                                                            <template slot-scope="{ save, cancel }">
+                                                                <v-card-actions>
+                                                                    <v-spacer></v-spacer>
+                                                                    <v-btn flat color="primary" @click="menuCreate = false">Cancel</v-btn>
+                                                                    <v-btn flat color="primary" @click="$refs.menuCreate.save(coinCreate.buyDate)">OK</v-btn>
+                                                                </v-card-actions>
+                                                            </template>
+                                                        </v-date-picker>
+                                                </v-menu>
+                                            </v-flex>
+                                                           
+                                            </v-layout>
+                                        </v-container>
+                                        </v-card-text>
+                                        <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                                        <v-btn color="blue darken-1" flat @click.native="create" :disabled="!validCreate">Create</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-form>
+                       </v-dialog>
+                   </v-app>
+                   <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin:10px;" @click="createCoin()">
                       <i class="material-icons">add</i>&nbsp;Coin
                    </button>
                </div>
@@ -55,7 +126,7 @@
                    <div class="overview mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--6dp">
                        <div class="mdl-tabs__tab-bar overview-tabs-bar">
                            <a href="#summary" class="mdl-tabs__tab is-active"><i class="material-icons" style="vertical-align:middle;">assignment</i>&nbsp;&nbsp;Overview</a>
-                           <a href="#accounting" class="mdl-tabs__tab" id="newsTab"><i class="material-icons" style="vertical-align:middle;">attach_money</i>Accounting</a>
+                           <a href="#accounting" class="mdl-tabs__tab" id="newsTab"><i class="material-icons" style="vertical-align:middle;">attach_money</i>&nbsp;&nbsp;Accounting</a>
                        </div>
                        <div class="mdl-tabs__panel is-active overview-summary" id="summary">
                            <div class="mdl-grid" style="padding:0;">
@@ -174,82 +245,142 @@
                         </div>
                        <div class="mdl-tabs__panel is-active coin-current" id="current">
                            <%--Vuetify Data Tables--%>
-                           <v-dialog v-model="dialog" max-width="600px">
+                           <v-app id="inspire">
+                               <v-dialog v-model="dialog" max-width="600px">
                                 <v-tabs
                                   color="light-blue lighten-3"
-                                  slider-color="amber darken-3"
-                                  centered
+                                  hide-slider
+                                  centered 
                                 >
-                                  <v-tab href="#edit">
+                                  <v-tab href="#edit" @click="overFlow()">
                                       Edit
                                   </v-tab>
-                                  <v-tab href="#sell">
+                                  <v-tab href="#sell" @click="overFlow()">
                                       Sell
                                   </v-tab>
+                                 
+                                  <v-tabs-items>
+                                      
                                   <v-tab-item id="edit">
-                                      <v-form v-model="validEdit" ref="formEdit">
-                                <v-card>
-                                  <v-card-title>
-                                    <span class="headline">Edit Coin</span>
-                                  </v-card-title>
-                                  <v-card-text>
-                                          <v-container grid-list-md>
-                                              <v-layout wrap>
-                                                <v-flex xs12>
-                                                  <v-text-field label="Coin Name" v-model="editedItem.coin" disabled></v-text-field>
-                                                </v-flex>
-                                                <v-flex xs12 sm6 md3>
-                                                  <v-text-field label="Amount" v-model="editedItem.amount" :rules="amountRules"></v-text-field>
-                                                </v-flex>
-                                                <v-flex xs12 sm6 md4>
-                                                  <v-text-field label="Buy Price" v-model="editedItem.buyPrice" :rules="priceRules"></v-text-field>
-                                                </v-flex>
-                                                <v-flex xs12 sm6 md4>
-                                                    <v-menu
-                                                      ref="menu"
-                                                      lazy
-                                                      attach="datePicker"
-                                                      :close-on-content-click="false"
-                                                      v-model="menu"
-                                                      transition="scale-transition"
-                                                      full-width
-                                                      offset-y
-                                                      :nudge-right="40"
-                                                      max-width="290px"
-                                                      min-width="290px"
-                                                      :return-value.sync="editedItem.buyDate"
-                                                    >
-                                                         <v-text-field slot="activator" label="Bought on" v-model="editedItem.buyDate" readonly :rules="dateRules" id="buyDate"></v-text-field>
-                                                          <v-date-picker v-model="editedItem.buyDate" no-title scrollable actions>
-                                                            <template slot-scope="{ save, cancel }">
-                                                                <v-card-actions>
-                                                                    <v-spacer></v-spacer>
-                                                                    <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-                                                                    <v-btn flat color="primary" @click="$refs.menu.save(editedItem.buyDate)">OK</v-btn>
-                                                                </v-card-actions>
-                                                            </template>
-                                                        </v-date-picker>
-                                                    </v-menu>
-                                                </v-flex>
-                                           
-                                              </v-layout>
-                                            </v-container>
-                                          </v-card-text>
-                                          <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-                                            <v-btn color="blue darken-1" flat @click.native="save" :disabled="!validEdit">Update</v-btn>
-                                          </v-card-actions>
-                                        </v-card>
-                                    </v-form>  
-                                  </v-tab-item>
-                                  <v-tab-item id="sell">
-
-                                  </v-tab-item>
+                                          <v-form v-model="validEdit" ref="formEdit">
+                                                <v-card>
+                                                  <v-card-title>
+                                                    <span class="headline">Edit Coin</span>
+                                                  </v-card-title>
+                                                  <v-card-text>
+                                                          <v-container grid-list-md>
+                                                              <v-layout wrap>
+                                                                <v-flex xs12>
+                                                                  <v-text-field label="Coin Name" v-model="editedItem.coin" disabled></v-text-field>
+                                                                </v-flex>
+                                                                <v-flex xs12 sm6 md3>
+                                                                  <v-text-field label="Amount" v-model="editedItem.amount" :rules="amountRules"></v-text-field>
+                                                                </v-flex>
+                                                                <v-flex xs12 sm6 md4>
+                                                                  <v-text-field label="Buy Price" v-model="editedItem.buyPrice" :rules="priceRules"></v-text-field>
+                                                                </v-flex>
+                                                                <v-flex xs12 sm6 md4>
+                                                                    <v-menu
+                                                                      ref="menu"
+                                                                      lazy
+                                                                      attach="datePicker"
+                                                                      :close-on-content-click="false"
+                                                                      v-model="menu"
+                                                                      transition="scale-transition"
+                                                                      full-width
+                                                                      offset-y
+                                                                      :nudge-right="40"
+                                                                      max-width="290px"
+                                                                      min-width="290px"
+                                                                      :return-value.sync="editedItem.buyDate"
+                                                                    >
+                                                                         <v-text-field @click.native="stopOverFlow()" slot="activator" label="Bought on" v-model="editedItem.buyDate" readonly :rules="dateRules" id="buyDate"></v-text-field>
+                                                                          <v-date-picker v-model="editedItem.buyDate" no-title scrollable actions>
+                                                                            <template slot-scope="{ save, cancel }">
+                                                                                <v-card-actions>
+                                                                                    <v-spacer></v-spacer>
+                                                                                    <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                                                                                    <v-btn flat color="primary" @click="$refs.menu.save(editedItem.buyDate)">OK</v-btn>
+                                                                                </v-card-actions>
+                                                                            </template>
+                                                                        </v-date-picker>
+                                                                </v-menu>
+                                                            </v-flex>
+                                                           
+                                                          </v-layout>
+                                                        </v-container>
+                                                      </v-card-text>
+                                                      <v-card-actions>
+                                                        <v-spacer></v-spacer>
+                                                        <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                                                        <v-btn color="blue darken-1" flat @click.native="update" :disabled="!validEdit">Update</v-btn>
+                                                      </v-card-actions>
+                                                    </v-card>
+                                                </v-form>  
+                                      </v-tab-item>
+                                      <v-tab-item id="sell">
+                                          <v-form v-model="validSell" ref="formSell">
+                                                <v-card>
+                                                      <v-card-title>
+                                                        <span class="headline">Sell Coin</span>
+                                                      </v-card-title>
+                                                      <v-card-text>
+                                                          <v-container grid-list-md>
+                                                              <v-layout wrap>
+                                                                  <v-flex xs12>
+                                                                      <v-text-field label="Coin Name" v-model="sellItem.coin" disabled></v-text-field>
+                                                                    </v-flex>
+                                                                    <v-flex xs12 sm6 md3>
+                                                                      <v-text-field label="Sell Amount" v-model="sellItem.sellAmount" :rules="sellAmountRules"></v-text-field>
+                                                                    </v-flex>
+                                                                    <v-flex xs12 sm6 md4>
+                                                                      <v-text-field label="Sell Price" v-model="sellItem.price" :rules="priceRules"></v-text-field>
+                                                                    </v-flex>
+                                                                    
+                                                                    <v-flex xs12 sm6 md4>
+                                                                        <v-menu
+                                                                          ref="sellMenu"
+                                                                          lazy
+                                                                          attach="sellDatePicker"
+                                                                          :close-on-content-click="false"
+                                                                          v-model="sellMenu"
+                                                                          transition="scale-transition"
+                                                                          full-width
+                                                                          offset-y
+                                                                          :nudge-right="40"
+                                                                          max-width="290px"
+                                                                          min-width="290px"
+                                                                          :return-value.sync="sellItem.soldDate"
+                                                                        >
+                                                                             <v-text-field @click.native="stopOverFlow()" slot="activator" label="Sold on" v-model="sellItem.soldDate" readonly :rules="dateRules" id="sellDate"></v-text-field>
+                                                                              <v-date-picker v-model="sellItem.soldDate" no-title scrollable actions>
+                                                                                <template slot-scope="{ save, cancel }">
+                                                                                    <v-card-actions>
+                                                                                        <v-spacer></v-spacer>
+                                                                                        <v-btn flat color="primary" @click="sellMenu = false">Cancel</v-btn>
+                                                                                        <v-btn flat color="primary" @click="$refs.sellMenu.save(sellItem.soldDate)">OK</v-btn>
+                                                                                    </v-card-actions>
+                                                                                </template>
+                                                                            </v-date-picker>
+                                                                    </v-menu>
+                                                                        </v-flex>
+                                                              </v-layout>
+                                                          </v-container>
+                                                      </v-card-text>
+                                                      <v-card-actions>
+                                                        <v-spacer></v-spacer>
+                                                        <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
+                                                        <v-btn color="blue darken-1" flat @click.native="sell" :disabled="!validSell">Sell</v-btn>
+                                                      </v-card-actions>
+                                                </v-card>
+                                          </v-form>
+                                      </v-tab-item>
+                                      
+                                  </v-tabs-items>
+                                  
                                 </v-tabs>
                                 
                               </v-dialog>
-                           <v-app id="inspire">
                                <v-data-table
                                    
                                    class="detailTable"
@@ -290,7 +421,39 @@
                                </div>
                            </v-app> 
                        </div>
-                       <div class="mdl-tabs__panel coin-sold" id="sold"></div>
+                       <div class="mdl-tabs__panel coin-sold" id="sold">
+                           <v-app id="app2">
+                               <v-data-table
+                                   class="detailTable"
+                                   :headers="sellHeaders"
+                                   :items="soldItemsToDisplay"
+                                   :search="searchSell"
+                                   :pagination.sync="pagination2"
+                                   hide-actions
+                                >
+                                   <template slot="headerCell" slot-scope="props">
+                                       <v-tooltip bottom>
+                                           <span slot="activator">
+                                               {{props.header.text}}
+                                           </span>
+                                           <span>
+                                               {{props.header.text}}
+                                           </span>
+                                       </v-tooltip>
+                                   </template>
+                                   <template slot="items" slot-scope="props">
+                                       <td>{{props.item.coin}}</td>
+                                       <td class="text-xs-center">{{props.item.price}} USD</td>
+                                       <td class="text-xs-right">{{props.item.totalValue}} USD</td>
+                                       <td class="text-xs-right">{{props.item.profitLoss}} USD</td>
+                                       <td class="text-xs-right">{{props.item.change}} %</td>
+                                   </template>
+                               </v-data-table>
+                               <div class="text-xs-center">
+                                   <v-pagination v-model="pagination2.page" :length="pages2" circle></v-pagination>
+                               </div>
+                           </v-app>
+                       </div>
                    </div>
                </div>
            </div>
@@ -328,21 +491,45 @@
             data: {
                 active: null,
                 validEdit: true,
+                validSell: true,
+                
+                sellAmountRules: [
+                    v => !!v || 'Field is required',
+                    v => (v && !isNaN(v) && ~~v == v && v > 0) || 'Field has to be in correct format',
+                    v => (v && v <= vm.sellItem.amount) || 'The amount must not exceed holdings'
+                ],
                 amountRules: [
                     v => !!v || 'Field is required',
-                    v => (v && !isNaN(v) && ~~v == v) || 'Field has to be in correct format'
+                    v => (v && !isNaN(v) && ~~v == v && v > 0) || 'Field has to be in correct format'
                 ],
                 priceRules: [
                     v => !!v || 'Field is required',
-                    v => (v && !isNaN(v)) || 'Field has to be in correct format'
+                    v => (v && !isNaN(v) && v > 0) || 'Field has to be in correct format'
                 ],
                 dateRules: [
                     v => !!v || 'Field is required'
                 ],
+                sellMenu: false,
                 menu: false,
+                //Dialog for Creating Coins
+                createCoinDialog: false,
+                validCreate: true,
+                menuCreate: false,
+                loading: false,
+                coinList: [],
+                searchForCoin: null,
+                coins: ["BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"],
+                createRules: [
+                    v => !!v || 'Field is required'
+                ],
+                //Edit/Sell Dialog
                 dialog: false,
                 search: '',
+                searchSell: '',
+                //For Current
                 pagination: {},
+                //For Sold
+                pagination2: {},
                 selected: [],
                 headers: [
                     {
@@ -371,6 +558,33 @@
                         value: 'change'
                     },
                     { text: 'Actions', value: 'name', sortable: false }
+                ],
+                sellHeaders: [
+                    {
+                        text: '#  Coin',
+                        align: 'left',
+                        value: 'coin'
+                    },
+                    {
+                        text: 'Price',
+                        align: 'center',
+                        value: 'price'
+                    },
+                    {
+                        text: 'Total Value',
+                        align: 'right',
+                        value: 'totalValue'
+                    },
+                    {
+                        text: 'Profit/Loss',
+                        align: 'right',
+                        value: 'profitLoss'
+                    },
+                    {
+                        text: 'Change',
+                        align: 'right',
+                        value: 'change'
+                    }
                 ],
                 items: [
                     {
@@ -440,6 +654,8 @@
                     },
 
                 ],
+                soldItems: [],
+                soldItemsToDisplay: [],
                 itemsToDisplay: [],
                 editedItem: {
                     coin: '',
@@ -460,22 +676,83 @@
                     amount: 0,
                     buyPrice: 0.00,
                     buyDate: ''
+                },
+                //Dummy to hold value to sell
+                sellItem: {
+                    coin: '',
+                    price: 0,
+                    totalValue: '0',
+                    profitLoss: '0',
+                    change: 0,
+                    amount: 0,
+                    buyPrice: 0.00,
+                    buyDate: '',
+                    sellAmount: 0,
+                    soldDate: ''
+                },
+                defaultSellItem: {
+                    coin: '',
+                    price: 0,
+                    totalValue: '0',
+                    profitLoss: '0',
+                    change: 0,
+                    amount: 0,
+                    buyPrice: 0.00,
+                    buyDate: '',
+                    sellAmount: 0,
+                    soldDate: ''
+                },
+                //Dummy value for creating coin
+                coinCreate: {
+                    coin: '',
+                    amount: 0,
+                    buyPrice: 0.00,
+                    buyDate: ''
+                },
+                coinCreateDefault: {
+                    coin: '',
+                    amount: 0,
+                    buyPrice: 0.00,
+                    buyDate: ''
                 }
+                
             },
             computed: {
-                
+                //For Current
                 pages() {
                     if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) {
                         return 0;
                     }
                     return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
                 },
+                //For Sold
+                pages2() {
+                    if (this.pagination2.rowsPerPage == null || this.pagination2.totalItems == null) {
+                        return 0;
+                    }
+                    return Math.ceil(this.pagination2.totalItems / this.pagination2.rowsPerPage)
+                },
+                //For Edit
                 datePicker() {
                     return document.getElementById('buyDate');
+                },
+                //For Sell
+                sellDatePicker() {
+                    return document.getElementById('sellDate');
+                },
+                //For Create
+                createDatePicker() {
+                    return document.getElementById('createDate');
+                },
+                attachCoinName() {
+                    return document.getElementById('coinNameInput');
                 }
             }, watch: {
                 dialog(val) {
                     val || this.close()
+                },
+                searchForCoin(val) {
+                    val && this.querySelections(val)
                 }
             },
 
@@ -495,14 +772,20 @@
                 },
                 initialize() {
                     this.items.forEach((item, index) =>{
-
                         this.itemsToDisplay.push(this.populate(item));
+                    });
+                    this.soldItems.forEach((item, index) => {
+                        this.soldItemsToDisplay.push(this.populate(item));
                     });
                 },
                 
                 editItem(item) {
+                    var today = new Date();
+                    var date = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
                     this.editedIndex = this.itemsToDisplay.indexOf(item)
                     this.editedItem = Object.assign({}, this.items[this.editedIndex])
+                    this.sellItem = Object.assign({ sellAmount: this.editedItem.amount, soldDate:date }, this.items[this.editedIndex])
+                    console.log(this.sellItem);
                     this.dialog = true
                 },
 
@@ -510,26 +793,30 @@
                     const index = this.itemsToDisplay.indexOf(item)
                     confirm('Are you sure you want to delete this item?') && this.itemsToDisplay.splice(index, 1)
                 },
-
+                
                 close() {
                     this.dialog = false
+                    this.createCoinDialog = false
                     setTimeout(() => {
                         this.editedItem = Object.assign({}, this.defaultItem)
+                        this.sellItem = Object.assign({}, this.defaultSellItem)
+                        this.coinCreate = Object.assign({}, this.coinCreateDefault)
                         this.editedIndex = -1
                     }, 300)
                    
                 },
 
-                save() {
-                    if (this.editedIndex > -1) {
-                        Object.assign(this.items[this.editedIndex], this.editedItem)
-                        console.log(this.items);
-                        this.close();
-                        
-                    } else {
-                        this.items.push(this.editedItem)
-                    }
+                update() {
+                    //Implementing AJAX request for Update
                     
+                },
+                sell() {
+                    //Implementing AJAX request for Sell
+
+                },
+                create() {
+                    //Implementing AJAX request for Create
+
                 },
                 compare(a, b) {
                     return (
@@ -548,6 +835,30 @@
                                         NaN
                     )
                 },
+                /**
+                 * Custom Class to fix Tabs - overflow attribute with Date Picker
+                 */
+                stopOverFlow() {
+                    var tabs = $('.tabs__items');
+                    tabs.css({ 'overflow': 'visible' });
+                },
+                overFlow() {
+                    var tabs = $('.tabs__items');
+                    tabs.css({ 'overflow': 'hidden' });
+                },
+                //Create Coin
+                createCoin() {
+                    this.createCoinDialog = true;
+                },
+                querySelections(v) {
+                    this.loading = true
+                    setTimeout(() => {
+                        this.coinList = this.coins.filter((e) => {
+                            return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) != -1
+                        });
+                        this.loading = false
+                    },500);
+                }
                 
             }
         });

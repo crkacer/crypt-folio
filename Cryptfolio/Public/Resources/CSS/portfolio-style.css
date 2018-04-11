@@ -158,6 +158,10 @@ svg.highcharts-root {
     margin: auto;
     width: 75vw;
 }
+#sold{
+    margin: auto;
+    width: 75vw;
+}
 .detail-tabs-bar {
     position: relative;
     z-index: 10;
