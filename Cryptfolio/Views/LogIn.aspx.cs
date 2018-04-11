@@ -86,7 +86,7 @@ namespace Cryptfolio.Views
             }
             else
             {
-                // usernamd or password is incorrect
+                // username or password is incorrect
                 Response.Write(-1); 
             }
             con.Close();

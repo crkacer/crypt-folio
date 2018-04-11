@@ -81,13 +81,18 @@ namespace Cryptfolio.Views
             // get data from body ajax
 
             Double amount, price;
+            Int32 p_ID, c_ID;
             double.TryParse(Request.Params["amount"], out amount);
             double.TryParse(Request.Params["price"], out price);
+            Int32.TryParse(Request.Params["p_ID"], out p_ID);
+            Int32.TryParse(Request.Params["c_ID"], out c_ID);
 
             String coin = Request.Params["coin"].ToString();
             DateTime date;
             DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
             // DateTime.TryParse(Request.Params["date"].ToString(), out date);
+
+            // SqlCommand cmd = new SqlCommand("insert into Transaction (p_ID, c_ID, status, price, amount, date) values ('" + p_ID + "','" + c_ID + "','" + 0 + "','" + c_ID + "')", con);
 
             Response.Write(amount + " " + coin + " ");
             Response.Write(date.ToString());
