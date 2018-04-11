@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace Cryptfolio.Views
         protected String[] coin_holdings;
         protected String[] coin_data = new String[1000];
         protected Object JSON_COIN_data;
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -106,20 +109,22 @@ namespace Cryptfolio.Views
             // get data from body ajax
 
             Double amount, price;
-            double.TryParse(Request.Params["amount"], out amount);
-            double.TryParse(Request.Params["price"], out price);
+            Int32 portfolio, coin;
 
-            String coin = Request.Params["coin"].ToString();
+            double.TryParse(Request.Params["price"], out price);
+            Int32.TryParse(Request.Params["p_ID"], out portfolio);
+            Int32.TryParse(Request.Params["c_ID"], out coin);
+            
             DateTime date;
             DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
             // DateTime.TryParse(Request.Params["date"].ToString(), out date);
-
-            Response.Write(amount + " " + coin + " ");
+            
             Response.Write(date.ToString());
 
             // validate data
 
             // add data to table
+            SqlCommand cmd = new SqlCommand("update Transaction set price = '" + price + "' where p_ID = '" + portfolio + "' and c_ID = '" + coin + "')", con);
 
             Response.End();
 

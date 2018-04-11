@@ -20,7 +20,7 @@ namespace Cryptfolio.Views
         protected void Page_Load(object sender, EventArgs e)
         {
             // check GET or POST request
-            if ((HttpContext.Current.Request.HttpMethod == "POST") && )
+            if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 if (Request.Params["type"].ToString() == "post_login")
                 {
