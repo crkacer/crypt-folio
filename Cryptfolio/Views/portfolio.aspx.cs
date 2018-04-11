@@ -24,8 +24,25 @@ namespace Cryptfolio.Views
             // check GET or POST request
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
+                String POST_TYPE = Request.Params["type"].ToString();
+                if (POST_TYPE == "add_coin")
+                {
+                    HandleAJAXRequest_AddCoin();
+                } 
+                else if (POST_TYPE == "sell_coin")
+                {
+                    HandleAJAXRequest_SellCoin();
+                }
+                else if (POST_TYPE == "update_coin")
+                {
+                    HandleAJAXRequest_UpdateCoin();
+                }
+                else
+                {
+                    Response.Write("POST:The value is none");
+                }
 
-                HandleAJAXRequest_AddCoin();
+
             }
             else
             {
@@ -51,7 +68,7 @@ namespace Cryptfolio.Views
             JSON_COIN_data = json;
         }
 
-        // Handle AJAX request
+        // Handle AJAX request add coin
 
         protected void HandleAJAXRequest_AddCoin()
         {
@@ -60,23 +77,17 @@ namespace Cryptfolio.Views
 
             // get data from body ajax
 
-            if (Request.Params["type"].ToString() == "add_coin")
-            {
-                Response.Write("POST:The value Add Coin ");
-                Int32 amount;
-                int.TryParse(Request.Params["amount"], out amount);
-                String coin = Request.Params["coin"].ToString();
-                DateTime date;
-                DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
-                // DateTime.TryParse(Request.Params["date"].ToString(), out date);
+            Double amount, price;
+            double.TryParse(Request.Params["amount"], out amount);
+            double.TryParse(Request.Params["price"], out price);
 
-                Response.Write(amount + " " + coin + " ");
-                Response.Write(date.ToString());
-            }
-            else if (Request.Params["type"].ToString() == "nope")
-            {
-                Response.Write("POST:The value is none");
-            }
+            String coin = Request.Params["coin"].ToString();
+            DateTime date;
+            DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
+            // DateTime.TryParse(Request.Params["date"].ToString(), out date);
+
+            Response.Write(amount + " " + coin + " ");
+            Response.Write(date.ToString());
 
             // validate data
 
@@ -85,6 +96,62 @@ namespace Cryptfolio.Views
             Response.End();
 
         }
+
+        // Handle Sell coin
+        protected void HandleAJAXRequest_SellCoin()
+        {
+            Response.Clear();
+            Response.ContentType = "text/plain";
+
+            // get data from body ajax
+
+            Double amount, price;
+            double.TryParse(Request.Params["amount"], out amount);
+            double.TryParse(Request.Params["price"], out price);
+
+            String coin = Request.Params["coin"].ToString();
+            DateTime date;
+            DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
+            // DateTime.TryParse(Request.Params["date"].ToString(), out date);
+
+            Response.Write(amount + " " + coin + " ");
+            Response.Write(date.ToString());
+
+            // validate data
+
+            // add data to table
+
+            Response.End();
+
+        }
+
+        // Handle update coin
+        protected void HandleAJAXRequest_UpdateCoin()
+        {
+            Response.Clear();
+            Response.ContentType = "text/plain";
+
+            // get data from body ajax
+
+            Double price, amount;
+            double.TryParse(Request.Params["amount"], out amount);
+            double.TryParse(Request.Params["price"], out price);
+            String coin = Request.Params["coin"].ToString();
+            DateTime date;
+            DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
+            // DateTime.TryParse(Request.Params["date"].ToString(), out date);
+
+            Response.Write(amount + " " + coin + " ");
+            Response.Write(date.ToString());
+
+            // validate data
+
+            // add data to table
+
+            Response.End();
+
+        }
+
 
         // Handle Get data from API
         protected String Send_GET_REQUEST_Historical(String coin, String currency, int limit)
