@@ -70,7 +70,7 @@
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password has to be in a correct format" ControlToValidate="Password" Display="Dynamic" ViewStateMode="Inherit" ValidationExpression="^[^\d]((?=.*\d)(?=.*[a-z])(?=.*[!\*]).{8,16})"></asp:RegularExpressionValidator>
                     </div>
-                    <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Submit" runat="server" Text="Log In" OnClientClick="submitForm" UseSubmitBehavior="False" />
+                    <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Submit" runat="server" Text="Log In" OnClientClick="submitForm()//" UseSubmitBehavior="False" />
                     <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Clear" runat="server" Text="Clear" OnClientClick="this.form.reset();return false;" />
 
                 </form>
