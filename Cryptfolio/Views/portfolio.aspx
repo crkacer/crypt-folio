@@ -241,7 +241,6 @@
                    <div class="detail-view mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                         <div class="mdl-tabs__tab-bar detail-tabs-bar">
                            <a href="#current" class="mdl-tabs__tab is-active"><i class="material-icons" style="vertical-align:middle;">timeline</i>&nbsp;&nbsp;Current</a>
-                           <a href="#sold" class="mdl-tabs__tab"><i class="material-icons" style="vertical-align:middle;">indeterminate_check_box</i>&nbsp;&nbsp;Sold</a>
                         </div>
                        <div class="mdl-tabs__panel is-active coin-current" id="current">
                            <%--Vuetify Data Tables--%>
@@ -421,39 +420,7 @@
                                </div>
                            </v-app> 
                        </div>
-                       <div class="mdl-tabs__panel coin-sold" id="sold">
-                           <v-app id="app2">
-                               <v-data-table
-                                   class="detailTable"
-                                   :headers="sellHeaders"
-                                   :items="soldItemsToDisplay"
-                                   :search="searchSell"
-                                   :pagination.sync="pagination2"
-                                   hide-actions
-                                >
-                                   <template slot="headerCell" slot-scope="props">
-                                       <v-tooltip bottom>
-                                           <span slot="activator">
-                                               {{props.header.text}}
-                                           </span>
-                                           <span>
-                                               {{props.header.text}}
-                                           </span>
-                                       </v-tooltip>
-                                   </template>
-                                   <template slot="items" slot-scope="props">
-                                       <td>{{props.item.coin}}</td>
-                                       <td class="text-xs-center">{{props.item.price}} USD</td>
-                                       <td class="text-xs-right">{{props.item.totalValue}} USD</td>
-                                       <td class="text-xs-right">{{props.item.profitLoss}} USD</td>
-                                       <td class="text-xs-right">{{props.item.change}} %</td>
-                                   </template>
-                               </v-data-table>
-                               <div class="text-xs-center">
-                                   <v-pagination v-model="pagination2.page" :length="pages2" circle></v-pagination>
-                               </div>
-                           </v-app>
-                       </div>
+                       
                    </div>
                </div>
            </div>
@@ -462,8 +429,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
-        var coin_data = <%=JSON_COIN_data%>;
-        console.log(coin_data[0]);
+        //var coin_data = <%=JSON_COIN_data%>;
+        //console.log(coin_data[0]);
         
         $("#test").on("click", function () {
             console.log(1);

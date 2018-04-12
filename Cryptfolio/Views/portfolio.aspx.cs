@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -18,8 +19,10 @@ namespace Cryptfolio.Views
     {
 
         protected String[] coin_holdings;
-        protected String[] coin_data = new String[1000];
-        protected Object JSON_COIN_data;
+        protected String[] coin_data = new String[10000];
+        protected String[] coin_data_today = new String[10000];
+        protected String[,] coin_data_holding = new String[10000, 10000];
+        protected Object JSON_COIN_data, JSON_COIN_data_today;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,26 +52,91 @@ namespace Cryptfolio.Views
             }
             else
             {
-                HandleGET();
+                if (Session["username"] != null) HandleGET();
             }
         }
 
         protected void HandleGET()
         {
+            // GET userID
+            int userID;
+            String userID_str = Decrypt(Session["username"].ToString());
+            int.TryParse(userID_str, out userID);
             // First list all coins which that users have been already holding
-            coin_holdings = new String[2] { "BTC", "ETH" };
+            coin_holdings = new String[10000];
+            con.Open();
+            SqlCommand cmd_portfolio = new SqlCommand("SELECT * FROM [Portfolio] WHERE user_ID = '"+ userID + "'");
+            cmd_portfolio.ExecuteNonQuery();
 
-            // Secondly send GET request to API in order to get data for each coin
-            int index = 0;
-            for (int i = 0; i < coin_holdings.Length; i++)
+            
+
+            SqlDataReader reader = cmd_portfolio.ExecuteReader();
+
+            if (reader.HasRows)
             {
-                String data = Send_GET_REQUEST_Historical(coin_holdings[i], "USD", 1000);
-                coin_data[index++] = data;
+                userID = reader.GetInt32(0);
+                int p_ID = 0;
+                // Get all coin from the user's portfolio
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM [Transaction] WHERE p_ID = '" + p_ID + "'", con);
+                
+                reader = cmd.ExecuteReader();
 
+                if (reader.HasRows)
+                {
+                    int index = 0;
+                    while (reader.Read())
+                    {
+                        int coin_ID = reader.GetInt32(2);
+                        String coin_name = "";
+                        double coin_amount = reader.GetDouble(5);
+                        double coin_price = reader.GetDouble(4);
+                        Int32 status = reader.GetInt32(3);
+
+                        SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con);
+
+                        SqlDataReader reader_coin = cmd_coin.ExecuteReader();
+                        
+                        if (reader_coin.HasRows)
+                        {
+                            // Secondly send GET request to API in order to get data for each coin
+                            coin_name = reader_coin.GetString(2);
+                            String data = Send_GET_REQUEST_TODAY_Price(coin_name, "USD");
+                            coin_data_today[index] = data;
+                        }
+                        
+                        coin_data_holding[index, 0] = coin_ID.ToString();
+                        coin_data_holding[index, 1] = coin_name;
+                        coin_data_holding[index, 2] = coin_amount.ToString();
+                        coin_data_holding[index, 3] = coin_price.ToString();
+                        coin_data_holding[index, 4] = status.ToString();
+
+                        index++;
+                        reader_coin.Close();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Portfolio does not have any coin yet");
+                }
+                reader.Close();
+                
             }
+            else
+            {
+                userID = -1;
+            }
+
             var serializer = new JavaScriptSerializer();
-            var json = serializer.Serialize(coin_data);
-            JSON_COIN_data = json;
+
+            var json_coin_today = serializer.Serialize(coin_data_today);
+            JSON_COIN_data_today = json_coin_today;
+
+            var json_coin_holding = serializer.Serialize(coin_data_holding);
+            JSON_COIN_data = json_coin_holding;
+
+            reader.Close();
+            
         }
 
         // Handle AJAX request add coin
@@ -92,7 +160,7 @@ namespace Cryptfolio.Views
             DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
             // DateTime.TryParse(Request.Params["date"].ToString(), out date);
 
-            // SqlCommand cmd = new SqlCommand("insert into Transaction (p_ID, c_ID, status, price, amount, date) values ('" + p_ID + "','" + c_ID + "','" + 0 + "','" + c_ID + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into [Transaction] (p_ID, c_ID, status, price, amount, date) values ('" + p_ID + "','" + c_ID + "','" + 0 + "','" + c_ID + "')", con);
 
             Response.Write(amount + " " + coin + " ");
             Response.Write(date.ToString());
@@ -129,7 +197,7 @@ namespace Cryptfolio.Views
             // validate data
 
             // add data to table
-            SqlCommand cmd = new SqlCommand("update Transaction set price = '" + price + "' where p_ID = '" + portfolio + "' and c_ID = '" + coin + "')", con);
+            SqlCommand cmd = new SqlCommand("update [Transaction] set price = '" + price + "' where p_ID = '" + portfolio + "' and c_ID = '" + coin + "')", con);
 
             Response.End();
 
@@ -203,6 +271,90 @@ namespace Cryptfolio.Views
             while (count > 0);
             return sb.ToString();
         }
+
+        protected String Send_GET_REQUEST_TODAY_Price(String coin, String currency)
+        {
+            // https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD
+            // handle GET request
+            StringBuilder sb = new StringBuilder();
+
+            byte[] buf = new byte[8192];
+
+            //do get request
+
+            String url = "https://min-api.cryptocompare.com/data/price?fsym="+ coin+"&tsyms=" + currency + "&e=CCCAGG";
+            HttpWebRequest request = (HttpWebRequest)
+                WebRequest.Create(url);
+
+
+            HttpWebResponse response = (HttpWebResponse)
+                request.GetResponse();
+
+
+            Stream resStream = response.GetResponseStream();
+
+            string tempString = null;
+            int count = 0;
+            //read the data and print it
+            do
+            {
+                count = resStream.Read(buf, 0, buf.Length);
+                if (count != 0)
+                {
+                    tempString = Encoding.ASCII.GetString(buf, 0, count);
+
+                    sb.Append(tempString);
+                }
+            }
+            while (count > 0);
+            return sb.ToString();
+
+        }
+
+        private string Encrypt(string clearText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }
+
+        private string Decrypt(string cipherText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
+        }
+
 
 
     }
