@@ -2,6 +2,8 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
+    
+    <link type="text/css" rel="stylesheet" href="../Public/Resources/CSS/vuetify.min.css" />
     <style>
         .login-screen{
             min-height:70vh;
@@ -44,9 +46,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
     <div class="login-screen mdl-grid">
         <div class="login-textbox mdl-cell mdl-cell--5-col-desktop">
+            
             <div class="mdl-typography--display-2 mdl-typography--text-center">Welcome back</div>
             <div class="mdl-typography--headline mdl-typography--text-center">Please enter your email and password to login</div>
-            
+                <div id="app">
+                    <v-alert type="error" :value="alert" class="mr-5 ml-5">
+                        Failed to Login. Please check your credentials
+                    </v-alert>
+                </div>
+                
                 <form ref="form" action="#" runat="server" >
                     <div class="mdl-typography--text-center">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -70,6 +78,7 @@
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password has to be in a correct format" ControlToValidate="Password" Display="Dynamic" ViewStateMode="Inherit" ValidationExpression="^[^\d]((?=.*\d)(?=.*[a-z])(?=.*[!\*]).{8,16})"></asp:RegularExpressionValidator>
                     </div>
+              
                     <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Submit" runat="server" Text="Log In" OnClientClick="submitForm()//" UseSubmitBehavior="False" />
                     <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Clear" runat="server" Text="Clear" OnClientClick="this.form.reset();return false;" />
 
@@ -123,28 +132,51 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
-        function submitForm(sender, e) {
-            console.log(e);
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                alert: false
+            },
+            watch: {
+                alert: function (val) {
+                    setTimeout(function () {
+                        if (val == true) {
+                            vm.alert = false;
+                        }
+                    }, 2500);
+                }
+            }
+        });
+        function submitForm() {
+
             var email = document.getElementById('<%=emailInput.ClientID%>').value;
             var password = document.getElementById('<%=Password.ClientID%>').value;
-            console.log(1);
-            var bodyAjax = {
-                type: "post_login",
-                username: email,
-                password: password
-            };
+            if (Page_IsValid && email != "" && password != "") {
+               
+                var bodyAjax = {
+                    type: "post_login",
+                    username: email,
+                    password: password
+                };
 
-            $.ajax({
-                type: "POST",
-                url: "login.aspx",
-                data: bodyAjax,
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (data) {
-                    console.log(data);
-                }
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "login.aspx",
+                    data: bodyAjax,
+                    success: function (data) {
+                        console.log(data);
+                        if (data == -1) {
+                            vm.alert = true;
+                        } else {
+                            window.location.href = "./login-confirmation.aspx";
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+            
         }
         //AJAX Request
         

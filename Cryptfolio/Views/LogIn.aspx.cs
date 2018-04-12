@@ -74,10 +74,10 @@ namespace Cryptfolio.Views
 
             // check if username and password are both correct
             con.Open();
-            SqlCommand cmd = new SqlCommand("select * from User where username = @username;", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE username = @username AND password = @password;", con);
             cmd.Parameters.AddWithValue("@username", username);
-            // cmd.Parameters.AddWithValue("@password", Encrypt(password));
-            Response.Write(0);
+            cmd.Parameters.AddWithValue("@password", Encrypt(password));
+       
             var result = cmd.ExecuteScalar();
             if (result != null)
             {
@@ -92,8 +92,7 @@ namespace Cryptfolio.Views
                 Response.Write(-1);
             }
             con.Close();
-
-            Response.Write( username);
+            Response.End();
 
         }
 
