@@ -122,3 +122,12 @@ C:\Users\101095506\Desktop\New folder\crypt-folio\Cryptfolio\obj\Debug\Cryptfoli
 C:\Users\101095506\Desktop\New folder\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.csproj.CoreCompileInputs.cache
 C:\Users\101095506\Desktop\New folder\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.dll
 C:\Users\101095506\Desktop\New folder\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.pdb
+C:\Users\101085183\Desktop\aASP\Cryptfolio\bin\Cryptfolio.dll.config
+C:\Users\101085183\Desktop\aASP\Cryptfolio\bin\Cryptfolio.dll
+C:\Users\101085183\Desktop\aASP\Cryptfolio\bin\Cryptfolio.pdb
+C:\Users\101085183\Desktop\aASP\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\101085183\Desktop\aASP\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\101085183\Desktop\aASP\Cryptfolio\obj\Debug\Cryptfolio.csprojResolveAssemblyReference.cache
+C:\Users\101085183\Desktop\aASP\Cryptfolio\obj\Debug\Cryptfolio.csproj.CoreCompileInputs.cache
+C:\Users\101085183\Desktop\aASP\Cryptfolio\obj\Debug\Cryptfolio.dll
+C:\Users\101085183\Desktop\aASP\Cryptfolio\obj\Debug\Cryptfolio.pdb
