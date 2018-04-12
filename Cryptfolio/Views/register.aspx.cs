@@ -21,12 +21,16 @@ namespace Cryptfolio.Views
             // check GET or POST request
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
-                String POST_TYPE = Request.Params["type"].ToString();
+                String POST_TYPE = Request.Params["type"];
                 if (POST_TYPE == "register_post")
                 {
                     HandleAJAXRequest_Register();
                 }
             
+            } else
+            {
+                Response.Write("GET");
+                Response.End();
             }
         }
 
@@ -38,32 +42,39 @@ namespace Cryptfolio.Views
             password = Request.Params["password"];
 
 
-            // check if username and password are both correct
+            // check if username exists
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE email = @email AND password = @password;", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE email = @email;", con);
             cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@password", Encrypt(password));
 
             var result = cmd.ExecuteScalar();
+            Response.Write(1);
+            Response.End();
             if (result != null)
             {
                 // username already existed
                 // create session 
                 
                 Response.Write(-1);
+                Response.End();
             }
             else
             {
                 // username did not exist
                 // create new user 
 
-                cmd = new SqlCommand("insert into [User](username, password, email) values('" + username + "', '" + Encrypt(password) + "', '" + email + "')", con);
-                cmd.ExecuteNonQuery();
+                SqlCommand cmd2 = new SqlCommand("INSERT INTO dbo.User (username, password, email)" + "VALUES (@username, @email, @password);", con);
+                cmd2.Parameters.AddWithValue("@username", email);
+                cmd2.Parameters.AddWithValue("@email", email);
+                cmd2.Parameters.AddWithValue("@password", Encrypt(password));
+
+                cmd2.ExecuteNonQuery();
                 // successful created new user
-                Response.Write(1);
+                
             }
+            
             con.Close();
-            Response.End();
+            
         }
 
         private string Encrypt(string clearText)

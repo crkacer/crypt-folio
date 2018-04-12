@@ -162,9 +162,8 @@
             var email = document.getElementById('<%=emailInput.ClientID%>').value;
             var password = document.getElementById('<%=Password.ClientID%>').value;
             if (Page_IsValid && email != "" && password != "" && username != "") {
-               
                 var bodyAjax = {
-                    type: "post_register",
+                    type: "register_post",
                     username: username,
                     email: email,
                     password: password
@@ -172,18 +171,16 @@
                  //AJAX Request
                 $.ajax({
                     type: "POST",
-                    url: "register.aspx",
+                    url: "./register.aspx",
                     data: bodyAjax,
                     success: function (data) {
                         console.log(data);
                         if (data == -1) {
                             vm.alert = true;
-                        } else {
-                            window.location.href = "./index.aspx";
                         }
                     },
                     error: function (data) {
-                        console.log(data);
+                        //console.log(data);
                     }
                 });
             }

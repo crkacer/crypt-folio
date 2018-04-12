@@ -132,6 +132,7 @@
     <Content Include="Views\feedback-confirmation.aspx" />
     <Content Include="Views\portfolio.aspx" />
     <Content Include="Views\register.aspx" />
+    <Content Include="Views\forgot.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="Views\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\forgot.aspx.cs">
+      <DependentUpon>forgot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\forgot.aspx.designer.cs">
+      <DependentUpon>forgot.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

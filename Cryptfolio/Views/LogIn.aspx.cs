@@ -105,7 +105,7 @@ namespace Cryptfolio.Views
             email = Request.Params["email"].ToString();
 
             // check if that user already existed
-            SqlCommand cmd = new SqlCommand("Select count(*) from User where username = @Username", con);
+            SqlCommand cmd = new SqlCommand("Select count(*) from [User] where username = @Username", con);
             cmd.Parameters.AddWithValue("@Username", username);
             con.Open();
             var result = cmd.ExecuteScalar();
@@ -118,13 +118,15 @@ namespace Cryptfolio.Views
             {
                 // if not existed then post to database
                 con.Open();
-                SqlCommand cmd_add = new SqlCommand("insert into User (username, password, email, date_created) values ('" + username + "','" + Encrypt(password) + "','" + email + "')", con);
+                SqlCommand cmd_add = new SqlCommand("insert into [User] (username, password, email, date_created) values ('" + username + "','" + Encrypt(password) + "','" + email + "')", con);
                 cmd_add.ExecuteNonQuery();
                 con.Close();
 
                 Response.Write(1);
+                
             }
-            
+            Response.End();
+
         }
 
         private string Encrypt(string clearText)
