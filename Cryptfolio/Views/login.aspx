@@ -155,7 +155,7 @@
                
                 var bodyAjax = {
                     type: "post_login",
-                    username: email,
+                    email: email,
                     password: password
                 };
 

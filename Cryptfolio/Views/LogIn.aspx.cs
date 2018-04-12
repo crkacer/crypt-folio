@@ -67,15 +67,15 @@ namespace Cryptfolio.Views
 
         protected void HandleAJAXRequest_POSTLogin()
         {
-            String username, password;
-            username = Request.Params["username"];
+            String email, password;
+            email = Request.Params["email"];
             password = Request.Params["password"];
 
 
             // check if username and password are both correct
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE username = @username AND password = @password;", con);
-            cmd.Parameters.AddWithValue("@username", username);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE email = @email AND password = @password;", con);
+            cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@password", Encrypt(password));
        
             var result = cmd.ExecuteScalar();
@@ -83,7 +83,7 @@ namespace Cryptfolio.Views
             {
                 // username and password are correct
                 // create session 
-                Session["username"] = Encrypt(username);
+                Session["username"] = Encrypt(email);
                 Response.Write(1);
             }
             else
