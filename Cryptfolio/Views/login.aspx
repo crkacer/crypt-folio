@@ -70,7 +70,7 @@
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password has to be in a correct format" ControlToValidate="Password" Display="Dynamic" ViewStateMode="Inherit" ValidationExpression="^[^\d]((?=.*\d)(?=.*[a-z])(?=.*[!\*]).{8,16})"></asp:RegularExpressionValidator>
                     </div>
-                    <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"  ID="Submit" runat="server" Text="Log in" OnClick="Submit_Click" />
+                    <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Submit" runat="server" Text="Log In" OnClientClick="submitForm" UseSubmitBehavior="False" />
                     <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Clear" runat="server" Text="Clear" OnClientClick="this.form.reset();return false;" />
 
                 </form>
@@ -123,6 +123,30 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
+        function submitForm(sender, e) {
+            console.log(e);
+            var email = document.getElementById('<%=emailInput.ClientID%>').value;
+            var password = document.getElementById('<%=Password.ClientID%>').value;
+            console.log(1);
+            var bodyAjax = {
+                type: "post_login",
+                username: email,
+                password: password
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "login.aspx",
+                data: bodyAjax,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+        //AJAX Request
         
     </script>
 </asp:Content>

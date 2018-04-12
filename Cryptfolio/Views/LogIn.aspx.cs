@@ -22,11 +22,11 @@ namespace Cryptfolio.Views
             // check GET or POST request
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
-                if (Request.Params["type"].ToString() == "post_login")
+                if (Request.Params["type"] == "post_login")
                 {
                     HandleAJAXRequest_POSTLogin();
                 }
-                else if (Request.Params["type"].ToString() == "post_register") {
+                else if (Request.Params["type"] == "post_register") {
                     HandleAJAXRequest_POSTRegister();
                 }
                     
@@ -68,14 +68,16 @@ namespace Cryptfolio.Views
         protected void HandleAJAXRequest_POSTLogin()
         {
             String username, password;
-            username = Request.Params["username"].ToString();
-            password = Request.Params["password"].ToString();
+            username = Request.Params["username"];
+            password = Request.Params["password"];
 
 
             // check if username and password are both correct
             con.Open();
-            SqlCommand cmd = new SqlCommand("select * from User where username = '" + username + "', password = '" + Decrypt(password) + "')", con);
-
+            SqlCommand cmd = new SqlCommand("select * from User where username = @username;", con);
+            cmd.Parameters.AddWithValue("@username", username);
+            // cmd.Parameters.AddWithValue("@password", Encrypt(password));
+            Response.Write(0);
             var result = cmd.ExecuteScalar();
             if (result != null)
             {
@@ -87,9 +89,11 @@ namespace Cryptfolio.Views
             else
             {
                 // username or password is incorrect
-                Response.Write(-1); 
+                Response.Write(-1);
             }
             con.Close();
+
+            Response.Write( username);
 
         }
 
