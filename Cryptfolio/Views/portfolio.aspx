@@ -429,9 +429,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
-        //var coin_data = <%=JSON_COIN_data%>;
-        //console.log(coin_data[0]);
         
+        var coin_data_today = <%=JSON_COIN_data_today%>;
+        console.log(coin_data_today);
+        var coin_data = <%=JSON_COIN_data%>;
+        console.log(coin_data);
+
         $("#test").on("click", function () {
             console.log(1);
             var bodyAjax = {

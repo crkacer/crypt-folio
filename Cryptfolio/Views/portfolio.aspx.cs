@@ -19,15 +19,17 @@ namespace Cryptfolio.Views
     {
 
         protected String[] coin_holdings;
-        protected String[] coin_data = new String[10000];
-        protected String[] coin_data_today = new String[10000];
-        protected String[,] coin_data_holding = new String[10000, 10000];
+        protected String[] coin_data = new String[1000];
+        protected String[] coin_data_today = new String[1000];
+        protected String[,] coin_data_holding = new String[100, 100];
         protected Object JSON_COIN_data, JSON_COIN_data_today;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
             // check GET or POST request
+          
+
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 String POST_TYPE = Request.Params["type"].ToString();
@@ -52,7 +54,7 @@ namespace Cryptfolio.Views
             }
             else
             {
-                if (Session["username"] != null) HandleGET();
+                if (Session["USERID"] != null) HandleGET();
             }
         }
 
@@ -60,75 +62,63 @@ namespace Cryptfolio.Views
         {
             // GET userID
             int userID;
-            String userID_str = Decrypt(Session["username"].ToString());
-            int.TryParse(userID_str, out userID);
-            // First list all coins which that users have been already holding
-            coin_holdings = new String[10000];
-            con.Open();
-            SqlCommand cmd_portfolio = new SqlCommand("SELECT * FROM [Portfolio] WHERE user_ID = '"+ userID + "'");
-            cmd_portfolio.ExecuteNonQuery();
+            int.TryParse(Decrypt(Session["USERID"].ToString()), out userID);
 
+            // GET portfolioID
+           
+            int port_ID;
+            int.TryParse(Decrypt(Session["PORTID"].ToString()), out port_ID);
             
 
-            SqlDataReader reader = cmd_portfolio.ExecuteReader();
+            // Get all coin from the user's portfolio
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [Transaction] WHERE p_ID = '" + port_ID + "'", con);
+
+            SqlDataReader reader = cmd.ExecuteReader();
 
             if (reader.HasRows)
             {
-                userID = reader.GetInt32(0);
-                int p_ID = 0;
-                // Get all coin from the user's portfolio
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM [Transaction] WHERE p_ID = '" + p_ID + "'", con);
-                
-                reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
+                int index = 0;
+                while (reader.Read())
                 {
-                    int index = 0;
-                    while (reader.Read())
+                    int coin_ID = reader.GetInt32(2);
+                    String coin_name = "";
+                    double coin_amount = reader.GetDouble(5);
+                    double coin_price = reader.GetDouble(4);
+                    Int32 status = reader.GetInt32(3);
+
+                    SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con);
+
+                    SqlDataReader reader_coin = cmd_coin.ExecuteReader();
+
+                    if (reader_coin.HasRows)
                     {
-                        int coin_ID = reader.GetInt32(2);
-                        String coin_name = "";
-                        double coin_amount = reader.GetDouble(5);
-                        double coin_price = reader.GetDouble(4);
-                        Int32 status = reader.GetInt32(3);
-
-                        SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con);
-
-                        SqlDataReader reader_coin = cmd_coin.ExecuteReader();
-                        
-                        if (reader_coin.HasRows)
+                        if (reader_coin.Read())
                         {
                             // Secondly send GET request to API in order to get data for each coin
                             coin_name = reader_coin.GetString(2);
                             String data = Send_GET_REQUEST_TODAY_Price(coin_name, "USD");
                             coin_data_today[index] = data;
                         }
-                        
-                        coin_data_holding[index, 0] = coin_ID.ToString();
-                        coin_data_holding[index, 1] = coin_name;
-                        coin_data_holding[index, 2] = coin_amount.ToString();
-                        coin_data_holding[index, 3] = coin_price.ToString();
-                        coin_data_holding[index, 4] = status.ToString();
-
-                        index++;
-                        reader_coin.Close();
                     }
+
+                    coin_data_holding[index, 0] = coin_ID.ToString();
+                    coin_data_holding[index, 1] = coin_name;
+                    coin_data_holding[index, 2] = coin_amount.ToString();
+                    coin_data_holding[index, 3] = coin_price.ToString();
+                    coin_data_holding[index, 4] = status.ToString();
+
+                    index++;
+                    reader_coin.Close();
                 }
-                else
-                {
-                    Console.WriteLine("Portfolio does not have any coin yet");
-                }
-                reader.Close();
-                
             }
             else
             {
-                userID = -1;
+                Console.WriteLine("Portfolio does not have any coin yet");
             }
 
             var serializer = new JavaScriptSerializer();
-
+        
             var json_coin_today = serializer.Serialize(coin_data_today);
             JSON_COIN_data_today = json_coin_today;
 

@@ -77,14 +77,36 @@ namespace Cryptfolio.Views
             SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE email = @email AND password = @password;", con);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@password", Encrypt(password));
-       
-            var result = cmd.ExecuteScalar();
-            if (result != null)
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
             {
                 // username and password are correct
                 // create session 
-                Session["ID"] = Encrypt(email);
-                Response.Write("1");
+                if (reader.Read())
+                {
+                    Session["USERID"] = Encrypt(reader.GetValue(0).ToString());
+                    
+                    // GET portfolioID
+
+                    SqlCommand cmd_pid = new SqlCommand("SELECT * FROM [Portfolio] WHERE user_ID = @user_ID;", con);
+                    cmd_pid.Parameters.AddWithValue("@user_ID", reader.GetValue(0));
+                    reader.Close();
+
+                    int port_ID;
+                    reader = cmd_pid.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            Session["PORTID"] = Encrypt(reader.GetValue(0).ToString());
+                        }
+                    }
+                    
+
+                    Response.Write("1");
+                }
             }
             else
             {
@@ -95,6 +117,7 @@ namespace Cryptfolio.Views
             Response.End();
 
         }
+        
 
         protected void HandleAJAXRequest_POSTRegister()
         {
