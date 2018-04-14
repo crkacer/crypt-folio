@@ -83,13 +83,13 @@ namespace Cryptfolio.Views
             {
                 // username and password are correct
                 // create session 
-                Session["username"] = Encrypt(email);
-                Response.Write(1);
+                Session["ID"] = Encrypt(email);
+                Response.Write("1");
             }
             else
             {
                 // username or password is incorrect
-                Response.Write(-1);
+                Response.Write("-1");
             }
             con.Close();
             Response.End();

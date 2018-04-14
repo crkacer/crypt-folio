@@ -65,7 +65,8 @@
     
 
     <script type="text/javascript">
-
+        var session = <%=Session_user%>;
+        console.log(session);
         var all_coins_current = <%=Data_COINS_Current%>;
         var all_news = <%=DATA_NEWS_JSON%>;
         var articles = [];

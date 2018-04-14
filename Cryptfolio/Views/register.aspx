@@ -180,7 +180,14 @@
                     data: bodyAjax,
                     success: function (data) {
                         console.log(data);
-                        console.log(request_status);
+                        if (data == "Successful registered user") {
+                            window.location.href = "main.aspx";
+                        } else if (data == "Username already existed") {
+
+                            alert("Username already existed");
+                            window.location.reload(true);
+                        }
+                        //console.log(request_status);
                     },
                     error: function (data) {
                         //console.log(data);

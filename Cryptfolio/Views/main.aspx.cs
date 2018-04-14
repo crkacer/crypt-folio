@@ -16,6 +16,10 @@ namespace Cryptfolio.Views
         protected String[] Data_COINS = new String[20] { "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB" };
 
         protected Object Data_COINS_Historical, Data_COINS_Current, Data_NEWS, DATA_NEWS_JSON;
+
+        protected Object Session_user;
+        protected String Session_string;
+
         protected String Send_GET_REQUEST(String[] coins, String[] currencies)
         {
             // generate coins string
@@ -87,6 +91,17 @@ namespace Cryptfolio.Views
             var json_news = serializer.Serialize(Data_NEWS);
             DATA_NEWS_JSON = json_news;
 
+            // GET SESSION
+            if (Session["ID"] != null)
+            {
+                Session_user = Session["ID"].ToString();
+            } else
+            {
+                Session_string = "";
+            }
+
+            var jSession = serializer.Serialize(Session_string);
+            Session_user = jSession;
 
         }
 

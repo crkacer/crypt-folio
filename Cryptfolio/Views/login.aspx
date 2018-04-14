@@ -165,10 +165,10 @@
                     data: bodyAjax,
                     success: function (data) {
                         console.log(data);
-                        if (data == -1) {
-                            vm.alert = true;
+                        if (data == "1") {
+                            window.location.href = "login-confirmation.aspx";
                         } else {
-                            window.location.href = "./login-confirmation.aspx";
+                            alert("Username or password is incorrect");
                         }
                     },
                     error: function (data) {
