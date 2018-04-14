@@ -10,7 +10,7 @@
 namespace Cryptfolio.Views {
     
     
-    public partial class WebForm2 {
+    public partial class WebForm10 {
         
         /// <summary>
         /// usernameInput control.

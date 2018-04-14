@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Cryptfolio.Views.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Cryptfolio.Views.WebForm10" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
@@ -93,7 +93,6 @@
                     <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Clear" runat="server" Text="Clear" OnClientClick="this.form.reset();return false;" />
 
                 </form>
-         
             
         </div>
         <div class="register-instruction mdl-cell mdl-cell--7-col-desktop">
@@ -142,6 +141,8 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
+        var request_status = <%=JSON_status%>; 
+
         var vm = new Vue({
             el: '#app',
             data: {
@@ -169,15 +170,17 @@
                     password: password
                 };
                  //AJAX Request
+                $.ajaxSetup({
+                    headers: { "type_request": "POST_REQUEST" }
+                });
+
                 $.ajax({
                     type: "POST",
-                    url: "./register.aspx",
+                    url: "register.aspx",
                     data: bodyAjax,
                     success: function (data) {
                         console.log(data);
-                        if (data == -1) {
-                            vm.alert = true;
-                        }
+                        console.log(request_status);
                     },
                     error: function (data) {
                         //console.log(data);

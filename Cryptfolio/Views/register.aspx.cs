@@ -7,32 +7,45 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Cryptfolio.Views
 {
+    
     public partial class WebForm10 : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
+        protected String status = "None";
+        protected Object JSON_status;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            var serializer = new JavaScriptSerializer();
+
+            var jStatus = serializer.Serialize(status);
+            JSON_status = jStatus;
             // check GET or POST request
-            if (HttpContext.Current.Request.HttpMethod == "POST")
+            if (Request.Headers["type_request"] != null)
             {
-                String POST_TYPE = Request.Params["type"];
-                if (POST_TYPE == "register_post")
-                {
-                    HandleAJAXRequest_Register();
-                }
-            
-            } else
-            {
-                Response.Write("GET");
+                Response.Clear();
+                Response.Write(1);
+                
+                status = "Received"; 
+                HandleAJAXRequest_Register();
+                jStatus = serializer.Serialize(status);
+                JSON_status = jStatus;
                 Response.End();
             }
+
+
+            
         }
+
+
+      
 
         protected void HandleAJAXRequest_Register()
         {
@@ -48,28 +61,27 @@ namespace Cryptfolio.Views
             cmd.Parameters.AddWithValue("@email", email);
 
             var result = cmd.ExecuteScalar();
-            Response.Write(1);
-            Response.End();
+
             if (result != null)
             {
                 // username already existed
-                // create session 
-                
-                Response.Write(-1);
-                Response.End();
+                status = "Username already existed";
+                Response.Write("Username already existed");
             }
             else
             {
                 // username did not exist
                 // create new user 
 
-                SqlCommand cmd2 = new SqlCommand("INSERT INTO dbo.User (username, password, email)" + "VALUES (@username, @email, @password);", con);
+                SqlCommand cmd2 = new SqlCommand("INSERT INTO [User] (username, email, password) VALUES (@username, @email, @password);", con);
                 cmd2.Parameters.AddWithValue("@username", email);
                 cmd2.Parameters.AddWithValue("@email", email);
                 cmd2.Parameters.AddWithValue("@password", Encrypt(password));
 
                 cmd2.ExecuteNonQuery();
                 // successful created new user
+                status = "Successful registered user";
+                Response.Write("Successful registered user");
                 
             }
             
