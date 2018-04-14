@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -81,6 +82,19 @@ namespace Cryptfolio.Views
                 cmd2.ExecuteNonQuery();
                 // successful created new user
                 status = "Successful registered user";
+
+                // create new portfolio for that user
+                int maxID;
+
+                SqlCommand cmdzs = new SqlCommand("SELECT MAX (ID) as max_user_id FROM [User];", con);
+                cmdzs.CommandType = CommandType.Text;
+                int.TryParse( cmdzs.ExecuteScalar().ToString(), out maxID);
+
+                SqlCommand cmd_port = new SqlCommand("INSERT INTO [Portfolio] (user_ID, name) VALUES (@user_ID, @name);", con);
+                cmd_port.Parameters.AddWithValue("@user_ID", maxID);
+                cmd_port.Parameters.AddWithValue("@name", email);
+                cmd_port.ExecuteNonQuery();
+
                 Response.Write("Successful registered user");
                 
             }
