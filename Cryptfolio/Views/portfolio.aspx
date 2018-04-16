@@ -487,8 +487,8 @@
                 menuCreate: false,
                 loading: false,
                 coinList: [],
-                searchForCoin: null,
-                coins: ["BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"],
+                searchForCoin: null,                                                                                                                                                                                                  
+                coins: [ "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOT", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"],
                 createRules: [
                     v => !!v || 'Field is required'
                 ],
@@ -781,10 +781,10 @@
                     //Implementing AJAX request for Update
                     var bodyAjax = {
                         type: "update_coin",
-                        coin: editedItem.coin,
-                        amount: editedItem.amount,
-                        price: editedItem.buyPrice,
-                        date: editedItem.buyDate
+                        coin: this.coins.indexOf(this.editedItem.coin) + 1,
+                        amount: this.editedItem.amount,
+                        price: this.editedItem.buyPrice,
+                        date: this.editedItem.buyDate
                     };
 
                     $.ajax({
@@ -803,10 +803,10 @@
                     //Implementing AJAX request for Sell
                     var bodyAjax = {
                         type: "sell_coin",
-                        coin: sellItem.coin,
-                        amount: sellItem.sellAmount,
-                        price: sellItem.price,
-                        date: sellItem.soldDate
+                        coin: this.coins.indexOf(this.sellItem.coin) + 1,
+                        amount: this.sellItem.sellAmount,
+                        price: this.sellItem.price,
+                        date: this.sellItem.soldDate
                     };
 
                     $.ajax({
@@ -825,12 +825,12 @@
                     //Implementing AJAX request for Create
                     var bodyAjax = {
                         type: "add_coin",
-                        coin: coinCreate.coin,
-                        amount: coinCreate.amount,
-                        price: coinCreate.buyPrice,
-                        date: coinCreate.buyDate
+                        coin: this.coins.indexOf(this.coinCreate.coin) + 1,
+                        amount: this.coinCreate.amount,
+                        price: this.coinCreate.buyPrice,
+                        date: this.coinCreate.buyDate
                     };
-
+                    
                     $.ajax({
                         type: "POST",
                         url: "portfolio.aspx",

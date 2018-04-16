@@ -147,6 +147,7 @@ namespace Cryptfolio.Views
 
         protected void HandleAJAXRequest_AddCoin()
         {
+            con.Open();
             Response.Clear();
             Response.ContentType = "text/plain";
 
@@ -156,25 +157,32 @@ namespace Cryptfolio.Views
             Int32 p_ID, c_ID;
             double.TryParse(Request.Params["amount"], out amount);
             double.TryParse(Request.Params["price"], out price);
-            Int32.TryParse(Request.Params["p_ID"], out p_ID);
-            Int32.TryParse(Request.Params["c_ID"], out c_ID);
+            Int32.TryParse(Decrypt(Session["PORTID"].ToString()), out p_ID);
 
-            String coin = Request.Params["coin"].ToString();
+            int.TryParse(Request.Params["coin"].ToString(), out c_ID);
             DateTime date;
             DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
             // DateTime.TryParse(Request.Params["date"].ToString(), out date);
 
-            SqlCommand cmd = new SqlCommand("insert into [Transaction] (p_ID, c_ID, status, price, amount, date) values ('" + p_ID + "','" + c_ID + "','" + 0 + "','" + c_ID + "')", con);
+            //SqlCommand cmd = new SqlCommand("insert into [Transaction] (p_ID, c_ID, status, price, amount, date_created) values ('" + p_ID + "','" + c_ID + "','" + 1 + "','" + price + "','" + amount + "','" + date + "')", con);
+            SqlCommand cmd2 = new SqlCommand("INSERT INTO [Transaction] (p_ID, c_ID, status, price, amount, date_created) VALUES (@p_ID, @c_ID, @status, @price, @amount, @date_created);", con);
+            cmd2.Parameters.AddWithValue("@p_ID", p_ID);
+            cmd2.Parameters.AddWithValue("@c_ID", c_ID);
+            cmd2.Parameters.AddWithValue("@status", 1);
+            cmd2.Parameters.AddWithValue("@price", price);
+            cmd2.Parameters.AddWithValue("@amount", amount);
+            cmd2.Parameters.AddWithValue("@date_created", date.ToString());
 
-            Response.Write(amount + " " + coin + " ");
-            Response.Write(date.ToString());
+            cmd2.ExecuteNonQuery();
+            
+            Response.Write(amount + " " + c_ID + " " + price + " " + date.ToString() + " " + p_ID + " ");
 
             // validate data
 
             // add data to table
 
             Response.End();
-
+            con.Close();
         }
 
         // Handle Sell coin
