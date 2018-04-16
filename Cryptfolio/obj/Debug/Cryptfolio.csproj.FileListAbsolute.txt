@@ -148,3 +148,11 @@ C:\Users\Dani\Desktop\crypto5\crypt-folio\Cryptfolio\bin\Microsoft.CodeDom.Provi
 C:\Users\Dani\Desktop\crypto5\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.csprojResolveAssemblyReference.cache
 C:\Users\Dani\Desktop\crypto5\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.dll
 C:\Users\Dani\Desktop\crypto5\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.pdb
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\bin\Cryptfolio.dll.config
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\bin\Cryptfolio.dll
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\bin\Cryptfolio.pdb
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.csprojResolveAssemblyReference.cache
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.dll
+C:\Users\Dani\Desktop\New folder (8)\crypt-folio\Cryptfolio\obj\Debug\Cryptfolio.pdb
