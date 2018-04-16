@@ -777,16 +777,71 @@
                 },
 
                 update() {
-                    //Implementing AJAX request for Update
                     
+                    //Implementing AJAX request for Update
+                    var bodyAjax = {
+                        type: "update_coin",
+                        coin: editedItem.coin,
+                        amount: editedItem.amount,
+                        price: editedItem.buyPrice,
+                        date: editedItem.buyDate
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "portfolio.aspx",
+                        data: bodyAjax,
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
                 },
                 sell() {
                     //Implementing AJAX request for Sell
+                    var bodyAjax = {
+                        type: "sell_coin",
+                        coin: sellItem.coin,
+                        amount: sellItem.sellAmount,
+                        price: sellItem.price,
+                        date: sellItem.soldDate
+                    };
 
+                    $.ajax({
+                        type: "POST",
+                        url: "portfolio.aspx",
+                        data: bodyAjax,
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
                 },
                 create() {
                     //Implementing AJAX request for Create
-                    console.log(this.coinCreate);
+                    var bodyAjax = {
+                        type: "add_coin",
+                        coin: coinCreate.coin,
+                        amount: coinCreate.amount,
+                        price: coinCreate.buyPrice,
+                        date: coinCreate.buyDate
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "portfolio.aspx",
+                        data: bodyAjax,
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
                 },
                 compare(a, b) {
                     return (
