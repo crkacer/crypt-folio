@@ -25,6 +25,7 @@ namespace Cryptfolio.Views
         protected Object JSON_COIN_data, JSON_COIN_data_today, JSON_data_chart;
         protected String profit, acq_cost, holdings, realized_profit, port_min, port_max, least_profit, most_profit, worst_crypto, best_crypto;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+        SqlConnection con2 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -94,7 +95,8 @@ namespace Cryptfolio.Views
                     double coin_price = reader.GetDouble(4);
                     Int32 status = reader.GetInt32(3);
 
-                    SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con);
+                    con2.Open();
+                    SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con2);
 
                     SqlDataReader reader_coin = cmd_coin.ExecuteReader();
 
@@ -120,6 +122,7 @@ namespace Cryptfolio.Views
 
                     index++;
                     reader_coin.Close();
+                    con2.Close();
                 }
             }
             else
@@ -139,8 +142,8 @@ namespace Cryptfolio.Views
             var json_data = serializer.Serialize(historical_coins);
             JSON_data_chart = json_data;
 
+
             reader.Close();
-            
         }
 
         // Handle AJAX request add coin
