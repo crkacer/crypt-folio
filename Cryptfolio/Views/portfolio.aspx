@@ -431,9 +431,11 @@
     <script type="text/javascript">
         
         var coin_data_today = <%=JSON_COIN_data_today%>;
-        //console.log(coin_data_today);
+        console.log(coin_data_today);
         var coin_data = <%=JSON_COIN_data%>;
         console.log(coin_data);
+        var chart_coin = <%=JSON_data_chart%>;
+        console.log(chart_coin);
 
         $("#test").on("click", function () {
             console.log(1);

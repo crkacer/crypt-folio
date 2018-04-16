@@ -9,8 +9,8 @@
     <div class="the-idea">
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--8-col">
-                <div class="mdl-typography--display-3"><span class="the-idea-title">The Idea</span></div>
-                <div class="mdl-typography--title"><span class="the-idea-content">Cryptfolio raises from the need for a friendly, up to date application which manages your investments regarding crypto currencies. With many different crypto applications in the market, Cryptfolio stands out from the test when it comes to simplicity, user friendliness and professionalism. </span></div>
+                <div class="mdl-typography--display-3"><span class="the-idea-title" style="font-family: 'Dancing Script', cursive;">The Idea</span></div>
+                <div class="mdl-typography--title"><span class="the-idea-content" style="font-family: 'Courgette', cursive;">Cryptfolio raises from the need for a friendly, up to date application which manages your investments regarding crypto currencies. With many different crypto applications in the market, Cryptfolio stands out from the test when it comes to simplicity, user friendliness and professionalism. </span></div>
             </div>
             <div class="the-idea-image mdl-cell mdl-cell-4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
                 <img src="../Public/Resources/Images/the-idea-image.png" alt="The idea image" style="height:500px; width: 538px;"/>
@@ -23,8 +23,8 @@
                 <img src="../Public/Resources/Images/the-future-image.png" alt="The future image" style="height:500px; width: 538px;"/>
             </div>
             <div class="mdl-cell mdl-cell--8-col">
-                <div class="mdl-typography--display-3 text-future"><span class="the-future-title">The Future</span></div>
-                <div class="mdl-typography--title"><span class="the-future-content">Cryptfolio has started with the most popular crypto currencies relevant to investors in the market place. However, the application will seek to grow in order to provide further services such as: automated API integration for popular exchanges, ability to bulk import trades from unpopular exchanges as well as the ability to import balances and transactions from wallets. </span></div>
+                <div class="mdl-typography--display-3 text-future"><span class="the-future-title" style="font-family: 'Dancing Script', cursive;">The Future</span></div>
+                <div class="mdl-typography--title"><span class="the-future-content" style="font-family: 'Courgette', cursive;">Cryptfolio has started with the most popular crypto currencies relevant to investors in the market place. However, the application will seek to grow in order to provide further services such as: automated API integration for popular exchanges, ability to bulk import trades from unpopular exchanges as well as the ability to import balances and transactions from wallets. </span></div>
             </div>
         </div>
     </div>
