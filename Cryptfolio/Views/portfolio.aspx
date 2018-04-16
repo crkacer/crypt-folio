@@ -2695,6 +2695,8 @@
                     [1368057600000, 456.77],
                     [1368144000000, 452.97]
                 ];
+            var data_CHART = <%=JSON_data_chart%>;
+            console.log(data_CHART);
             var chart = Highcharts.stockChart('chart-portfolio', {
                 title: {
                     text: 'My Portfolio Chart'

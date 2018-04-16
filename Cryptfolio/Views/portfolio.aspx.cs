@@ -22,7 +22,8 @@ namespace Cryptfolio.Views
         protected String[] coin_data = new String[1000];
         protected String[] coin_data_today = new String[1000];
         protected String[,] coin_data_holding = new String[100, 100];
-        protected Object JSON_COIN_data, JSON_COIN_data_today;
+        protected Object JSON_COIN_data, JSON_COIN_data_today, JSON_data_chart;
+        protected String profit, acq_cost, holdings, realized_profit, port_min, port_max, least_profit, most_profit, worst_crypto, best_crypto;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
@@ -32,7 +33,7 @@ namespace Cryptfolio.Views
 
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
-                String POST_TYPE = Request.Params["type"].ToString();
+                String POST_TYPE = Request.Params["type"];
                 if (POST_TYPE == "add_coin")
                 {
                     HandleAJAXRequest_AddCoin();
@@ -55,6 +56,10 @@ namespace Cryptfolio.Views
             else
             {
                 if (Session["USERID"] != null) HandleGET();
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
             }
         }
 
@@ -68,7 +73,9 @@ namespace Cryptfolio.Views
            
             int port_ID;
             int.TryParse(Decrypt(Session["PORTID"].ToString()), out port_ID);
-            
+
+            // GET data for graph 
+            Dictionary<String, String> historical_coins = new Dictionary<String, String>();
 
             // Get all coin from the user's portfolio
             con.Open();
@@ -99,9 +106,12 @@ namespace Cryptfolio.Views
                             coin_name = reader_coin.GetString(2);
                             String data = Send_GET_REQUEST_TODAY_Price(coin_name, "USD");
                             coin_data_today[index] = data;
+                            
+                            // Send request to get historical data for each coin and push to array
+                            historical_coins.Add(coin_name, Send_GET_REQUEST_Historical(coin_name, "USD", 50));
                         }
                     }
-
+                    // TO calculate weight of each coin in portfolio
                     coin_data_holding[index, 0] = coin_ID.ToString();
                     coin_data_holding[index, 1] = coin_name;
                     coin_data_holding[index, 2] = coin_amount.ToString();
@@ -124,6 +134,10 @@ namespace Cryptfolio.Views
 
             var json_coin_holding = serializer.Serialize(coin_data_holding);
             JSON_COIN_data = json_coin_holding;
+            
+
+            var json_data = serializer.Serialize(historical_coins);
+            JSON_data_chart = json_data;
 
             reader.Close();
             
