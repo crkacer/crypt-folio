@@ -2,8 +2,6 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
-    
-    <link type="text/css" rel="stylesheet" href="../Public/Resources/CSS/vuetify.min.css" />
     <style>
         .login-screen{
             min-height:70vh;
@@ -39,6 +37,8 @@
             margin-right:2vw;
         }
     </style>
+    <link type="text/css" rel="stylesheet" href="../Public/Resources/CSS/vuetify.min.css" />
+    
 </asp:Content>
 
 
@@ -168,7 +168,7 @@
                         if (data == "1") {
                             window.location.href = "login-confirmation.aspx";
                         } else {
-                            alert("Username or password is incorrect");
+                            vm.alert = true;
                         }
                     },
                     error: function (data) {

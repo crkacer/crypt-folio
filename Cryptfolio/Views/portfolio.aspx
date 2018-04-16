@@ -786,7 +786,7 @@
                 },
                 create() {
                     //Implementing AJAX request for Create
-
+                    console.log(this.coinCreate);
                 },
                 compare(a, b) {
                     return (

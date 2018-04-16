@@ -51,7 +51,7 @@
             <div class="mdl-typography--headline mdl-typography--text-center">Create an account.</div>
                 <div id="app">
                     <v-alert type="error" :value="alert" class="mr-5 ml-5">
-                        Failed to Register. Email is already taken
+                        Failed to Register. Email or Username already taken
                     </v-alert>
                 </div>
                 
@@ -179,13 +179,11 @@
                     url: "register.aspx",
                     data: bodyAjax,
                     success: function (data) {
-                        console.log(data);
-                        if (data == "Successful registered user") {
+                       
+                        if (data == 1) {
                             window.location.href = "main.aspx";
-                        } else if (data == "Username already existed") {
-
-                            alert("Username already existed");
-                            window.location.reload(true);
+                        } else {
+                            vm.alert = true;
                         }
                         //console.log(request_status);
                     },

@@ -32,7 +32,6 @@ namespace Cryptfolio.Views
             if (Request.Headers["type_request"] != null)
             {
                 Response.Clear();
-                Response.Write(1);
                 
                 status = "Received"; 
                 HandleAJAXRequest_Register();
@@ -75,7 +74,7 @@ namespace Cryptfolio.Views
                 // create new user 
 
                 SqlCommand cmd2 = new SqlCommand("INSERT INTO [User] (username, email, password) VALUES (@username, @email, @password);", con);
-                cmd2.Parameters.AddWithValue("@username", email);
+                cmd2.Parameters.AddWithValue("@username", username);
                 cmd2.Parameters.AddWithValue("@email", email);
                 cmd2.Parameters.AddWithValue("@password", Encrypt(password));
 
@@ -95,7 +94,7 @@ namespace Cryptfolio.Views
                 cmd_port.Parameters.AddWithValue("@name", email);
                 cmd_port.ExecuteNonQuery();
 
-                Response.Write("Successful registered user");
+                Response.Write(1);
                 
             }
             
