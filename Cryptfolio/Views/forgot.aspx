@@ -12,7 +12,7 @@
     <div id="app" class="forgot-content">
         <v-container >
             <v-layout align-center justify-center column wrap>
-                <v-flex xs12 class="text-xs-center">
+                <v-flex xs12 class="text-xs-center" style="font-family: 'Dancing Script', cursive; font-size:5em;">
                     <h4>Forgot your password?</h4>
                     <p>Please enter the email address registered on your account.</p>
                 </v-flex>

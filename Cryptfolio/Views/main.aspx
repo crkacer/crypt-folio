@@ -7,9 +7,9 @@
         <div class="main-content" id="app">
            <div class="main-inside-content">
                <div class="mdl-typography--text-center" style="margin-bottom: 10vh;">
-                    <div class="mdl-typography--display-3" style="color:midnightblue; margin-bottom: 5vh;">Cryptfolio</div>
+                    <div class="mdl-typography--display-3" style="color:midnightblue; margin-bottom: 5vh; font-family: 'Dancing Script', cursive;">Cryptfolio</div>
                     <div class="mdl-layout__title">
-                        <div class="mdl-typography--title">
+                        <div class="mdl-typography--title" style="font-family: 'Courgette', cursive;">
                             <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over <br /> the management of your cryptocurrencies as a short as well as long term investment.
                         </div>
                     </div>

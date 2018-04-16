@@ -47,8 +47,8 @@
     <div class="register-screen mdl-grid">
         <div class="register-textbox mdl-cell mdl-cell--5-col-desktop">
             
-            <div class="mdl-typography--display-2 mdl-typography--text-center">Welcome</div>
-            <div class="mdl-typography--headline mdl-typography--text-center">Create an account.</div>
+            <div class="mdl-typography--display-2 mdl-typography--text-center" style="font-family: 'Dancing Script', cursive;">Welcome</div>
+            <div class="mdl-typography--headline mdl-typography--text-center" style="font-family: 'Dancing Script', cursive;">Create an account.</div>
                 <div id="app">
                     <v-alert type="error" :value="alert" class="mr-5 ml-5">
                         Failed to Register. Email or Username already taken

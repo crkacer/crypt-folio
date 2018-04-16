@@ -24,7 +24,8 @@
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css" />
-
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         window.sr = ScrollReveal({ reset: true });
@@ -43,7 +44,7 @@
       <div class="cryptfolio-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row" style="background-color:#3E606F;">
           <span class="cryptfolio-title mdl-layout-title">
-            <a style="text-decoration:none; color:#CBDBD7;" href="./index.aspx">Cryptfolio</a>
+            <a style="text-decoration:none; color:#CBDBD7; font-family: 'Dancing Script', cursive; font-size:1.5em;" href="./index.aspx">Cryptfolio</a>
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="cryptfolio-header-spacer mdl-layout-spacer"></div>

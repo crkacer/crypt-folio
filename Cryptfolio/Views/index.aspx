@@ -31,8 +31,8 @@
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-layout__title">
                     <div class="getting-started-title">
-                        <div class="gettingStarted-effect mdl-typography--display-2" ></div>
-                        <div class="css-typing mdl-typography--title" >
+                        <div class="gettingStarted-effect mdl-typography--display-2" style="font-family: 'Dancing Script', cursive;" ></div>
+                        <div class="css-typing mdl-typography--title" style="font-family: 'Courgette', cursive;">
                         </div>
                         <div>
                         <button onclick="window.location.href='./main.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Take me there!</button>
@@ -69,7 +69,7 @@
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="history-effect">
                     <div class="history-container mdl-layout__title">
-                        <div class="history-title mdl-typography--headline mdl-typography--text-justify">
+                        <div class="history-title mdl-typography--headline mdl-typography--text-justify" style="font-family: 'Courgette', cursive; font-size:2em;">
                             Cryptocurrencies are fast moving and constantly fluctuating on a regular basis. They are emerging and fast moving currencies that require time, knowledge, and information for appropriate management. <b style="color:darkblue;">Cryptfolio</b> facilitates this much needed control over the management of your cryptocurrencies as a short as well as long term investment.
                         </div>
                         <button onclick="window.location.href='./information.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">I want to hear more</button>
@@ -84,10 +84,10 @@
     <div class="history-section">
         <div id="history-section-content" class="back">
             <div>
-                <div class="mdl-typography--display-3 history-section-title mdl-typography--text-center">
+                <div class="mdl-typography--display-3 history-section-title mdl-typography--text-center" style="font-family: 'Dancing Script', cursive;">
                     Our History
                 </div>
-                <div class="mdl-typography--title history-section-info">
+                <div class="mdl-typography--title history-section-info" style="font-family: 'Courgette', cursive;">
                     Created in 2018, <b style="color:midnightblue;">Crytfolio</b> focuses on creating value by  providing a Crypto  currency portfolio service in order to satisfy the investing needs of our customers. We strive  to make the future better for our customers, and our  communities by becoming Canada's  most efficient and  innovative Crypto currency manager. 
                 </div>
                 <div class="explore-button">
@@ -118,7 +118,7 @@
             <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
                 <div class="member-login">
                     <div class="mdl-layout__title ">
-                        <div class=" mdl-typography--display-3 " style="color:midnightblue; margin-bottom:50px;" >Already a member?</div>
+                        <div class=" mdl-typography--display-3 " style="color:midnightblue; margin-bottom:50px;font-family: 'Dancing Script', cursive;"  >Already a member?</div>
                         <button onclick="window.location.href='./login.aspx'" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign me in</button>
                    </div>
                 </div>
@@ -141,7 +141,7 @@
                     <div class="mdl-cell mdl-cell--6-col" id="teamImg">
                         <div class="team-title" >
                             <div class ="mdl-layout__title" >
-                                <div class="mdl-typography--display-3 meet-our-team" style="color:midnightblue;">Meet our team</div>
+                                <div class="mdl-typography--display-3 meet-our-team" style="color:midnightblue;font-family: 'Dancing Script', cursive;">Meet our team</div>
                             </div>
                             <div class="duc-face">
                                 <img src="../Public/Resources/Images/Duc.png" style="width:128px; height:128px;" id="duc-face"/>
@@ -177,7 +177,7 @@
     </div>
     
     
-</asp:Content> 
+</asp:Content>  
 
 
 

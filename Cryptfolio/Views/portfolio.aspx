@@ -7,7 +7,7 @@
     <div class="wallet-content" id="app">
            <div class="wallet-inside-content">
                <div class="wallet-title">
-                   <h2 style="margin:0; padding:10px;"><i class="material-icons" style="font-size:32px;top:2px;">account_balance_wallet</i>&nbsp;&nbsp;My Portfolio</h2>
+                   <h2 style="margin:0; padding:10px; font-family: 'Dancing Script', cursive;"><i class="material-icons" style="font-size:32px;top:2px;">account_balance_wallet</i>&nbsp;&nbsp;My Portfolio</h2>
                </div>
                <div class="wallet-option">
                    <v-app id="app3">
@@ -431,7 +431,7 @@
     <script type="text/javascript">
         
         var coin_data_today = <%=JSON_COIN_data_today%>;
-        console.log(coin_data_today);
+        //console.log(coin_data_today);
         var coin_data = <%=JSON_COIN_data%>;
         console.log(coin_data);
 

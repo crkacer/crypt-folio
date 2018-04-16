@@ -133,6 +133,7 @@
     <Content Include="Views\portfolio.aspx" />
     <Content Include="Views\register.aspx" />
     <Content Include="Views\forgot.aspx" />
+    <Content Include="Views\profile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="Views\forgot.aspx.designer.cs">
       <DependentUpon>forgot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

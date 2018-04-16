@@ -11,6 +11,7 @@
         display: inline-block;
         border-bottom: 2px solid #5B9496;
         padding-bottom: 2px;
+        font-family: 'Dancing Script', cursive;
     }
 
 
@@ -45,8 +46,9 @@
         color: midnightblue;
         margin-bottom: 2vh;
         padding-right: 7vw;
-        text-align:right!important;
+        text-align: right !important;
     }
+
     .text-future {
         text-align: right !important;
     }
@@ -58,10 +60,12 @@
         padding-right: 7vw;
         padding-left: 12vw;
     }
-    .the-idea-image{
-        margin-left:-10vw;
+
+    .the-idea-image {
+        margin-left: -10vw;
     }
 }
+
 @media (min-width: 1301px) {
     .why-cryptfolio {
         height: 30vh;
@@ -75,6 +79,7 @@
         display: inline-block;
         border-bottom: 2px solid #5B9496;
         padding-bottom: 2px;
+        font-family: 'Dancing Script', cursive;
     }
 
 
@@ -104,17 +109,17 @@
     }
 
     .the-future-title {
-
         display: inline-block;
         padding-top: 10vh;
         color: midnightblue;
         margin-bottom: 2vh;
         padding-right: 10vw;
-  
     }
-    .text-future{
-        text-align:right!important;
+
+    .text-future {
+        text-align: right !important;
     }
+
     .the-future-content {
         text-align: right !important;
         display: inline-block;
@@ -123,7 +128,8 @@
         padding-left: 9vw;
     }
 }
-@media (min-width: 320px) and (max-width: 480px){
+
+@media (min-width: 320px) and (max-width: 480px) {
     .why-cryptfolio {
         height: 60vh;
         background: url(../Images/information-background.jpg) no-repeat;
@@ -135,6 +141,7 @@
         color: midnightblue;
         display: inline-block;
         padding-bottom: 2px;
+        font-family: 'Dancing Script', cursive;
     }
 
 
@@ -145,7 +152,6 @@
 
     .the-idea-title {
         display: inline-block;
-  
         color: midnightblue;
         margin-bottom: 2vh;
         padding-left: 3vw;
@@ -171,10 +177,9 @@
     }
 
     .the-future-content {
-        text-align:left !important;
+        text-align: left !important;
         display: inline-block;
         padding-right: 15vw;
         padding-left: 3vw;
     }
-    
 }
