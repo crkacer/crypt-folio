@@ -32,6 +32,8 @@
         if (sr.isSupported()) {
             document.documentElement.classList.add('sr');
         }
+        var session = <%=Session_user%>;
+        console.log(session);
     </script>
 
     <asp:ContentPlaceHolder ID="Style" runat="server">
@@ -41,7 +43,7 @@
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-      <div class="cryptfolio-header mdl-layout__header mdl-layout__header--waterfall">
+      <div class="cryptfolio-header mdl-layout__header mdl-layout__header--waterfall" id="header">
         <div class="mdl-layout__header-row" style="background-color:#3E606F;">
           <span class="cryptfolio-title mdl-layout-title">
             <a style="text-decoration:none; color:#CBDBD7; font-family: 'Dancing Script', cursive; font-size:1.5em;" href="./index.aspx">Cryptfolio</a>
@@ -51,10 +53,24 @@
           
           <!-- Navigation -->
           <div class="cryptfolio-navigation-container">
-            <nav class="cryptfolio-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./login.aspx" style="color: #CBDBD7; ">Log In</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./register.aspx" style="color: #CBDBD7;">Register</a>
+            <nav class="cryptfolio-navigation mdl-navigation" >
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./main.aspx" style="color: #CBDBD7;">Home</a>
+              <div v-if="session == 'None'">
+                  <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./login.aspx" style="color: #CBDBD7; ">Log In</a>
+                  <a class="mdl-navigation__link mdl-typography--text-uppercase" href="./register.aspx" style="color: #CBDBD7;">Register</a>
+              </div>
+              <div v-else>
+                  <a class="mdl-navigation__link mdl-typography--text-uppercase" id="demo-menu-lower-left" style="color: #CBDBD7; cursor:pointer;">{{session.username}}</a>
+                  <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-left" style="background-color: #b4c4c0;">
+                        <li class="mdl-menu__item" @click="redirect('./profile.aspx')" style="color:#213842;">Account Settings</li>
+                        <li class="mdl-menu__item" @click="redirect('./portfolio.aspx')" style="color:#213842;">My Portfolio</li>
+                        <li class="mdl-menu__item" @click="signOut" style="color:#213842;">Sign Out</li>
+                    </ul>
+              </div>
             </nav>
+
+
           </div>
         </div>
       </div>
@@ -99,8 +115,41 @@
     </div>
     
     </div>
+    
    <asp:ContentPlaceHolder ID="Script" runat="server">
-
+        
     </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+        var vm2 = new Vue({
+            el: '#header',
+            data: {
+                session:session
+            },
+            methods: {
+                redirect(url) {
+                    window.location.href = url;
+                },
+                signOut() {
+                    var bodyAjax = {
+                        type: "sign_out"
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "logout.aspx",
+                        data: bodyAjax,
+                        success: function (data) {
+                            console.log(data);
+                            if (data == 1) {
+                                location.reload();
+                            } 
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>

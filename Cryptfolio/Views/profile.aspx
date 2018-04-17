@@ -19,14 +19,14 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
-    <div class="edit-profile" id="app">
+    <div class="edit-profile">
         <div class="edit-profile-textbox">
             <div class="mdl-typography--display-2 mdl-typography--text-center" style="font-family: 'Dancing Script', cursive;">Account Settings</div>
-        <div id="app">
-            <v-alert type="error" :value="alert" class="mr-5 ml-5">
-                Failed to update profile. 
-            </v-alert>
-        </div>
+            <div id="app">
+                <v-alert type="error" :value="alert" class="mr-5 ml-5">
+                    Failed to update profile. 
+                </v-alert>
+            </div>
         <form ref="form" action="#" runat="server" >
                     <div class="mdl-typography--text-center">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -63,8 +63,9 @@
               
                     <asp:Button class="button-submit mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ID="Submit" runat="server" Text="Update" OnClientClick="submitForm()//" UseSubmitBehavior="False" />
 
-                </form>
+            </form>
         </div>
+        
         
     </div>
 </asp:Content>
@@ -84,9 +85,6 @@
                     }, 2500);
                 }
             }
-        });
-        $(document).load(function () {
-            
         });
 
         function submitForm() {

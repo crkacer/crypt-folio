@@ -12,11 +12,11 @@
     <div id="app" class="forgot-content">
         <v-container >
             <v-layout align-center justify-center column wrap>
-                <v-flex xs12 class="text-xs-center" style="font-family: 'Dancing Script', cursive; font-size:5em;">
-                    <h4>Forgot your password?</h4>
-                    <p>Please enter the email address registered on your account.</p>
+                <v-flex xs12 class="text-xs-center" >
+                    <h4 class="mdl-typography--display-3" style="font-family: 'Dancing Script', cursive;">Forgot your password?</h4>
+                    <p class="mdl-typography--title" style="font-family: 'Courgette', cursive">Please enter the email address registered on your account.</p>
                 </v-flex>
-                <v-flex xs12 v-if="isSuccess == false" style="width:30%;" class="mt-5">
+                <v-flex xs12 v-if="isSuccess == false" style="width:30%;" class="mt-5 subheader">
                 <transition name="fade" appear>
                     <v-alert color="error" icon="warning" v-model="isError">
                         No email exists
@@ -52,7 +52,7 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
-    <script>
+    <script type="text/javascript">
         var vm = new Vue({
             el: '#app',
             props: {
