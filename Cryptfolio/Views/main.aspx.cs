@@ -44,7 +44,7 @@ namespace Cryptfolio.Views
 
             //do get request
 
-            String url = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + listCoins + "&tsyms=" + listCurrencies;
+            String url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + listCoins + "&tsyms=" + listCurrencies;
             HttpWebRequest request = (HttpWebRequest)
                 WebRequest.Create(url);
 
@@ -91,17 +91,6 @@ namespace Cryptfolio.Views
             var json_news = serializer.Serialize(Data_NEWS);
             DATA_NEWS_JSON = json_news;
 
-            // GET SESSION
-            if (Session["ID"] != null)
-            {
-                Session_user = Session["ID"].ToString();
-            } else
-            {
-                Session_string = "";
-            }
-
-            var jSession = serializer.Serialize(Session_string);
-            Session_user = jSession;
 
         }
 

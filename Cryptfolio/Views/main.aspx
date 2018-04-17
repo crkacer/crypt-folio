@@ -67,6 +67,8 @@
     <script type="text/javascript">
         
         var all_coins_current = <%=Data_COINS_Current%>;
+        all_coins_current = all_coins_current.DISPLAY;
+        console.log(all_coins_current);
         var all_news = <%=DATA_NEWS_JSON%>;
         var articles = [];
         JSON.parse(all_news)['articles'].some(function (e,i) {
@@ -229,15 +231,16 @@
         function addData(currVal, index) {
 
             var foo = {};
+            
             foo.number = index + 1;
             foo.coin = currVal;
-            foo.price = all_coins_current[currVal].USD.toString();
-            foo.totalVol24H = "$ 1 B";
-            foo.marketcap = "$ 180.22 B";
+            foo.price = all_coins_current[currVal].USD.PRICE;
+            foo.totalVol24H = all_coins_current[currVal].USD.TOTALVOLUME24HTO;
+            foo.marketcap = all_coins_current[currVal].USD.MKTCAP;
             div[index] = currVal;
 
             foo.chart = div[index];
-            foo.change24H = "6 %";
+            foo.change24H = all_coins_current[currVal].USD.CHANGEPCT24HOUR + "%";
 
             return foo;
         }

@@ -34,6 +34,7 @@ namespace Cryptfolio.Views
             else
             {
                 HandleGET();
+
             }
         }
         protected void Submit_Click(object sender, EventArgs e)
@@ -46,7 +47,10 @@ namespace Cryptfolio.Views
 
         protected void HandleGET()
         {
-            
+            if(Session["USERID"] != null)
+            {
+                Response.Redirect("main.aspx");
+            }
         }
 
 

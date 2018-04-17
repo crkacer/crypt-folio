@@ -97,14 +97,6 @@
                            Acquisition cost here
                        </div>
                    </div>
-                   <div class="profit-loss mdl-card mdl-shadow--4dp">
-                       <div class="mdl-card__title ">
-                           Profit/Loss
-                       </div>
-                       <div class="mdl-card__supporting-text mdl-typography--text-left">
-                           Profit/Loss goes here
-                       </div>
-                   </div>
                    <div class="holdings mdl-card mdl-shadow--4dp">
                        <div class="mdl-card__title">
                            Holdings
@@ -401,9 +393,9 @@
                                    </template>
                                    <template slot="items" slot-scope="props">
                                        <td>{{props.item.coin}}</td>
-                                       <td class="text-xs-center">{{props.item.price}} USD</td>
-                                       <td class="text-xs-right">{{props.item.totalValue}} USD</td>
-                                       <td class="text-xs-right">{{props.item.profitLoss}} USD</td>
+                                       <td class="text-xs-center">$ {{props.item.buyPrice}}</td>
+                                       <td class="text-xs-right">$ {{props.item.totalValue}}</td>
+                                       <td class="text-xs-right">$ {{props.item.profitLoss}}</td>
                                        <td class="text-xs-right">{{props.item.change}} %</td>
                                        <td class="justify-center layout px-0">
                                             <v-btn icon class="mx-0" @click="editItem(props.item)">
@@ -429,14 +421,38 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Script" runat="server">
     <script type="text/javascript">
-        
-        var coin_data_today = <%=JSON_COIN_data_today%>;
-        console.log(coin_data_today);
-        var coin_data = <%=JSON_COIN_data%>;
-        console.log(coin_data);
-        var chart_coin = <%=JSON_data_chart%>;
-        console.log(chart_coin);
 
+
+        //Coin_holdings
+        var portfolio_coin_holdings = <%=JSON_COIN_data%>;
+        console.log(portfolio_coin_holdings);
+        var portfolio = [];
+        portfolio_coin_holdings.forEach(function (e, i) {
+            if (e != null) {
+                portfolio.push(populatePortfolio(e));
+            }
+            
+          
+        });
+        console.log(portfolio);
+        function populatePortfolio(item) {
+            var foo = [];
+            var APIdata = JSON.parse(item.APIdata).RAW;
+            APIdata = APIdata[item.coin_symbol].USD;
+            console.log(APIdata);
+            foo.coin = item.coin_name + " (" + item.coin_symbol + ")";
+            foo.buyPrice = item.buy_price;
+            foo.actualPrice = APIdata.PRICE;
+            foo.amount = item.coin_amount;
+            foo.totalValue = foo.actualPrice * foo.amount;
+            foo.totalValue = foo.totalValue.toFixed(2);
+            foo.profitLoss = (foo.actualPrice * foo.amount) - (foo.buyPrice * foo.amount);
+            foo.profitLoss = foo.profitLoss.toFixed(2);
+            foo.change = ((foo.actualPrice * foo.amount) / (foo.buyPrice * foo.amount)) * 100 - 100;
+            foo.change = foo.change.toFixed(2);
+            return foo;
+        }
+        
         $("#test").on("click", function () {
             console.log(1);
             var bodyAjax = {
@@ -490,7 +506,7 @@
                 loading: false,
                 coinList: [],
                 searchForCoin: null,                                                                                                                                                                                                  
-                coins: [ "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOT", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"],
+                coins: [ "BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"],
                 createRules: [
                     v => !!v || 'Field is required'
                 ],
@@ -558,74 +574,7 @@
                         value: 'change'
                     }
                 ],
-                items: [
-                    {
-                        coin: 'Bitcoin (BTC)',
-                        price: 8589.55,
-                        totalValue: '93.46k',
-                        profitLoss: '-28.76k',
-                        change: -23.53,
-                        amount: 10,
-                        buyPrice: 1000.00,
-                        buyDate: '1997-03-06'
-                    },
-                    {
-                       
-                        coin: 'Bitcoin (BTC)',
-                        price: 8589.55,
-                        totalValue: '93.46k',
-                        profitLoss: '-28.76k',
-                        change: -23.53,
-                        amount: 10,
-                        buyPrice: 1000.00,
-                        buyDate: '1997-03-06'
-                    },
-                    {
-                        
-                        coin: 'Bitcoin (BTC)',
-                        price: 8589.55,
-                        totalValue: '93.46k',
-                        profitLoss: '-28.76k',
-                        change: -23.53,
-                        amount: 10,
-                        buyPrice: 1000.00,
-                        buyDate: '1997-03-06'
-                    },
-                    {
-                       
-                        coin: 'Bitcoin (BTC)',
-                        price: 8589.55,
-                        totalValue: '93.46k',
-                        profitLoss: '-28.76k',
-                        change: -23.53,
-                        amount: 10,
-                        buyPrice: 1000.00,
-                        buyDate: '1997-03-06'
-                    },
-                    {
-                        
-                        coin: 'Bitcoin (BTC)',
-                        price: 8589.55,
-                        totalValue: '93.46k',
-                        profitLoss: '-28.76k',
-                        change: -23.53,
-                        amount: 10,
-                        buyPrice: 1000.00,
-                        buyDate: '1997-03-06'
-                    },
-                    {
-                        
-                        coin: 'Bitcoin (BTC)',
-                        price: 8589.55,
-                        totalValue: '93.46k',
-                        profitLoss: '-28.76k',
-                        change: -23.53,
-                        amount: 10,
-                        buyPrice: 1000.00,
-                        buyDate: '1997-03-06'
-                    },
-
-                ],
+                items: portfolio,
                 soldItems: [],
                 soldItemsToDisplay: [],
                 itemsToDisplay: [],
@@ -736,15 +685,18 @@
                 populate(item) {
                     var foo = [];
                     foo["coin"] = item.coin;
-                    foo["price"] = item.price;
+                    foo["buyPrice"] = item.buyPrice;
                     foo["totalValue"] = item.totalValue;
                     foo["profitLoss"] = item.profitLoss;
                     foo["change"] = item.change;
                     return foo;
                 },
                 initialize() {
-                    this.items.forEach((item, index) =>{
-                        this.itemsToDisplay.push(this.populate(item));
+                    
+                    this.items.forEach((item, index) => {
+                        if (item != null) {
+                            this.itemsToDisplay.push(this.populate(item))
+                        }
                     });
                     this.soldItems.forEach((item, index) => {
                         this.soldItemsToDisplay.push(this.populate(item));
@@ -2752,8 +2704,6 @@
                     [1368057600000, 456.77],
                     [1368144000000, 452.97]
                 ];
-            var data_CHART = <%=JSON_data_chart%>;
-            console.log(data_CHART);
             var chart = Highcharts.stockChart('chart-portfolio', {
                 title: {
                     text: 'My Portfolio Chart'

@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Cryptfolio.Views
 {
     public partial class WebForm9 : System.Web.UI.Page
@@ -21,12 +22,12 @@ namespace Cryptfolio.Views
         protected String[] coin_holdings;
         protected String[] coin_data = new String[1000];
         protected String[] coin_data_today = new String[1000];
-        protected String[,] coin_data_holding = new String[100, 100];
+        private Holdings[] coin_data_holding = new Holdings[100];
         protected Object JSON_COIN_data, JSON_COIN_data_today, JSON_data_chart;
         protected String profit, acq_cost, holdings, realized_profit, port_min, port_max, least_profit, most_profit, worst_crypto, best_crypto;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
         SqlConnection con2 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-        String[] listCOIN = new String[] {"BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOT", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"};
+        String[] listCOIN = new String[] {"BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"};
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -64,7 +65,16 @@ namespace Cryptfolio.Views
                 }
             }
         }
-
+        private class Holdings
+        {
+            public int coin_ID;
+            public String coin_name;
+            public String coin_symbol;
+            public double coin_amount;
+            public double buy_price;
+            public long buy_date;
+            public object APIdata;
+        }
         protected void HandleGET()
         {
             // GET userID
@@ -84,7 +94,8 @@ namespace Cryptfolio.Views
             SqlCommand cmd = new SqlCommand("SELECT * FROM [Transaction] WHERE p_ID = '" + port_ID + "'", con);
 
             SqlDataReader reader = cmd.ExecuteReader();
-
+            //Declare Serializerr
+            var serializer = new JavaScriptSerializer();
             if (reader.HasRows)
             {
                 int index = 0;
@@ -92,10 +103,12 @@ namespace Cryptfolio.Views
                 {
                     int coin_ID = reader.GetInt32(2);
                     String coin_name = "";
+                    String coin_symbol = "";
                     double coin_amount = reader.GetDouble(5);
                     double coin_price = reader.GetDouble(4);
                     Int32 status = reader.GetInt32(3);
-
+                    DateTime date_created = reader.GetDateTime(6);
+                    long unixTime = ((DateTimeOffset)date_created).ToUnixTimeSeconds();
                     con2.Open();
                     SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con2);
 
@@ -106,21 +119,24 @@ namespace Cryptfolio.Views
                         if (reader_coin.Read())
                         {
                             // Secondly send GET request to API in order to get data for each coin
-                            coin_name = reader_coin.GetString(2);
-                            String data = Send_GET_REQUEST_TODAY_Price(coin_name, "USD");
-                            coin_data_today[index] = data;
+                            coin_name = reader_coin.GetString(2).Trim();
+                            coin_symbol = reader_coin.GetString(1).Trim();
+            
                             
-                            // Send request to get historical data for each coin and push to array
-                            historical_coins.Add(coin_name, Send_GET_REQUEST_Historical(coin_name, "USD", 50));
+                            
                         }
                     }
                     // TO calculate weight of each coin in portfolio
-                    coin_data_holding[index, 0] = coin_ID.ToString();
-                    coin_data_holding[index, 1] = coin_name;
-                    coin_data_holding[index, 2] = coin_amount.ToString();
-                    coin_data_holding[index, 3] = coin_price.ToString();
-                    coin_data_holding[index, 4] = status.ToString();
-
+                    String data = Send_GET_REQUEST_TODAY_Price(coin_symbol, "USD");
+                    Holdings transaction = new Holdings();
+                    transaction.coin_ID = coin_ID;
+                    transaction.coin_name = coin_name;
+                    transaction.coin_symbol = coin_symbol;
+                    transaction.coin_amount = coin_amount;
+                    transaction.buy_price = coin_price;
+                    transaction.buy_date = unixTime;
+                    transaction.APIdata = data;
+                    coin_data_holding[index] = transaction;
                     index++;
                     reader_coin.Close();
                     con2.Close();
@@ -131,18 +147,13 @@ namespace Cryptfolio.Views
                 Console.WriteLine("Portfolio does not have any coin yet");
             }
 
-            var serializer = new JavaScriptSerializer();
+            
         
             var json_coin_today = serializer.Serialize(coin_data_today);
             JSON_COIN_data_today = json_coin_today;
 
             var json_coin_holding = serializer.Serialize(coin_data_holding);
             JSON_COIN_data = json_coin_holding;
-            
-
-            var json_data = serializer.Serialize(historical_coins);
-            JSON_data_chart = json_data;
-
 
             reader.Close();
         }
@@ -248,57 +259,17 @@ namespace Cryptfolio.Views
 
 
         // Handle Get data from API
-        protected String Send_GET_REQUEST_Historical(String coin, String currency, int limit)
-        {
-            // https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1000&aggregate=3&e=CCCAGG
 
-
-            // handle GET request
-            StringBuilder sb = new StringBuilder();
-
-            byte[] buf = new byte[8192];
-
-            //do get request
-
-            String url = "https://min-api.cryptocompare.com/data/histoday?fsym=" + coin + "&tsym=" + currency + "&limit=" + limit + "&aggregate=3&e=CCCAGG";
-            HttpWebRequest request = (HttpWebRequest)
-                WebRequest.Create(url);
-
-
-            HttpWebResponse response = (HttpWebResponse)
-                request.GetResponse();
-
-
-            Stream resStream = response.GetResponseStream();
-
-            string tempString = null;
-            int count = 0;
-            //read the data and print it
-            do
-            {
-                count = resStream.Read(buf, 0, buf.Length);
-                if (count != 0)
-                {
-                    tempString = Encoding.ASCII.GetString(buf, 0, count);
-
-                    sb.Append(tempString);
-                }
-            }
-            while (count > 0);
-            return sb.ToString();
-        }
 
         protected String Send_GET_REQUEST_TODAY_Price(String coin, String currency)
         {
-            // https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD
-            // handle GET request
             StringBuilder sb = new StringBuilder();
 
             byte[] buf = new byte[8192];
 
             //do get request
 
-            String url = "https://min-api.cryptocompare.com/data/price?fsym="+ coin+"&tsyms=" + currency + "&e=CCCAGG";
+            String url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + coin+"&tsyms=" + currency;
             HttpWebRequest request = (HttpWebRequest)
                 WebRequest.Create(url);
 

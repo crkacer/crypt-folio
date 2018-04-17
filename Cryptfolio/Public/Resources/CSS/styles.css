@@ -555,18 +555,18 @@
         z-index: 3;
     }
     .parallax-6 {
-        background: url("../Images/Parallax/parallax-6.png") repeat-x center center;
-        background-size: cover;
+        background: url("../Images/Parallax/parallax-6.png") no-repeat center center;
+
         height: 50vh;
-        width: 100vw;
+        width: 120vw;
         position: absolute;
         z-index: 2;
     }
 
     .parallax-7 {
-        background: url("../Images/Parallax/parallax-7.png") repeat-x center center;
-        background-size: cover;
-        height: 50vh;
+        background: url("../Images/Parallax/parallax-7.png") no-repeat center center;
+
+        height: 60vh;
         width: 100vw;
         position: absolute;
         z-index: 1;

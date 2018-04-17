@@ -31,8 +31,9 @@
                                         name="email"
                                         @focus ="isError = false"
                                         required
+                                        style="min-width: 25vw;"
                                 ></v-text-field>
-                <div class="text-xs-center"><v-btn round @click="sendEmail" :class="{ green: valid, red: !valid }">Reset</v-btn><v-btn round @click="clear">Clear</v-btn></div>
+                <div class="text-xs-center"><v-btn round @click="sendEmail" :class="{ green: valid, red: !valid }">Reset</v-btn><v-btn round @click="clear" >Clear</v-btn></div>
             
                 <transition name="fade" appear v-if="isProcess">
                     <v-card-text><v-progress-circular indeterminate color="primary"></v-progress-circular> Please wait while we process your request </v-card-text>

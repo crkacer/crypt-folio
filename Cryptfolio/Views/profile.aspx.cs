@@ -11,7 +11,20 @@ namespace Cryptfolio.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (HttpContext.Current.Request.HttpMethod == "POST")
+            {
 
+            }
+            else
+            {
+                if (Session["USERID"] == null) {
+                    Response.Redirect("login.aspx");
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }
