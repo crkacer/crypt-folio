@@ -165,3 +165,12 @@ C:\Users\101085183\Desktop\New folder\Cryptfolio\bin\Cryptfolio.dll
 C:\Users\101085183\Desktop\New folder\Cryptfolio\bin\Cryptfolio.pdb
 C:\Users\101085183\Desktop\New folder\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\101085183\Desktop\New folder\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\bin\Cryptfolio.dll.config
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\bin\Cryptfolio.dll
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\bin\Cryptfolio.pdb
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.csprojResolveAssemblyReference.cache
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.csproj.CoreCompileInputs.cache
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.dll
+C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.pdb

@@ -87,13 +87,22 @@
             }
         });
 
+        var json_username = <%=JSON_username%>;
+        var json_email = <%=JSON_email%>;
+        var json_userID = <%=JSON_userID%>;
+        console.log(json_username);
+        console.log(json_email);
+
+        document.getElementById('<%=usernameInput.ClientID%>').value = json_username;
+        document.getElementById('<%=emailInput.ClientID%>').value = json_email;
+
         function submitForm() {
             var username = document.getElementById('<%=usernameInput.ClientID%>').value;
             var email = document.getElementById('<%=emailInput.ClientID%>').value;
             var password = document.getElementById('<%=Password.ClientID%>').value;
-            if (Page_IsValid && email != "" && password != "" && username != "") {
+            if (Page_IsValid) {
                 var bodyAjax = {
-                    type: "profile_edit",
+                    type: "update_info",
                     username: username,
                     email: email,
                     password: password
@@ -108,7 +117,7 @@
                     url: "profile.aspx",
                     data: bodyAjax,
                     success: function (data) {
-
+                        console.log(data);
                         if (data == 1) {
                             window.location.href = "index.aspx";
                         } else {
