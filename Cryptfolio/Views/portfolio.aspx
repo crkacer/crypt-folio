@@ -426,25 +426,36 @@
         //Coin_holdings
         var portfolio_coin_holdings = <%=JSON_COIN_data%>;
         console.log(portfolio_coin_holdings);
-        var portfolio = [];
+        var holdingsPortfolio = [];
+        var soldPortfolio = [];
         portfolio_coin_holdings.forEach(function (e, i) {
-            if (e != null) {
-                portfolio.push(populatePortfolio(e));
+            if (e != null && e.status == 1 ) {
+                holdingsPortfolio.push(populatePortfolio(e));
+            }
+            if (e != null && e.status == 2) {
+                soldPortfolio.push(populatePortfolio(e));
             }
             
           
         });
-        console.log(portfolio);
+        
+        console.log(holdingsPortfolio);
+        console.log(soldPortfolio);
         function populatePortfolio(item) {
             var foo = [];
             var APIdata = JSON.parse(item.APIdata).RAW;
             APIdata = APIdata[item.coin_symbol].USD;
             console.log(APIdata);
+            foo.buy_coin_id = item.buy_coin_id;
+            foo.coin_symbol = item.coin_symbol;
             foo.coin = item.coin_name + " (" + item.coin_symbol + ")";
             foo.buyPrice = item.buy_price;
+            foo.buyDate = item.buy_date;
+            foo.status = item.status;
             foo.actualPrice = APIdata.PRICE;
             foo.amount = item.coin_amount;
             foo.totalValue = foo.actualPrice * foo.amount;
+            foo.trans_ID = item.trans_ID;
             foo.totalValue = foo.totalValue.toFixed(2);
             foo.profitLoss = (foo.actualPrice * foo.amount) - (foo.buyPrice * foo.amount);
             foo.profitLoss = foo.profitLoss.toFixed(2);
@@ -523,27 +534,32 @@
                     {
                         text: '#  Coin',
                         align: 'left',
-                        value: 'coin'
+                        value: 'coin',
+                        sortable: false
                     },
                     {
                         text: 'Price',
                         align: 'center',
-                        value: 'price'
+                        value: 'price',
+                        sortable: false
                     },
                     {
                         text: 'Total Value',
                         align: 'right',
-                        value: 'totalValue'
+                        value: 'totalValue',
+                        sortable: false
                     },
                     {
                         text: 'Profit/Loss',
                         align: 'right',
-                        value: 'profitLoss'
+                        value: 'profitLoss',
+                        sortable: false
                     },
                     {
                         text: 'Change',
                         align: 'right',
-                        value: 'change'
+                        value: 'change',
+                        sortable: false
                     },
                     { text: 'Actions', value: 'name', sortable: false }
                 ],
@@ -574,7 +590,7 @@
                         value: 'change'
                     }
                 ],
-                items: portfolio,
+                items: holdingsPortfolio,
                 soldItems: [],
                 soldItemsToDisplay: [],
                 itemsToDisplay: [],
@@ -684,17 +700,22 @@
             methods: {
                 populate(item) {
                     var foo = [];
+                    foo["status"] = item.status;
+                    foo["coin_symbol"] = item.coin_symbol;
+                    foo["transaction_id"] = item.trans_ID;
+                    foo["sell_coin_id"] = item.sell_coin_id;
                     foo["coin"] = item.coin;
                     foo["buyPrice"] = item.buyPrice;
                     foo["totalValue"] = item.totalValue;
                     foo["profitLoss"] = item.profitLoss;
+                    foo["buyDate"] = item.buyDate;
                     foo["change"] = item.change;
                     return foo;
                 },
                 initialize() {
                     
                     this.items.forEach((item, index) => {
-                        if (item != null) {
+                        if (item != null && item.status == 1) {
                             this.itemsToDisplay.push(this.populate(item))
                         }
                     });
@@ -704,18 +725,38 @@
                 },
                 
                 editItem(item) {
-                    var today = new Date();
-                    var date = today.getFullYear() + "-" + parseInt(today.getMonth() + 1) + "-" + today.getDate();
+
                     this.editedIndex = this.itemsToDisplay.indexOf(item)
                     this.editedItem = Object.assign({}, this.items[this.editedIndex])
-                    this.sellItem = Object.assign({ sellAmount: this.editedItem.amount, soldDate:date }, this.items[this.editedIndex])
-                    console.log(this.sellItem);
+                    this.sellItem = Object.assign({ sellAmount: this.editedItem.amount, soldDate: this.editedItem.buyDate }, this.items[this.editedIndex])
+                    //console.log(this.sellItem);
                     this.dialog = true
                 },
 
                 deleteItem(item) {
                     const index = this.itemsToDisplay.indexOf(item)
-                    confirm('Are you sure you want to delete this item?') && this.itemsToDisplay.splice(index, 1)
+                    if (confirm('Are you sure you want to delete this item?')) {
+                        var bodyAjax = {
+                            type: 'delete_coin',
+                            transaction_id: this.items[index].trans_ID
+                        }
+                        console.log(bodyAjax);
+                        $.ajax({
+                            type: "POST",
+                            url: "portfolio.aspx",
+                            data: bodyAjax,
+                            success: function (data) {
+                                if (data == 1) {
+                                    location.reload();
+                                } else {
+                                    alert(data);
+                                }
+                            },
+                            error: function (data) {
+                                alert(data)
+                            }
+                        });
+                    }
                 },
                 
                 close() {
@@ -729,24 +770,28 @@
                     }, 300)
                    
                 },
-
+                
                 update() {
                     
                     //Implementing AJAX request for Update
                     var bodyAjax = {
                         type: "update_coin",
-                        coin: this.coins.indexOf(this.editedItem.coin) + 1,
+                        transaction_id: this.editedItem.trans_ID,
                         amount: this.editedItem.amount,
                         price: this.editedItem.buyPrice,
                         date: this.editedItem.buyDate
                     };
-
+                    console.log(bodyAjax);
                     $.ajax({
                         type: "POST",
                         url: "portfolio.aspx",
                         data: bodyAjax,
                         success: function (data) {
-                            console.log(data);
+                            if (data == 1) {
+                                location.reload();
+                            } else {
+                                alert(data);
+                            }
                         },
                         error: function (data) {
                             console.log(data);
@@ -757,18 +802,25 @@
                     //Implementing AJAX request for Sell
                     var bodyAjax = {
                         type: "sell_coin",
-                        coin: this.coins.indexOf(this.sellItem.coin) + 1,
+                        coin: this.coins.indexOf(this.sellItem.coin_symbol) +1,
+                        transaction_id: this.sellItem.trans_ID,
                         amount: this.sellItem.sellAmount,
+                        remainAmount: this.sellItem.amount - this.sellItem.sellAmount,
                         price: this.sellItem.price,
                         date: this.sellItem.soldDate
                     };
-
+                    console.log(bodyAjax);
                     $.ajax({
                         type: "POST",
                         url: "portfolio.aspx",
                         data: bodyAjax,
                         success: function (data) {
-                            console.log(data);
+                            if (data == 1) {
+                                location.reload();
+                            }
+                            else {
+                                alert(data);
+                            }
                         },
                         error: function (data) {
                             console.log(data);
@@ -790,10 +842,10 @@
                         url: "portfolio.aspx",
                         data: bodyAjax,
                         success: function (data) {
-                            console.log(data);
+                            location.reload();
                         },
                         error: function (data) {
-                            console.log(data);
+                            alert(data);
                         }
                     });
                 },

@@ -22,7 +22,7 @@ namespace Cryptfolio.Views
         {
             if (Session["USERID"] == null)
             {
-                Response.Redirect("main.aspx");
+                Response.Redirect("login.aspx");
             }
             else
             {
@@ -36,9 +36,9 @@ namespace Cryptfolio.Views
 
                         String update_username = (Request.Params["username"] == null || Request.Params["username"] == "") ? _username : Request.Params["username"].ToString();
                         String update_email = (Request.Params["email"] == null || Request.Params["email"] == "") ? _email : Request.Params["email"].ToString();
-                        String update_password = (Request.Params["password"] == null || Request.Params["password"] == "") ? Encrypt(_password) : Request.Params["password"].ToString();
+                        String update_password = (Request.Params["password"] == null || Request.Params["password"] == "") ? Encrypt(_password) : Encrypt(Request.Params["password"].ToString());
 
-                        SqlCommand cmd_update = new SqlCommand("UPDATE [User] SET username = @username, password = @password, email = @email WHERE ID = @ID",con);
+                        SqlCommand cmd_update = new SqlCommand("UPDATE [User] SET username = @username, password = @password, email = @email WHERE ID = @ID", con);
                         cmd_update.Parameters.AddWithValue("@username", update_username);
                         cmd_update.Parameters.AddWithValue("@email", update_email);
                         cmd_update.Parameters.AddWithValue("@password", update_password);
@@ -46,6 +46,8 @@ namespace Cryptfolio.Views
                         cmd_update.ExecuteNonQuery();
 
                         Response.Write(1);
+                        
+                        
                         Response.End();
                     }
                 }
@@ -73,7 +75,7 @@ namespace Cryptfolio.Views
                     // Secondly send GET request to API in order to get data for each coin
                     _username = reader.GetString(1).Trim();
                     _email = reader.GetString(3).Trim();
-                    _password = reader.GetString(2).Trim();
+                    _password = Decrypt(reader.GetString(2).Trim());
 
                     var serializer = new JavaScriptSerializer();
 

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Master.Master" AutoEventWireup="true" CodeBehind="profile.aspx.cs" Inherits="Cryptfolio.Views.WebForm12" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
+    <link type="text/css" rel="stylesheet" href="../Public/Resources/CSS/vuetify.min.css" />
     <style>
         .edit-profile{
             min-height: 70vh;
@@ -23,8 +24,8 @@
         <div class="edit-profile-textbox">
             <div class="mdl-typography--display-2 mdl-typography--text-center" style="font-family: 'Dancing Script', cursive;">Account Settings</div>
             <div id="app">
-                <v-alert type="error" :value="alert" class="mr-5 ml-5">
-                    Failed to update profile. 
+                <v-alert type="error" :value="alert" style="width: 400px; margin:auto;">
+                    Failed to update profile. Username or email already exist.
                 </v-alert>
             </div>
         <form ref="form" action="#" runat="server" >

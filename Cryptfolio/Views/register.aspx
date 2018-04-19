@@ -181,7 +181,7 @@
                     success: function (data) {
                        
                         if (data == 1) {
-                            window.location.href = "main.aspx";
+                            window.location.href = "login.aspx";
                         } else {
                             vm.alert = true;
                         }

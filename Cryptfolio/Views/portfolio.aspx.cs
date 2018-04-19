@@ -27,6 +27,7 @@ namespace Cryptfolio.Views
         protected String profit, acq_cost, holdings, realized_profit, port_min, port_max, least_profit, most_profit, worst_crypto, best_crypto;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
         SqlConnection con2 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+        SqlConnection con3 = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
         String[] listCOIN = new String[] {"BTC", "ETH", "XRP", "BCH", "NEO", "LTC", "ADA", "EOS", "XLM", "VEN", "IOTA", "XMR", "TRX", "ETC", "LSK", "QTUM", "OMG", "XVG", "USDT", "XRB"};
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,6 +50,10 @@ namespace Cryptfolio.Views
                 {
                     HandleAJAXRequest_UpdateCoin();
                 }
+                else if (POST_TYPE == "delete_coin")
+                {
+                    HandleAJAXRequest_DeleteCoin();
+                }
                 else
                 {
                     Response.Write("POST:The value is none");
@@ -67,12 +72,15 @@ namespace Cryptfolio.Views
         }
         private class Holdings
         {
+            public int trans_ID;
             public int coin_ID;
             public String coin_name;
             public String coin_symbol;
             public double coin_amount;
             public double buy_price;
-            public long buy_date;
+            public string buy_date;
+            public Int32 status;
+            public Int32 buy_coin_id;
             public object APIdata;
         }
         protected void HandleGET()
@@ -101,6 +109,8 @@ namespace Cryptfolio.Views
                 int index = 0;
                 while (reader.Read())
                 {
+                   
+                    int trans_ID = reader.GetInt32(0);
                     int coin_ID = reader.GetInt32(2);
                     String coin_name = "";
                     String coin_symbol = "";
@@ -108,7 +118,7 @@ namespace Cryptfolio.Views
                     double coin_price = reader.GetDouble(4);
                     Int32 status = reader.GetInt32(3);
                     DateTime date_created = reader.GetDateTime(6);
-                    long unixTime = ((DateTimeOffset)date_created).ToUnixTimeSeconds();
+                    Int32 buy_coin_id = reader.GetInt32(7);
                     con2.Open();
                     SqlCommand cmd_coin = new SqlCommand("SELECT * FROM [Coin] WHERE ID = '" + coin_ID + "'", con2);
 
@@ -129,13 +139,16 @@ namespace Cryptfolio.Views
                     // TO calculate weight of each coin in portfolio
                     String data = Send_GET_REQUEST_TODAY_Price(coin_symbol, "USD");
                     Holdings transaction = new Holdings();
+                    transaction.trans_ID = trans_ID;
                     transaction.coin_ID = coin_ID;
                     transaction.coin_name = coin_name;
                     transaction.coin_symbol = coin_symbol;
                     transaction.coin_amount = coin_amount;
                     transaction.buy_price = coin_price;
-                    transaction.buy_date = unixTime;
+                    transaction.status = status;
+                    transaction.buy_date = date_created.ToString("yyyy-MM-dd");
                     transaction.APIdata = data;
+                    transaction.buy_coin_id = buy_coin_id;
                     coin_data_holding[index] = transaction;
                     index++;
                     reader_coin.Close();
@@ -147,14 +160,14 @@ namespace Cryptfolio.Views
                 Console.WriteLine("Portfolio does not have any coin yet");
             }
 
-            
-        
+
+            con.Close();
             var json_coin_today = serializer.Serialize(coin_data_today);
             JSON_COIN_data_today = json_coin_today;
 
             var json_coin_holding = serializer.Serialize(coin_data_holding);
             JSON_COIN_data = json_coin_holding;
-
+            
             reader.Close();
         }
 
@@ -205,27 +218,44 @@ namespace Cryptfolio.Views
         {
             Response.Clear();
             Response.ContentType = "text/plain";
-
+            CultureInfo provider = CultureInfo.InvariantCulture;
             // get data from body ajax
-
-            Double amount, price;
-            Int32 portfolio, coin;
-
-            double.TryParse(Request.Params["price"], out price);
-            Int32.TryParse(Request.Params["p_ID"], out portfolio);
-            Int32.TryParse(Request.Params["c_ID"], out coin);
-            
+            Double amount, remain;
+            Double price;
+            Int32 portfolio, transaction_id, coin;
+            Double.TryParse(Request.Params["amount"], out amount);
+            Double.TryParse(Request.Params["price"], out price);
+            Int32.TryParse(Decrypt(Session["PORTID"].ToString()), out portfolio);
+            Double.TryParse(Request.Params["remainAmount"], out remain);
+            Int32.TryParse(Request.Params["transaction_id"], out transaction_id);
+            Int32.TryParse(Request.Params["coin"], out coin);
             DateTime date;
-            DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
+            date = DateTime.ParseExact(Request.Params["date"], "yyyy-MM-dd", provider);
+
             // DateTime.TryParse(Request.Params["date"].ToString(), out date);
+
+         
+
             
-            Response.Write(date.ToString());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("INSERT INTO [Transaction] (p_ID, c_ID, status, price, amount, date_created) VALUES (@p_ID, @c_ID, @status, @price, @amount, @date_created);", con);
+            cmd.Parameters.AddWithValue("@p_ID", portfolio);
+            cmd.Parameters.AddWithValue("@c_ID", coin);
+            cmd.Parameters.AddWithValue("@status", 2);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@amount", amount);
+            cmd.Parameters.AddWithValue("@date_created", date.ToString());    
+            cmd.Parameters.AddWithValue("@buy_coin_ID", transaction_id);
+            cmd.ExecuteNonQuery();
 
-            // validate data
-
-            // add data to table
-            SqlCommand cmd = new SqlCommand("update [Transaction] set price = '" + price + "' where p_ID = '" + portfolio + "' and c_ID = '" + coin + "')", con);
-
+            con.Close();
+            con2.Open();
+            //Update the amount of actual coin being sold
+            SqlCommand cmd2 = new SqlCommand("UPDATE [Transaction] SET amount = @amount WHERE ID = @ID", con2);
+            cmd2.Parameters.AddWithValue("@amount", remain);
+            cmd2.Parameters.AddWithValue("@ID", transaction_id);
+            cmd2.ExecuteNonQuery();
+            Response.Write(1);
             Response.End();
 
         }
@@ -233,32 +263,54 @@ namespace Cryptfolio.Views
         // Handle update coin
         protected void HandleAJAXRequest_UpdateCoin()
         {
+            con.Open();
             Response.Clear();
             Response.ContentType = "text/plain";
 
             // get data from body ajax
 
-            Double price, amount;
-            double.TryParse(Request.Params["amount"], out amount);
-            double.TryParse(Request.Params["price"], out price);
-            String coin = Request.Params["coin"].ToString();
+            Double amount;
+            Double price;
+            Double.TryParse(Request.Params["amount"], out amount);
+            Double.TryParse(Request.Params["price"], out price);
+            Int32 transaction_id;
+            Int32.TryParse(Request.Params["transaction_id"], out transaction_id);
             DateTime date;
             DateTime.TryParseExact(Request.Params["date"].ToString(), "yyyy-MM-dd", null, DateTimeStyles.None, out date);
             // DateTime.TryParse(Request.Params["date"].ToString(), out date);
 
-            Response.Write(amount + " " + coin + " ");
-            Response.Write(date.ToString());
-
-            // validate data
+            //Validate  
 
             // add data to table
-
+            SqlCommand cmd = new SqlCommand("update [Transaction] set price = @price, amount = @amount, date_created = @buy_date where ID = @ID", con);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@amount", amount);
+            cmd.Parameters.AddWithValue("@buy_date", date);
+            cmd.Parameters.AddWithValue("@ID", transaction_id);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Write(1);
             Response.End();
 
         }
 
 
-        // Handle Get data from API
+        // Handle Delete coin
+        protected void HandleAJAXRequest_DeleteCoin()
+        {
+            con.Open();
+            Response.Clear();
+            Response.ContentType = "text/plain";
+
+            int transaction_id;
+            Int32.TryParse(Request.Params["transaction_id"], out transaction_id);
+            SqlCommand cmd = new SqlCommand("delete from [Transaction] where ID = @ID", con);
+            cmd.Parameters.AddWithValue("@ID", transaction_id);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Write(1);
+            Response.End();
+        }
 
 
         protected String Send_GET_REQUEST_TODAY_Price(String coin, String currency)
