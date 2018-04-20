@@ -1061,10 +1061,10 @@
                 leastProfitableCoinPercentage() {
                     var res = 0;
                     if (this.allCoinsPortfolioData.length > 0) {
-                        res = this.allCoinsPortfolioData[0].coin_history[this.allCoinsPortfolioData[0].coin_history.length - 1][1] - this.allCoinsPortfolioData[0].coin_history[0][1]
+                        res = ((this.allCoinsPortfolioData[0].coin_history[this.allCoinsPortfolioData[0].coin_history.length - 1][1] / this.allCoinsPortfolioData[0].coin_history[0][1]) * 100) - 100;
                         this.allCoinsPortfolioData.forEach(function (e) {
 
-                            if (res > e.coin_history[e.coin_history.length - 1][1] - e.coin_history[0][1]) {
+                            if (res > ((e.coin_history[e.coin_history.length - 1][1] / e.coin_history[0][1]) * 100) - 100) {
                                 res = ((e.coin_history[e.coin_history.length - 1][1] / e.coin_history[0][1]) * 100) - 100;
                             }
                         });
@@ -1092,7 +1092,7 @@
                 mostProfitableCoinMoney() {
                     var res = 0;
                     if (this.allCoinsPortfolioData.length > 0) {
-                        res = this.allCoinsPortfolioData[0].coin_history[this.allCoinsPortfolioData[0].coin_history.length - 1][1] - this.allCoinsPortfolioData[0].coin_history[0][1]
+                        res = this.allCoinsPortfolioData[0].coin_history[this.allCoinsPortfolioData[0].coin_history.length - 1][1] - this.allCoinsPortfolioData[0].coin_history[0][1];
                         this.allCoinsPortfolioData.forEach(function (e) {
 
                             if (res < e.coin_history[e.coin_history.length - 1][1] - e.coin_history[0][1]) {
@@ -1107,10 +1107,10 @@
                 mostProfitableCoinPercentage() {
                     var res = 0;
                     if (this.allCoinsPortfolioData.length > 0) {
-                        res = this.allCoinsPortfolioData[0].coin_history[this.allCoinsPortfolioData[0].coin_history.length - 1][1] - this.allCoinsPortfolioData[0].coin_history[0][1]
+                        res = ((this.allCoinsPortfolioData[0].coin_history[this.allCoinsPortfolioData[0].coin_history.length - 1][1] / this.allCoinsPortfolioData[0].coin_history[0][1]) * 100) - 100;
                         this.allCoinsPortfolioData.forEach(function (e) {
 
-                            if (res < e.coin_history[e.coin_history.length - 1][1] - e.coin_history[0][1]) {
+                            if (res < ((e.coin_history[e.coin_history.length - 1][1] / e.coin_history[0][1]) * 100) - 100) {
                                 res = ((e.coin_history[e.coin_history.length - 1][1] / e.coin_history[0][1]) * 100) - 100;
                             }
                         });
