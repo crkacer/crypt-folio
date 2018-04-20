@@ -460,7 +460,7 @@
 
         //Coin_holdings
         var portfolio_coin_holdings = <%=JSON_COIN_data%>;
-        console.log(portfolio_coin_holdings);
+    
         var holdingsPortfolio = [];
         var soldPortfolio = [];
         var emptyPortfolio = [];
@@ -484,9 +484,7 @@
                 }
             }
         });
-        console.log(holdingsPortfolio);
-        console.log(soldPortfolio);
-        console.log(emptyPortfolio);
+
         //Populate Empty
         function populateEmptyPortfolio(item) {
             var foo = [];
@@ -499,7 +497,7 @@
             var foo = [];
             var APIdata = JSON.parse(item.APIdata).RAW;
             APIdata = APIdata[item.coin_symbol].USD;
-            console.log(APIdata);
+           
             foo.buy_coin_id = item.buy_coin_id;
             foo.coin_symbol = item.coin_symbol;
             foo.coin = item.coin_name + " (" + item.coin_symbol + ")";
@@ -558,7 +556,7 @@
 
             var chart = Highcharts.stockChart('chart-portfolio', {
                 title: {
-                    text: 'Portfolio 1 Week Chart'
+                    text: 'Portfolio Monthly Chart'
                 },
 
                 rangeSelector: {
@@ -608,7 +606,7 @@
             });
         }
         function drawPieChart(data) {
-            console.log(data);
+        
             Highcharts.chart('pie-chart', {
                 chart: {
                     plotBackgroundColor: null,
@@ -647,6 +645,7 @@
 
             holdingsPortfolio.forEach(function (e, i) {
                 e.historyData.forEach((e2) => {
+                    e2[0] *= 1000;
                     e2[1] *= parseFloat(e.amount);
                 });
             });
@@ -671,7 +670,7 @@
             });
 
 
-            console.log(portfolioChartData);
+           
         }
         function deepCopy(arr) {
             var foo = [];
@@ -713,7 +712,7 @@
             });
             pieChartData[0].sliced = true;
             pieChartData[0].selected = true;
-            console.log(total);
+         
 
         }
         if (holdingsPortfolio.length > 0) {
@@ -1178,7 +1177,7 @@
                     this.items.forEach((e) => {
                         this.allCoinsPortfolioData.push(this.populatePortfolioData(e));
                     });
-                    console.log(this.allCoinsPortfolioData);
+                 
                     this.items.forEach((item, index) => {
                         if (item != null && item.status == 1) {
                             this.itemsToDisplay.push(this.populateHoldings(item))
@@ -1194,7 +1193,7 @@
                     this.editedIndex = this.itemsToDisplay.indexOf(item)
                     this.editedItem = Object.assign({}, this.items[this.editedIndex])
                     this.sellItem = Object.assign({ sellAmount: this.editedItem.amount, soldDate: this.editedItem.buyDate, sellPrice: this.editedItem.marketPrice }, this.items[this.editedIndex])
-                    //console.log(this.sellItem);
+                   
                     this.dialog = true
                 },
 
@@ -1205,7 +1204,7 @@
                             type: 'delete_coin',
                             transaction_id: this.items[index].trans_ID
                         }
-                        console.log(bodyAjax);
+                       
                         $.ajax({
                             type: "POST",
                             url: "portfolio.aspx",
@@ -1246,7 +1245,7 @@
                         price: this.editedItem.buyPrice,
                         date: this.editedItem.buyDate
                     };
-                    console.log(bodyAjax);
+                   
                     $.ajax({
                         type: "POST",
                         url: "portfolio.aspx",
@@ -1265,7 +1264,7 @@
                 },
                 sell() {
                     //Implementing AJAX request for Sell
-                    console.log
+                   
                     var bodyAjax = {
                         type: "sell_coin",
                         coin: this.coins.indexOf(this.sellItem.coin_symbol) +1,
@@ -1275,7 +1274,7 @@
                         price: this.sellItem.sellPrice,
                         date: this.sellItem.soldDate
                     };
-                    console.log(bodyAjax);
+                  
                     $.ajax({
                         type: "POST",
                         url: "portfolio.aspx",

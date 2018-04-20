@@ -51,7 +51,7 @@
             <div class="mdl-typography--headline mdl-typography--text-center" style="font-family: 'Dancing Script', cursive;">Create an account.</div>
                 <div id="app">
                     <v-alert type="error" :value="alert" class="mr-5 ml-5">
-                        Failed to Register. Email or Username already taken
+                        Failed to Register. Email already taken
                     </v-alert>
                 </div>
                 
@@ -188,7 +188,7 @@
                         //console.log(request_status);
                     },
                     error: function (data) {
-                        //console.log(data);
+                        console.log(data);
                     }
                 });
             }

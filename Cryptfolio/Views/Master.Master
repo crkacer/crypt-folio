@@ -33,7 +33,7 @@
             document.documentElement.classList.add('sr');
         }
         var session = <%=Session_user%>;
-        console.log(session);
+  
     </script>
 
     <asp:ContentPlaceHolder ID="Style" runat="server">
@@ -138,7 +138,7 @@
                         url: "logout.aspx",
                         data: bodyAjax,
                         success: function (data) {
-                            console.log(data);
+                        
                             if (data == 1) {
                                 location.reload();
                             } 

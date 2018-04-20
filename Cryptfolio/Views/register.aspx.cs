@@ -39,6 +39,13 @@ namespace Cryptfolio.Views
                 JSON_status = jStatus;
                 Response.End();
             }
+            else
+            {
+                if (Session["USERID"] != null)
+                {
+                    Response.Redirect("index.aspx");
+                }
+            }
 
 
             
@@ -54,51 +61,57 @@ namespace Cryptfolio.Views
             email = Request.Params["email"];
             password = Request.Params["password"];
 
-
-            // check if username exists
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE email = @email;", con);
-            cmd.Parameters.AddWithValue("@email", email);
-
-            var result = cmd.ExecuteScalar();
-
-            if (result != null)
+            try
             {
-                // username already existed
-                status = "Username already existed";
-                Response.Write("Username already existed");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE email = @email;", con);
+                cmd.Parameters.AddWithValue("@email", email);
+
+                var result = cmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    // username already existed
+                    status = "Username already existed";
+                    Response.Write("Username already existed");
+                }
+                else
+                {
+                    // username did not exist
+                    // create new user 
+
+                    SqlCommand cmd2 = new SqlCommand("INSERT INTO [User] (username, email, password) VALUES (@username, @email, @password);", con);
+                    cmd2.Parameters.AddWithValue("@username", username);
+                    cmd2.Parameters.AddWithValue("@email", email);
+                    cmd2.Parameters.AddWithValue("@password", Encrypt(password));
+
+                    cmd2.ExecuteNonQuery();
+                    // successful created new user
+                    status = "Successful registered user";
+
+                    // create new portfolio for that user
+                    int maxID;
+
+                    SqlCommand cmdzs = new SqlCommand("SELECT MAX (ID) as max_user_id FROM [User];", con);
+                    cmdzs.CommandType = CommandType.Text;
+                    int.TryParse(cmdzs.ExecuteScalar().ToString(), out maxID);
+
+                    SqlCommand cmd_port = new SqlCommand("INSERT INTO [Portfolio] (user_ID, name) VALUES (@user_ID, @name);", con);
+                    cmd_port.Parameters.AddWithValue("@user_ID", maxID);
+                    cmd_port.Parameters.AddWithValue("@name", email);
+                    cmd_port.ExecuteNonQuery();
+
+                    Response.Write(1);
+
+                }
+
+                con.Close();
             }
-            else
+            catch (Exception e)
             {
-                // username did not exist
-                // create new user 
-
-                SqlCommand cmd2 = new SqlCommand("INSERT INTO [User] (username, email, password) VALUES (@username, @email, @password);", con);
-                cmd2.Parameters.AddWithValue("@username", username);
-                cmd2.Parameters.AddWithValue("@email", email);
-                cmd2.Parameters.AddWithValue("@password", Encrypt(password));
-
-                cmd2.ExecuteNonQuery();
-                // successful created new user
-                status = "Successful registered user";
-
-                // create new portfolio for that user
-                int maxID;
-
-                SqlCommand cmdzs = new SqlCommand("SELECT MAX (ID) as max_user_id FROM [User];", con);
-                cmdzs.CommandType = CommandType.Text;
-                int.TryParse( cmdzs.ExecuteScalar().ToString(), out maxID);
-
-                SqlCommand cmd_port = new SqlCommand("INSERT INTO [Portfolio] (user_ID, name) VALUES (@user_ID, @name);", con);
-                cmd_port.Parameters.AddWithValue("@user_ID", maxID);
-                cmd_port.Parameters.AddWithValue("@name", email);
-                cmd_port.ExecuteNonQuery();
-
-                Response.Write(1);
-                
+                Response.Write(e);
             }
             
-            con.Close();
             
         }
 

@@ -174,3 +174,4 @@ C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.csprojResolveAss
 C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.csproj.CoreCompileInputs.cache
 C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.dll
 C:\Users\101095506\Desktop\ASP2\Cryptfolio\obj\Debug\Cryptfolio.pdb
+C:\Users\101085183\Desktop\ASP\Cryptfolio\obj\Debug\Cryptfolio.csproj.CopyComplete

@@ -91,8 +91,7 @@
         var json_username = <%=JSON_username%>;
         var json_email = <%=JSON_email%>;
         var json_userID = <%=JSON_userID%>;
-        console.log(json_username);
-        console.log(json_email);
+
 
         document.getElementById('<%=usernameInput.ClientID%>').value = json_username;
         document.getElementById('<%=emailInput.ClientID%>').value = json_email;
@@ -118,7 +117,7 @@
                     url: "profile.aspx",
                     data: bodyAjax,
                     success: function (data) {
-                        console.log(data);
+             
                         if (data == 1) {
                             window.location.href = "index.aspx";
                         } else {
@@ -127,7 +126,7 @@
                         //console.log(request_status);
                     },
                     error: function (data) {
-                        console.log(data);
+                 
                         vm.alert = true;
                     }
                 });

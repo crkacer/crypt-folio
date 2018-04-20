@@ -68,7 +68,7 @@
         
         var all_coins_current = <%=Data_COINS_Current%>;
         all_coins_current = all_coins_current.DISPLAY;
-        console.log(all_coins_current);
+      
         var all_news = <%=DATA_NEWS_JSON%>;
         var articles = [];
         JSON.parse(all_news)['articles'].some(function (e,i) {
@@ -76,7 +76,6 @@
             return i === 4;
         });
         
-        console.log(articles);
 
         var all_coins_historical = (<%=Data_COINS_Historical%>);
 
