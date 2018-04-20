@@ -77,11 +77,12 @@ namespace Cryptfolio.Views
             public String coin_name;
             public String coin_symbol;
             public double coin_amount;
-            public double buy_price;
-            public string buy_date;
+            public double price;
+            public string date;
             public Int32 status;
             public Int32 buy_coin_id;
             public object APIdata;
+            public object HistoryData;
         }
         protected void HandleGET()
         {
@@ -136,19 +137,41 @@ namespace Cryptfolio.Views
                             
                         }
                     }
-                    // TO calculate weight of each coin in portfolio
-                    String data = Send_GET_REQUEST_TODAY_Price(coin_symbol, "USD");
                     Holdings transaction = new Holdings();
-                    transaction.trans_ID = trans_ID;
-                    transaction.coin_ID = coin_ID;
-                    transaction.coin_name = coin_name;
-                    transaction.coin_symbol = coin_symbol;
-                    transaction.coin_amount = coin_amount;
-                    transaction.buy_price = coin_price;
-                    transaction.status = status;
-                    transaction.buy_date = date_created.ToString("yyyy-MM-dd");
-                    transaction.APIdata = data;
-                    transaction.buy_coin_id = buy_coin_id;
+                    // TO calculate weight of each coin in portfolio
+                    if (status != 2)
+                    {
+                        String data = Send_GET_REQUEST_TODAY_Price(coin_symbol, "USD");
+                        String history = Send_GET_REQUEST_Historical(coin_symbol, "USD", 7);
+                       
+                        transaction.trans_ID = trans_ID;
+                        transaction.coin_ID = coin_ID;
+                        transaction.coin_name = coin_name;
+                        transaction.coin_symbol = coin_symbol;
+                        transaction.coin_amount = coin_amount;
+                        transaction.price = coin_price;
+                        transaction.status = status;
+                        transaction.date = date_created.ToString("yyyy-MM-dd");
+                        transaction.APIdata = data;
+                        transaction.HistoryData = history;
+                        transaction.buy_coin_id = buy_coin_id;
+
+                    }
+                    else
+                    {
+                        String data = Send_GET_REQUEST_TODAY_Price(coin_symbol, "USD");
+                        
+                        transaction.trans_ID = trans_ID;
+                        transaction.coin_ID = coin_ID;
+                        transaction.coin_name = coin_name;
+                        transaction.coin_symbol = coin_symbol;
+                        transaction.coin_amount = coin_amount;
+                        transaction.price = coin_price;
+                        transaction.status = status;
+                        transaction.date = date_created.ToString("yyyy-MM-dd");
+                        transaction.APIdata = data;
+                        transaction.buy_coin_id = buy_coin_id;
+                    }
                     coin_data_holding[index] = transaction;
                     index++;
                     reader_coin.Close();
@@ -170,7 +193,46 @@ namespace Cryptfolio.Views
             
             reader.Close();
         }
+        //History Coin
+        protected String Send_GET_REQUEST_Historical(String coin, String currency, int limit)
+        {
+            // https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1000&aggregate=3&e=CCCAGG
 
+
+            // handle GET request
+            StringBuilder sb = new StringBuilder();
+
+            byte[] buf = new byte[8192];
+
+            //do get request
+
+            String url = "https://min-api.cryptocompare.com/data/histoday?fsym=" + coin + "&tsym=" + currency + "&limit=" + limit + "&aggregate=3&e=CCCAGG";
+            HttpWebRequest request = (HttpWebRequest)
+                WebRequest.Create(url);
+
+
+            HttpWebResponse response = (HttpWebResponse)
+                request.GetResponse();
+
+
+            Stream resStream = response.GetResponseStream();
+
+            string tempString = null;
+            int count = 0;
+            //read the data and print it
+            do
+            {
+                count = resStream.Read(buf, 0, buf.Length);
+                if (count != 0)
+                {
+                    tempString = Encoding.ASCII.GetString(buf, 0, count);
+
+                    sb.Append(tempString);
+                }
+            }
+            while (count > 0);
+            return sb.ToString();
+        }
         // Handle AJAX request add coin
 
         protected void HandleAJAXRequest_AddCoin()
@@ -205,11 +267,14 @@ namespace Cryptfolio.Views
             
             Response.Write(amount + " " + c_ID + " " + price + " " + date.ToString() + " " + p_ID + " ");
 
-            // validate data
-
-            // add data to table
-
+            con2.Open();
+            //Add Initial Investment on Portfolio Table
+            SqlCommand cmd = new SqlCommand("UPDATE [Portfolio] SET investment += @new_investment WHERE ID = @ID", con2);
+            cmd.Parameters.AddWithValue("@new_investment", amount * price);
+            cmd.Parameters.AddWithValue("@ID", p_ID);
+            cmd.ExecuteNonQuery();
             Response.End();
+            con2.Close();
             con.Close();
         }
 
@@ -238,7 +303,7 @@ namespace Cryptfolio.Views
 
             
             con.Open();
-            SqlCommand cmd = new SqlCommand("INSERT INTO [Transaction] (p_ID, c_ID, status, price, amount, date_created) VALUES (@p_ID, @c_ID, @status, @price, @amount, @date_created);", con);
+            SqlCommand cmd = new SqlCommand("INSERT INTO [Transaction] (p_ID, c_ID, status, price, amount, date_created, buy_coin_ID) VALUES (@p_ID, @c_ID, @status, @price, @amount, @date_created, @buy_coin_ID);", con);
             cmd.Parameters.AddWithValue("@p_ID", portfolio);
             cmd.Parameters.AddWithValue("@c_ID", coin);
             cmd.Parameters.AddWithValue("@status", 2);
@@ -255,6 +320,7 @@ namespace Cryptfolio.Views
             cmd2.Parameters.AddWithValue("@amount", remain);
             cmd2.Parameters.AddWithValue("@ID", transaction_id);
             cmd2.ExecuteNonQuery();
+            con2.Close();
             Response.Write(1);
             Response.End();
 
