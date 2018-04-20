@@ -527,11 +527,19 @@
             foo.coin_symbol = item.coin_symbol;
             foo.trans_ID = item.trans_ID;
             foo.coin = item.coin_name + " (" + item.coin_symbol + ")";
+            foo.buyPrice = 0;
             emptyPortfolio.forEach(function (e, i) {
                 if (e.trans_ID == foo.buy_coin_id) {
                     foo.buyPrice = parseFloat(e.buyPrice);
                 }
             });
+            if (foo.buyPrice == 0) {
+                holdingsPortfolio.forEach(function (e, i) {
+                    if (e.trans_ID == foo.buy_coin_id) {
+                        foo.buyPrice = parseFloat(e.buyPrice);
+                    }
+                });
+            }
             foo.sellPrice = item.price;
             foo.sellDate = item.date;
             foo.status = item.status;
@@ -1257,13 +1265,14 @@
                 },
                 sell() {
                     //Implementing AJAX request for Sell
+                    console.log
                     var bodyAjax = {
                         type: "sell_coin",
                         coin: this.coins.indexOf(this.sellItem.coin_symbol) +1,
                         transaction_id: this.sellItem.trans_ID,
                         amount: this.sellItem.sellAmount,
                         remainAmount: this.sellItem.amount - this.sellItem.sellAmount,
-                        price: this.sellItem.price,
+                        price: this.sellItem.sellPrice,
                         date: this.sellItem.soldDate
                     };
                     console.log(bodyAjax);
