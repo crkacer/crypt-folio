@@ -49,7 +49,7 @@ namespace Cryptfolio.Views
         {
             if(Session["USERID"] != null)
             {
-                Response.Redirect("main.aspx");
+                Response.Redirect("index.aspx");
             }
         }
 

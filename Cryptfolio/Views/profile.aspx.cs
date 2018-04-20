@@ -43,9 +43,17 @@ namespace Cryptfolio.Views
                         cmd_update.Parameters.AddWithValue("@email", update_email);
                         cmd_update.Parameters.AddWithValue("@password", update_password);
                         cmd_update.Parameters.AddWithValue("@ID", Decrypt(Session["USERID"].ToString()));
-                        cmd_update.ExecuteNonQuery();
+                        try
+                        {
+                            cmd_update.ExecuteNonQuery();
+                            Response.Write(1);
+                        }
+                        catch(Exception)
+                        {
+                            Response.Write(0);
+                        }
 
-                        Response.Write(1);
+                        
                         
                         
                         Response.End();
